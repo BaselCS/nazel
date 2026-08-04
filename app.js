@@ -90,21 +90,29 @@ function switchViewMode(view) {
   });
 
   const workflowSec = document.getElementById('workflow-section');
+  const unitsWorkflowSec = document.getElementById('units-workflow-section');
+  const bookingsWorkflowSec = document.getElementById('bookings-workflow-section');
   const allScreensTitle = document.getElementById('all-screens-section');
   const screensGrid = document.querySelector('.screens-grid');
 
   if (view === 'all') {
     if (workflowSec) workflowSec.style.display = 'block';
+    if (unitsWorkflowSec) unitsWorkflowSec.style.display = 'block';
+    if (bookingsWorkflowSec) bookingsWorkflowSec.style.display = 'block';
     if (allScreensTitle) allScreensTitle.style.display = 'block';
     if (screensGrid) screensGrid.style.display = 'grid';
     triggerToast('تم عرض جميع أقسام البوستر والوركفلو 🌐', 'info');
   } else if (view === 'workflow') {
     if (workflowSec) workflowSec.style.display = 'block';
+    if (unitsWorkflowSec) unitsWorkflowSec.style.display = 'block';
+    if (bookingsWorkflowSec) bookingsWorkflowSec.style.display = 'block';
     if (allScreensTitle) allScreensTitle.style.display = 'none';
     if (screensGrid) screensGrid.style.display = 'none';
-    triggerToast('تم الانتقال لمسار وركفلو تسجيل الدخول (10 شاشات) 🔄', 'info');
+    triggerToast('تم الانتقال لمسارات الوركفلو الشاملة 🔄', 'info');
   } else if (view === 'screens') {
     if (workflowSec) workflowSec.style.display = 'none';
+    if (unitsWorkflowSec) unitsWorkflowSec.style.display = 'none';
+    if (bookingsWorkflowSec) bookingsWorkflowSec.style.display = 'none';
     if (allScreensTitle) allScreensTitle.style.display = 'block';
     if (screensGrid) screensGrid.style.display = 'grid';
     triggerToast('تم الانتقال لعرض كافة شاشات التطبيق الـ 14 📱', 'info');
@@ -114,6 +122,54 @@ function switchViewMode(view) {
 // Modal Inspector for Workflow Step Screens
 function openWorkflowModal(stepId) {
   const container = document.querySelector(`.workflow-step-card[data-workflow-id="${stepId}"]`);
+  if (!container) return;
+
+  const phoneFrame = container.querySelector('.phone-frame');
+  const modalHolder = document.getElementById('modal-screen-holder');
+  const modalOverlay = document.getElementById('screen-modal');
+
+  if (!modalHolder || !modalOverlay) return;
+
+  modalHolder.innerHTML = '';
+  const frameClone = phoneFrame.cloneNode(true);
+  
+  const clonedScreen = frameClone.querySelector('.phone-screen');
+  if (clonedScreen) {
+    clonedScreen.style.overflowY = 'auto';
+  }
+
+  modalHolder.appendChild(frameClone);
+  modalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// Modal Inspector for Units Workflow Step Screens (03_units_management_workflow.jpeg)
+function openUnitsWorkflowModal(stepId) {
+  const container = document.querySelector(`.workflow-step-card[data-units-workflow-id="${stepId}"]`);
+  if (!container) return;
+
+  const phoneFrame = container.querySelector('.phone-frame');
+  const modalHolder = document.getElementById('modal-screen-holder');
+  const modalOverlay = document.getElementById('screen-modal');
+
+  if (!modalHolder || !modalOverlay) return;
+
+  modalHolder.innerHTML = '';
+  const frameClone = phoneFrame.cloneNode(true);
+  
+  const clonedScreen = frameClone.querySelector('.phone-screen');
+  if (clonedScreen) {
+    clonedScreen.style.overflowY = 'auto';
+  }
+
+  modalHolder.appendChild(frameClone);
+  modalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// Modal Inspector for Bookings Workflow Step Screens (04_bookings_management_workflow.jpeg)
+function openBookingsWorkflowModal(stepId) {
+  const container = document.querySelector(`.workflow-step-card[data-bookings-workflow-id="${stepId}"]`);
   if (!container) return;
 
   const phoneFrame = container.querySelector('.phone-frame');

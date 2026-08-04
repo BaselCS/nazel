@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
   <!-- Google Fonts: Alexandria & Cairo for Arabic UI excellence -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body class="poster-body">
 
   <!-- Hidden Image File Uploader Input -->
@@ -34,19 +38,20 @@
         <div class="logo-box">
           <div class="logo-icon uploadable-img" title="اضغط لرفع الشعار">
             <svg viewBox="0 0 100 100" fill="none">
-              <rect width="100" height="100" rx="24" fill="url(#logo-grad)"/>
+              <rect width="100" height="100" rx="24" fill="url(#logo-grad)" />
               <!-- House Icon -->
-              <path d="M50 20 L25 42 V75 H75 V42 Z" stroke="white" stroke-width="5" stroke-linejoin="round" fill="none"/>
-              <path d="M42 75 V54 H58 V75" stroke="white" stroke-width="5" stroke-linejoin="round" fill="none"/>
+              <path d="M50 20 L25 42 V75 H75 V42 Z" stroke="white" stroke-width="5" stroke-linejoin="round"
+                fill="none" />
+              <path d="M42 75 V54 H58 V75" stroke="white" stroke-width="5" stroke-linejoin="round" fill="none" />
               <!-- Lavender Flowers motif -->
-              <circle cx="30" cy="30" r="4" fill="#EADAFF"/>
-              <circle cx="70" cy="30" r="4" fill="#EADAFF"/>
-              <circle cx="24" cy="22" r="3" fill="#D0BCFF"/>
-              <circle cx="76" cy="22" r="3" fill="#D0BCFF"/>
+              <circle cx="30" cy="30" r="4" fill="#EADAFF" />
+              <circle cx="70" cy="30" r="4" fill="#EADAFF" />
+              <circle cx="24" cy="22" r="3" fill="#D0BCFF" />
+              <circle cx="76" cy="22" r="3" fill="#D0BCFF" />
               <defs>
                 <linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100">
-                  <stop offset="0%" stop-color="#4F378B"/>
-                  <stop offset="100%" stop-color="#26134B"/>
+                  <stop offset="0%" stop-color="#4F378B" />
+                  <stop offset="100%" stop-color="#26134B" />
                 </linearGradient>
               </defs>
             </svg>
@@ -79,7 +84,9 @@
         <div class="feature-item">
           <div class="feature-icon-box uploadable-icon" title="اضغط لرفع أيقونة">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path>
+              <path
+                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z">
+              </path>
             </svg>
           </div>
           <div class="feature-text">
@@ -104,26 +111,11 @@
       </div>
     </header>
 
-    <!-- VIEW MODE SWITCHER TABS -->
-    <nav class="view-mode-tabs-bar">
-      <button class="view-tab-btn active" onclick="switchViewMode('all')" data-view="all">🌐 عرض كل الأقسام الشاملة</button>
-      <button class="view-tab-btn" onclick="switchViewMode('workflow')" data-view="workflow">🔄 مسار تسجيل الدخول إلى الداشبورد (10 شاشات)</button>
-      <button class="view-tab-btn" onclick="switchViewMode('screens')" data-view="screens">📱 شاشات التطبيق المتكاملة (14 شاشة)</button>
-    </nav>
-
     <!-- WORKFLOW FLOWCHART SECTION: Login to Dashboard Workflow (02_login_to_dashboard_workflow.jpeg) -->
     <section id="workflow-section" class="poster-section-block">
       <div class="section-title-banner">
         <div class="banner-badge">تسلسل المستخدم الشامل من تسجيل الدخول إلى الداشبورد (Workflow)</div>
-        <p class="banner-desc">يوضح هذا المخطط جميع الخطوات التي يمر بها المستخدم من فتح التطبيق حتى الوصول إلى لوحة التحكم الرئيسية (الداشبورد) بنجاح.</p>
-      </div>
-
-      <!-- WORKFLOW STATS COUNTER BAR -->
-      <div class="workflow-stats-bar">
-        <div class="stat-pill"><span class="pill-num font-bold">100%</span> تغطية الوركفلو</div>
-        <div class="stat-pill"><span class="pill-num font-bold">6</span> مسارات بديلة</div>
-        <div class="stat-pill"><span class="pill-num font-bold">28+</span> خطوة فرعية</div>
-        <div class="stat-pill"><span class="pill-num font-bold">10</span> شاشات رئيسية</div>
+        <p class="banner-desc">جميع شاشات مسار وركفلو تسجيل الدخول</p>
       </div>
 
       <!-- WORKFLOW SCREENS GRID -->
@@ -133,7 +125,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="1" onclick="openWorkflowModal(1)">
           <div class="screen-badge step-badge"><span class="badge-num">1</span> فتح التطبيق 1</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen welcome-bg flex-center">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -142,14 +137,14 @@
               <div class="welcome-hero center-splash">
                 <div class="welcome-logo uploadable-img" title="اضغط لرفع الشعار">
                   <svg viewBox="0 0 100 100" fill="none">
-                    <rect width="100" height="100" rx="24" fill="url(#logo-grad-w1)"/>
-                    <path d="M50 20 L25 42 V75 H75 V42 Z" stroke="white" stroke-width="5" fill="none"/>
-                    <circle cx="30" cy="30" r="4" fill="#D0BCFF"/>
-                    <circle cx="70" cy="30" r="4" fill="#D0BCFF"/>
+                    <rect width="100" height="100" rx="24" fill="url(#logo-grad-w1)" />
+                    <path d="M50 20 L25 42 V75 H75 V42 Z" stroke="white" stroke-width="5" fill="none" />
+                    <circle cx="30" cy="30" r="4" fill="#D0BCFF" />
+                    <circle cx="70" cy="30" r="4" fill="#D0BCFF" />
                     <defs>
                       <linearGradient id="logo-grad-w1" x1="0" y1="0" x2="100" y2="100">
-                        <stop offset="0%" stop-color="#4F378B"/>
-                        <stop offset="100%" stop-color="#26134B"/>
+                        <stop offset="0%" stop-color="#4F378B" />
+                        <stop offset="100%" stop-color="#26134B" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -172,7 +167,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="2" onclick="openWorkflowModal(2)">
           <div class="screen-badge step-badge"><span class="badge-num">2</span> شاشة الترحيب 2</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen welcome-bg">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -181,8 +179,8 @@
               <div class="welcome-hero">
                 <div class="welcome-logo uploadable-img" title="اضغط لرفع الشعار">
                   <svg viewBox="0 0 100 100" fill="none">
-                    <rect width="100" height="100" rx="24" fill="#4F378B"/>
-                    <path d="M50 20 L25 42 V75 H75 V42 Z" stroke="white" stroke-width="5" fill="none"/>
+                    <rect width="100" height="100" rx="24" fill="#4F378B" />
+                    <path d="M50 20 L25 42 V75 H75 V42 Z" stroke="white" stroke-width="5" fill="none" />
                   </svg>
                 </div>
                 <h2 class="welcome-brand">مرحباً بك في<br>خزامى تشك</h2>
@@ -190,7 +188,8 @@
               </div>
               <div class="welcome-actions">
                 <button class="primary-action-btn" onclick="openWorkflowModal(3)">تسجيل الدخول</button>
-                <button class="outline-action-btn" onclick="triggerToast('جاري فتح شاشة إنشاء حساب جديد...', 'info')">إنشاء حساب جديد</button>
+                <button class="outline-action-btn"
+                  onclick="triggerToast('جاري فتح شاشة إنشاء حساب جديد...', 'info')">إنشاء حساب جديد</button>
               </div>
             </div>
           </div>
@@ -204,7 +203,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="3" onclick="openWorkflowModal(3)">
           <div class="screen-badge step-badge"><span class="badge-num">3</span> إدخال البريد الإلكتروني 3</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -218,7 +220,8 @@
                   <label class="form-label">البريد الإلكتروني</label>
                   <input type="email" class="form-input" value="example@email.com" placeholder="example@email.com">
                 </div>
-                <button class="primary-action-btn" onclick="openWorkflowModal(4)" style="margin-top: 16px;">التالي</button>
+                <button class="primary-action-btn" onclick="openWorkflowModal(4)"
+                  style="margin-top: 16px;">التالي</button>
               </div>
             </div>
           </div>
@@ -232,7 +235,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="4" onclick="openWorkflowModal(4)">
           <div class="screen-badge step-badge"><span class="badge-num">4</span> إدخال كلمة المرور 4</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -251,9 +257,11 @@
                   <input type="password" class="form-input" value="••••••••" placeholder="كلمة المرور">
                 </div>
                 <div class="form-row-between">
-                  <a href="javascript:void(0)" class="forgot-link-sm" onclick="openForgotPasswordModal(event)">نسيت كلمة المرور؟</a>
+                  <a href="javascript:void(0)" class="forgot-link-sm" onclick="openForgotPasswordModal(event)">نسيت كلمة
+                    المرور؟</a>
                 </div>
-                <button class="primary-action-btn" onclick="openWorkflowModal(5)" style="margin-top: 10px;">دخول</button>
+                <button class="primary-action-btn" onclick="openWorkflowModal(5)"
+                  style="margin-top: 10px;">دخول</button>
               </div>
             </div>
           </div>
@@ -267,7 +275,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="5" onclick="openWorkflowModal(5)">
           <div class="screen-badge step-badge"><span class="badge-num">5</span> تحقق بخطوتين 5</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -286,8 +297,10 @@
                   <span class="otp-box">6</span>
                   <span class="otp-box">2</span>
                 </div>
-                <span class="resend-timer-link" onclick="triggerToast('تم إعادة إرسال رمز التحقق بنجاح! 💬', 'info')">إعادة إرسال الرمز (00:30)</span>
-                <button class="primary-action-btn" onclick="openWorkflowModal(6)" style="margin-top: 14px;">تحقق</button>
+                <span class="resend-timer-link"
+                  onclick="triggerToast('تم إعادة إرسال رمز التحقق بنجاح! 💬', 'info')">إعادة إرسال الرمز (00:30)</span>
+                <button class="primary-action-btn" onclick="openWorkflowModal(6)"
+                  style="margin-top: 14px;">تحقق</button>
               </div>
             </div>
           </div>
@@ -301,7 +314,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="6" onclick="openWorkflowModal(6)">
           <div class="screen-badge step-badge"><span class="badge-num">6</span> خيارات تسجيل الدخول 6</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -334,7 +350,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="7" onclick="openWorkflowModal(7)">
           <div class="screen-badge step-badge"><span class="badge-num">7</span> تحميل البيانات 7</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen flex-center-content">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -365,7 +384,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="8" onclick="openWorkflowModal(8)">
           <div class="screen-badge step-badge"><span class="badge-num">8</span> تحقق الأمان (اختياري) 8</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen flex-center-content">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -374,10 +396,12 @@
               <div class="sec-alert-box">
                 <div class="sec-alert-icon uploadable-icon">🛡️</div>
                 <h3 class="sec-alert-title">تنبيه أمني</h3>
-                <p class="sec-alert-desc">تم اكتشاف تسجيل دخول من جهاز جديد<br><strong>iPhone 15 Pro</strong><br><span class="muted-sm">الرياض، السعودية</span></p>
+                <p class="sec-alert-desc">تم اكتشاف تسجيل دخول من جهاز جديد<br><strong>iPhone 15 Pro</strong><br><span
+                    class="muted-sm">الرياض، السعودية</span></p>
                 <div class="sec-btn-row">
                   <button class="primary-action-btn" onclick="openWorkflowModal(9)">هذا أنا</button>
-                  <button class="outline-action-btn danger-text" onclick="triggerToast('تم حظر الجلسة وتأمين حسابك!', 'error')">ليس أنا</button>
+                  <button class="outline-action-btn danger-text"
+                    onclick="triggerToast('تم حظر الجلسة وتأمين حسابك!', 'error')">ليس أنا</button>
                 </div>
               </div>
             </div>
@@ -392,7 +416,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="9" onclick="openWorkflowModal(9)">
           <div class="screen-badge step-badge"><span class="badge-num">9</span> تهيئة واجهة المستخدم 9</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen flex-center-content">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -418,7 +445,10 @@
         <div class="screen-card-container workflow-step-card" data-workflow-id="10" onclick="openWorkflowModal(10)">
           <div class="screen-badge step-badge success-badge">الوصول للداشبورد (النجاح)</div>
           <div class="phone-frame">
-            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-notch">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
             <div class="phone-screen">
               <div class="status-bar">
                 <span class="time">9:41</span>
@@ -479,131 +509,1378 @@
         </div>
 
       </div>
+    </section>
 
-      <!-- ALTERNATIVE PATHS (مسارات بديلة) -->
-      <div class="alt-paths-card">
-        <h3 class="alt-paths-title">🔀 المسارات البديلة (Alternative Paths)</h3>
-        <div class="alt-paths-grid">
-          <div class="alt-path-item" onclick="openForgotPasswordModal(event)">
-            <span class="alt-path-badge">نسيت كلمة المرور؟</span>
-            <p>من شاشة إدخال كلمة المرور اضغط على "نسيت كلمة المرور؟"<br>➔ إدخال البريد الإلكتروني<br>➔ إرسال رابط إعادة التعيين<br>➔ تعيين كلمة مرور جديدة<br>➔ العودة لتسجيل الدخول</p>
-          </div>
-
-          <div class="alt-path-item" onclick="triggerToast('تنبيه: حسابك غير مفعل! يرجى مراجعة بريدك للتفعيل 📩', 'warning')">
-            <span class="alt-path-badge">الحساب غير مفعل؟</span>
-            <p>تظهر رسالة: "حسابك غير مفعل يرجى تفعيل حسابك من بريدك"<br>➔ فتح البريد الإلكتروني<br>➔ الضغط على رابط التفعيل<br>➔ العودة لتسجيل الدخول</p>
-          </div>
-
-          <div class="alt-path-item" onclick="triggerToast('خطأ: كلمة المرور أو البريد غير صحيح ✕', 'error')">
-            <span class="alt-path-badge">خطأ في البيانات؟</span>
-            <p>تظهر رسالة خطأ<br>➔ تحقق من البيانات المدخلة<br>➔ إعادة المحاولة</p>
-          </div>
-        </div>
+    <!-- UNITS MANAGEMENT WORKFLOW SECTION: (03_units_management_workflow.jpeg) -->
+    <section id="units-workflow-section" class="poster-section-block">
+      <div class="section-title-banner">
+        <div class="banner-badge">الخطوة 2: إدارة الوحدات - تسلسل تدفق المستخدم الكامل (Workflow)</div>
+        <p class="banner-desc">جميع شاشات مسار وركفلو إدارة الوحدات وإضافة وحدة جديدة وإدارة تفاصيلها ومزامنة الأسعار والتقويم</p>
       </div>
 
-      <!-- SYSTEM STATES & MESSAGES (حالات النظام والرسائل) -->
-      <div class="system-states-card">
-        <h3 class="sys-states-title">🔔 حالات النظام والرسائل (System States & Messages)</h3>
-        <div class="sys-states-columns">
+      <!-- UNITS WORKFLOW SCREENS GRID -->
+      <div class="workflow-screens-grid">
 
-          <!-- Success States -->
-          <div class="sys-state-col success-col">
-            <h4 class="col-head font-green"><span class="head-ico">✓</span> حالات النجاح</h4>
-            <ul class="state-list">
-              <li onclick="triggerToast('تم تسجيل الدخول بنجاح! ✓', 'success')"><span class="icon font-green">✓</span> تم تسجيل الدخول بنجاح</li>
-              <li onclick="triggerToast('تم تحميل البيانات بنجاح! ✓', 'success')"><span class="icon font-green">✓</span> تم تحميل البيانات بنجاح</li>
-              <li onclick="triggerToast('تم تهيئة التطبيق بنجاح! ✓', 'success')"><span class="icon font-green">✓</span> تم تهيئة التطبيق بنجاح</li>
-              <li onclick="triggerToast('مرحباً بك في خزامى تشك! ✓', 'success')"><span class="icon font-green">✓</span> مرحباً بك في خزامى تشك</li>
-            </ul>
+        <!-- UNITS STEP 1: من الداشبورد -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="1" onclick="openUnitsWorkflowModal(1)">
+          <div class="screen-badge step-badge"><span class="badge-num">1</span> من الداشبورد 1</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="app-header">
+                <div class="user-greeting">
+                  <span class="avatar-sm uploadable-icon">👤</span>
+                  <div>
+                    <span class="sub-greeing">مرحباً، فيصل ☀️</span>
+                    <span class="date-tag">الأربعاء 15 مايو 2024</span>
+                  </div>
+                </div>
+                <div class="header-action-icon uploadable-icon">🔔</div>
+              </div>
+              <div class="stats-row">
+                <div class="stat-box primary">
+                  <span class="stat-label">إجمالي الإيرادات</span>
+                  <div class="stat-val">48,250 <span class="cur">ر.س</span></div>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-label">نسبة الإشغال</span>
+                  <div class="stat-val">78%</div>
+                </div>
+              </div>
+              <div class="quick-counters-bar">
+                <div class="counter-item"><span class="num">2</span><span class="lbl">تسجيل الخروج</span></div>
+                <div class="counter-item"><span class="num">3</span><span class="lbl">تسجيل الدخول</span></div>
+                <div class="counter-item"><span class="num">5</span><span class="lbl">حجوزات اليوم</span></div>
+              </div>
+              <div class="recent-req-widget">
+                <div class="sec-mini-head">آخر الطلبات</div>
+                <div class="mini-req-item">
+                  <span class="icon uploadable-icon">🧹</span>
+                  <div class="m-info"><span>طلب تنظيف - شقة A-12</span></div>
+                </div>
+              </div>
+              <div class="bottom-nav">
+                <div class="nav-item"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
+                <div class="nav-item active highlighted-ring"><span class="uploadable-icon">🏢</span><span>الوحدات</span></div>
+                <div class="nav-item"><span class="uploadable-icon">📅</span><span>الحجوزات</span></div>
+                <div class="nav-item"><span class="uploadable-icon">☰</span><span>المزيد</span></div>
+              </div>
+            </div>
           </div>
-
-          <!-- Error States -->
-          <div class="sys-state-col error-col">
-            <h4 class="col-head font-red"><span class="head-ico">✕</span> حالات الأخطاء</h4>
-            <ul class="state-list">
-              <li onclick="triggerToast('خطأ: بريد إلكتروني غير صحيح ✕', 'error')"><span class="icon font-red">✕</span> بريد إلكتروني غير صحيح</li>
-              <li onclick="triggerToast('خطأ: كلمة مرور غير صحيحة ✕', 'error')"><span class="icon font-red">✕</span> كلمة مرور غير صحيحة</li>
-              <li onclick="triggerToast('خطأ: رمز تحقق غير صحيح ✕', 'error')"><span class="icon font-red">✕</span> رمز تحقق غير صحيح</li>
-              <li onclick="triggerToast('تحذير: حساب غير مفعل ✕', 'warning')"><span class="icon font-red">✕</span> حساب غير مفعل</li>
-            </ul>
-          </div>
-
-          <!-- Info Messages -->
-          <div class="sys-state-col info-col">
-            <h4 class="col-head font-blue"><span class="head-ico">ℹ️</span> الرسائل التوضيحية</h4>
-            <ul class="state-list">
-              <li onclick="triggerToast('جاري التحميل، يرجى الانتظار ℹ️', 'info')"><span class="icon font-blue">ℹ️</span> جاري التحميل، يرجى الانتظار</li>
-              <li onclick="triggerToast('يرجى التحقق من اتصال الإنترنت ℹ️', 'info')"><span class="icon font-blue">ℹ️</span> يرجى التحقق من اتصال الإنترنت</li>
-              <li onclick="triggerToast('سيتم تسجيل خروجك تلقائياً بعد 30 دقيقة من الخمول ℹ️', 'warning')"><span class="icon font-blue">ℹ️</span> سيتم تسجيل خروجك تلقائياً بعد 30 دقيقة من الخمول</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- POST-LOGIN MAIN NAVIGATION BAR OVERVIEW -->
-      <div class="post-login-nav-widget">
-        <h3 class="nav-widget-title">🧭 شريط التنقل الرئيسي بعد تسجيل الدخول (Main Navigation Bar)</h3>
-        <div class="nav-items-grid">
-          <div class="nav-target-card" onclick="openScreenModal(3)">
-            <span class="nav-ico uploadable-icon">🏠</span>
-            <h4>الرئيسية</h4>
-            <p>داشبورد شامل لنموذج أعمالك</p>
-          </div>
-          <div class="nav-target-card" onclick="openScreenModal(4)">
-            <span class="nav-ico uploadable-icon">🏢</span>
-            <h4>الوحدات</h4>
-            <p>إدارة وحداتك والعقارات</p>
-          </div>
-          <div class="nav-target-card" onclick="openScreenModal(6)">
-            <span class="nav-ico uploadable-icon">📅</span>
-            <h4>الحجوزات</h4>
-            <p>عرض وإدارة جميع الحجوزات</p>
-          </div>
-          <div class="nav-target-card" onclick="openScreenModal(7)">
-            <span class="nav-ico uploadable-icon">💰</span>
-            <h4>التسعير الذكي</h4>
-            <p>إدارة الأسعار والتوصيات الذكية</p>
-          </div>
-          <div class="nav-target-card" onclick="openScreenModal(9)">
-            <span class="nav-ico uploadable-icon">🛠️</span>
-            <h4>الخدمات</h4>
-            <p>متابعة الطلبات والخدمات</p>
-          </div>
-          <div class="nav-target-card" onclick="openScreenModal(8)">
-            <span class="nav-ico uploadable-icon">📊</span>
-            <h4>التقارير</h4>
-            <p>تحليلات وتقارير مفصلة</p>
-          </div>
-          <div class="nav-target-card" onclick="openScreenModal(11)">
-            <span class="nav-ico uploadable-icon">💳</span>
-            <h4>المركز المالي</h4>
-            <p>الفواتير والمدفوعات والمصروفات</p>
-          </div>
-          <div class="nav-target-card" onclick="openMoreMenuModal(event)">
-            <span class="nav-ico uploadable-icon">☰</span>
-            <h4>المزيد</h4>
-            <p>جميع الإعدادات والخيارات</p>
+          <div class="flow-step-caption">
+            <span class="action-tag">إجراء المستخدم</span>
+            <p>الضغط على أيقونة "الوحدات"</p>
           </div>
         </div>
+
+        <!-- UNITS STEP 2: قائمة الوحدات -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="2" onclick="openUnitsWorkflowModal(2)">
+          <div class="screen-badge step-badge"><span class="badge-num">2</span> قائمة الوحدات 2</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header">
+                <span class="icon-btn uploadable-icon">🔍</span>
+                <h2 class="nav-title">إدارة الوحدات</h2>
+                <span class="icon-btn uploadable-icon">⚙️</span>
+              </div>
+              <div class="search-input-box" style="margin: 6px 12px;">
+                <input type="text" class="form-input search-sm" placeholder="ابحث عن وحدة..." readonly>
+              </div>
+              <div class="units-mini-list">
+                <div class="unit-mini-item">
+                  <div class="u-info"><strong>A-101</strong><span class="sub">شقة فندقية - 2 غرفة نوم</span></div>
+                  <span class="status-chip vacant">متاحة</span>
+                </div>
+                <div class="unit-mini-item">
+                  <div class="u-info"><strong>A-102</strong><span class="sub">شقة فندقية - غرفة نوم واحدة</span></div>
+                  <span class="status-chip occupied">محجوزة</span>
+                </div>
+                <div class="unit-mini-item">
+                  <div class="u-info"><strong>A-103</strong><span class="sub">استوديو - غرفة واحدة</span></div>
+                  <span class="status-chip vacant">متاحة</span>
+                </div>
+                <div class="unit-mini-item">
+                  <div class="u-info"><strong>A-201</strong><span class="sub">شقة فندقية - 3 غرف نوم</span></div>
+                  <span class="status-chip vacant">متاحة</span>
+                </div>
+                <div class="unit-mini-item">
+                  <div class="u-info"><strong>A-202</strong><span class="sub">شقة فندقية - غرفة نوم واحدة</span></div>
+                  <span class="status-chip maintenance">صيانة</span>
+                </div>
+              </div>
+              <div style="padding: 10px 12px;">
+                <button class="primary-action-btn" onclick="openUnitsWorkflowModal(3)">+ إضافة وحدة جديدة</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="action-tag">إجراء المستخدم</span>
+            <p>عرض جميع الوحدات مع الحالة الحالية ثم الضغط على "+ إضافة وحدة جديدة"</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP 3: إضافة وحدة جديدة -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="3" onclick="openUnitsWorkflowModal(3)">
+          <div class="screen-badge step-badge"><span class="badge-num">3</span> إضافة وحدة جديدة 3</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(2)">❮</span>
+                <h2 class="nav-title">إضافة وحدة جديدة</h2>
+              </div>
+              <div class="login-form-box scrollable-form">
+                <div class="image-upload-dashed uploadable-img" title="اضغط لرفع صور الوحدة">
+                  <span class="cam-icon">📷</span>
+                  <span>إضافة صور الوحدة</span>
+                  <span class="muted-xs">اضغط لإضافة صور</span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">اسم الوحدة</label>
+                  <input type="text" class="form-input" placeholder="مثال A-101" value="مثال A-101">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">نوع الوحدة</label>
+                  <select class="form-input"><option>شقة فندقية</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">عدد غرف النوم</label>
+                  <select class="form-input"><option>اختر عدد الغرف</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">عدد الحمامات</label>
+                  <select class="form-input"><option>اختر عدد الحمامات</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">المساحة (م²)</label>
+                  <input type="text" class="form-input" placeholder="أدخل المساحة">
+                </div>
+                <button class="primary-action-btn" onclick="openUnitsWorkflowModal(4)" style="margin-top: 10px;">حفظ الوحدة</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="action-tag">إجراء المستخدم</span>
+            <p>إدخال البيانات الأساسية ثم الضغط على "حفظ الوحدة"</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP 4: تعبئة بيانات الوحدة -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="4" onclick="openUnitsWorkflowModal(4)">
+          <div class="screen-badge step-badge"><span class="badge-num">4</span> تعبئة بيانات الوحدة 4</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(3)">❮</span>
+                <h2 class="nav-title">إضافة وحدة جديدة</h2>
+              </div>
+              <div class="login-form-box scrollable-form">
+                <div class="form-group">
+                  <label class="form-label">اسم الوحدة</label>
+                  <input type="text" class="form-input" value="A-101">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">نوع الوحدة</label>
+                  <select class="form-input"><option>شقة فندقية</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">عدد غرف النوم</label>
+                  <select class="form-input"><option>2</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">عدد الحمامات</label>
+                  <select class="form-input"><option>2</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">المساحة (م²)</label>
+                  <input type="text" class="form-input" value="85">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">الطابق</label>
+                  <select class="form-input"><option>الطابق الأول</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">الإطلالة</label>
+                  <select class="form-input"><option>إطلالة على المدينة</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">الوصف</label>
+                  <textarea class="form-input" rows="2" style="resize:none;">شقة فندقية فاخرة ومجهزة بالكامل</textarea>
+                </div>
+                <button class="primary-action-btn" onclick="openUnitsWorkflowModal(5)" style="margin-top: 10px;">حفظ الوحدة</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="action-tag">إجراء المستخدم</span>
+            <p>إكمال جميع البيانات ثم الضغط على "حفظ الوحدة"</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP 5: مزامنة الأسعار والتقويم -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="5" onclick="openUnitsWorkflowModal(5)">
+          <div class="screen-badge step-badge"><span class="badge-num">5</span> مزامنة الأسعار والتقويم 5</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(4)">❮</span>
+                <h2 class="nav-title">مزامنة الأسعار والتقويم</h2>
+              </div>
+              <div class="login-form-box">
+                <div class="toggle-row-box">
+                  <div class="t-text">
+                    <strong>مزامنة الأسعار تلقائياً</strong>
+                    <span class="muted-xs">تحديث الأسعار في جميع المنصات</span>
+                  </div>
+                  <input type="checkbox" class="toggle-switch-input" checked>
+                </div>
+                <div class="toggle-row-box">
+                  <div class="t-text">
+                    <strong>مزامنة التقويم تلقائياً</strong>
+                    <span class="muted-xs">تحديث التوفر في جميع المنصات</span>
+                  </div>
+                  <input type="checkbox" class="toggle-switch-input" checked>
+                </div>
+                <div class="sec-mini-head" style="margin-top: 12px; margin-bottom: 6px;">المنصات المتصلة</div>
+                <div class="platform-sync-list">
+                  <div class="platform-sync-item">
+                    <span class="p-brand red font-bold">Airbnb 🏠</span>
+                    <span class="status-chip vacant">متصل</span>
+                  </div>
+                  <div class="platform-sync-item">
+                    <span class="p-brand blue font-bold">Gatherin 🟢</span>
+                    <span class="status-chip vacant">متصل</span>
+                  </div>
+                  <div class="platform-sync-item">
+                    <span class="p-brand dark-blue font-bold">Booking.com 🟦</span>
+                    <span class="status-chip vacant">متصل</span>
+                  </div>
+                  <div class="platform-sync-item">
+                    <span class="p-brand green font-bold">Google Calendar 📅</span>
+                    <span class="status-chip vacant">متصل</span>
+                  </div>
+                </div>
+                <button class="primary-action-btn" onclick="openUnitsWorkflowModal(6)" style="margin-top: 16px;">مزامنة الآن</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="action-tag">إجراء المستخدم</span>
+            <p>تفعيل المزامنة ثم الضغط على "مزامنة الآن"</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP 6: تأكيد إضافة الوحدة -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="6" onclick="openUnitsWorkflowModal(6)">
+          <div class="screen-badge step-badge success-badge"><span class="badge-num">6</span> تأكيد إضافة الوحدة 6</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen flex-center-content" style="padding: 20px 16px;">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="success-confirm-box text-center">
+                <div class="big-check-circle">✓</div>
+                <h3 class="success-title">تم إضافة الوحدة بنجاح</h3>
+                <div class="unit-summary-card">
+                  <h4 class="u-title">A-101</h4>
+                  <p class="u-desc">شقة فندقية</p>
+                  <p class="u-meta">2 غرفة نوم • حمام • 85 م²</p>
+                  <span class="status-chip vacant">متاحة</span>
+                </div>
+                <button class="outline-action-btn" onclick="openUnitsWorkflowModal(3)" style="margin-bottom: 8px;">إضافة وحدة أخرى</button>
+                <button class="primary-action-btn" onclick="openUnitsWorkflowModal(7)">الذهاب إلى الوحدة</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption success-caption">
+            <span class="system-tag success">تمت العملية بنجاح</span>
+            <p>تمت إضافة الوحدة بنجاح ويمكن إضافة أخرى أو الذهاب للوحدة</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP A: معلومات الوحدة -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="7" onclick="openUnitsWorkflowModal(7)">
+          <div class="screen-badge step-badge"><span class="badge-letter">A</span> معلومات الوحدة A</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(2)">❮</span>
+                <h2 class="nav-title">معلومات الوحدة</h2>
+              </div>
+              <div class="unit-detail-body scrollable-form">
+                <div class="unit-banner-img placeholder-img uploadable-img" title="اضغط لرفع صورة الوحدة">
+                  <span class="status-chip vacant top-right">متاحة</span>
+                </div>
+                <div class="info-table-list">
+                  <div class="info-row"><span class="lbl">الاسم</span><span class="val font-bold">A-101</span></div>
+                  <div class="info-row"><span class="lbl">النوع</span><span class="val">شقة فندقية</span></div>
+                  <div class="info-row"><span class="lbl">غرف النوم</span><span class="val">2</span></div>
+                  <div class="info-row"><span class="lbl">الحمامات</span><span class="val">2</span></div>
+                  <div class="info-row"><span class="lbl">المساحة</span><span class="val">85 م²</span></div>
+                  <div class="info-row"><span class="lbl">الطابق</span><span class="val">الطابق الأول</span></div>
+                  <div class="info-row"><span class="lbl">الإطلالة</span><span class="val">إطلالة على المدينة</span></div>
+                  <div class="info-row"><span class="lbl">الوصف</span><span class="val">شقة فندقية فاخرة ومجهزة بالكامل</span></div>
+                </div>
+                <button class="primary-action-btn" onclick="openUnitsWorkflowModal(13)" style="margin-top: 10px;">حفظ وتعديل الوحدة</button>
+                <button class="outline-action-btn danger-text" onclick="openUnitsWorkflowModal(14)" style="margin-top: 6px;">حذف الوحدة</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">تفاصيل الوحدة</span>
+            <p>عرض وتعديل معلومات الوحدة</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP B: الصور والمرافق -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="8" onclick="openUnitsWorkflowModal(8)">
+          <div class="screen-badge step-badge"><span class="badge-letter">B</span> الصور والمرافق B</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(7)">❮</span>
+                <h2 class="nav-title">الصور والمرافق</h2>
+              </div>
+              <div class="unit-detail-body scrollable-form">
+                <div class="sec-mini-head">الصور المرفوعة</div>
+                <div class="photos-grid-sm">
+                  <div class="photo-thumb uploadable-img">🖼️</div>
+                  <div class="photo-thumb uploadable-img">🛋️</div>
+                  <div class="photo-thumb uploadable-img">🛏️</div>
+                  <div class="add-photo-btn uploadable-img">+ إضافة صور</div>
+                </div>
+                <div class="sec-mini-head" style="margin-top: 12px;">المرافق المتاحة</div>
+                <div class="amenities-checklist">
+                  <div class="amenity-item"><span class="check font-green">✓</span> واي فاي</div>
+                  <div class="amenity-item"><span class="check font-green">✓</span> مكيف هواء</div>
+                  <div class="amenity-item"><span class="check font-green">✓</span> مطبخ مجهز</div>
+                  <div class="amenity-item"><span class="check font-green">✓</span> غسالة</div>
+                  <div class="amenity-item"><span class="check font-green">✓</span> تلفزيون ذكي</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">إدارة المرافق</span>
+            <p>إضافة صور الوحدة وإدارة المرافق المتاحة</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP C: التقويم والتوفر -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="9" onclick="openUnitsWorkflowModal(9)">
+          <div class="screen-badge step-badge"><span class="badge-letter">C</span> التقويم والتوفر C</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(7)">❮</span>
+                <h2 class="nav-title">التقويم والتوفر</h2>
+              </div>
+              <div class="cal-mini-wrap">
+                <div class="cal-month-head">
+                  <span class="arrow">❮</span>
+                  <strong>مايو 2024</strong>
+                  <span class="arrow">❯</span>
+                </div>
+                <div class="calendar-days-grid" style="font-size:0.55rem;">
+                  <div class="day-cell muted">ح</div><div class="day-cell muted">ن</div><div class="day-cell muted">ث</div><div class="day-cell muted">ر</div><div class="day-cell muted">خ</div><div class="day-cell muted">ج</div><div class="day-cell muted">س</div>
+                  <div class="day-cell">1</div><div class="day-cell active-green">2</div><div class="day-cell active-green">3</div><div class="day-cell">4</div><div class="day-cell">5</div><div class="day-cell">6</div><div class="day-cell">7</div>
+                  <div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell">10</div><div class="day-cell">11</div><div class="day-cell">12</div><div class="day-cell">13</div><div class="day-cell">14</div>
+                  <div class="day-cell active-purple">15</div><div class="day-cell active-purple">16</div><div class="day-cell active-purple">17</div><div class="day-cell active-purple">18</div><div class="day-cell">19</div><div class="day-cell">20</div><div class="day-cell">21</div>
+                </div>
+                <div class="booking-mini-card" style="margin: 8px 10px; padding: 6px 8px; background: #F3EDF7; border-radius: 8px; font-size: 0.65rem;">
+                  <strong>حجز B-305#</strong><br>
+                  <span class="muted-xs">من 15 مايو - 18 مايو</span><br>
+                  <span class="font-bold">الضيف: أحمد محمد</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">التقويم والتاريخ</span>
+            <p>عرض التوفر والحجوزات في التقويم</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP D: الأسعار -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="10" onclick="openUnitsWorkflowModal(10)">
+          <div class="screen-badge step-badge"><span class="badge-letter">D</span> الأسعار D</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(7)">❮</span>
+                <h2 class="nav-title">إدارة الأسعار</h2>
+              </div>
+              <div class="unit-detail-body">
+                <div class="price-rate-card">
+                  <span class="lbl">السعر الأساسي</span>
+                  <span class="val font-bold">350 <span class="cur">ريال / الليلة</span></span>
+                </div>
+                <div class="price-rate-card">
+                  <span class="lbl">السعر في عطلة نهاية الأسبوع</span>
+                  <span class="val font-bold">450 <span class="cur">ريال / الليلة</span></span>
+                </div>
+                <div class="price-rate-card">
+                  <span class="lbl">سعر الأسبوع</span>
+                  <span class="val font-bold">2,300 <span class="cur">ريال</span></span>
+                </div>
+                <div class="price-rate-card">
+                  <span class="lbl">سعر الشهر</span>
+                  <span class="val font-bold">7,500 <span class="cur">ريال</span></span>
+                </div>
+                <button class="outline-action-btn" style="margin-top: 10px;">تقويم الأسعار</button>
+                <button class="primary-action-btn" style="margin-top: 6px;">تحديث الأسعار الجماعي</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">التسعير الذكي</span>
+            <p>تحديد الأسعار وعرض تقويم الأسعار</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP E: الإحصائيات والأداء -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="11" onclick="openUnitsWorkflowModal(11)">
+          <div class="screen-badge step-badge"><span class="badge-letter">E</span> الإحصائيات والأداء E</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(7)">❮</span>
+                <h2 class="nav-title">إحصائيات الوحدة</h2>
+              </div>
+              <div class="unit-detail-body">
+                <div class="filter-pill-row center" style="margin-bottom: 8px;">
+                  <span class="pill-tab active">آخر 30 يوم ▾</span>
+                </div>
+                <div class="stats-mini-grid">
+                  <div class="stat-mini-box">
+                    <span class="lbl">نسبة الإشغال</span>
+                    <span class="val font-bold font-purple">78%</span>
+                  </div>
+                  <div class="stat-mini-box">
+                    <span class="lbl">الإيرادات</span>
+                    <span class="val font-bold font-green">12,650 <span class="cur">ريال</span></span>
+                  </div>
+                  <div class="stat-mini-box">
+                    <span class="lbl">متوسط سعر الليلة</span>
+                    <span class="val font-bold">430</span>
+                  </div>
+                  <div class="stat-mini-box">
+                    <span class="lbl">عدد الحجوزات</span>
+                    <span class="val font-bold">18</span>
+                  </div>
+                </div>
+                <div class="chart-mockup-box" style="margin-top: 10px; text-align: center;">
+                  <span class="muted-xs">الأداء الأسبوعي</span>
+                  <div class="chart-bars" style="display:flex; justify-content:space-around; align-items:flex-end; height:40px; margin-top:6px;">
+                    <div style="width:12%; height:40%; background:#7C4DFF; border-radius:3px;"></div>
+                    <div style="width:12%; height:75%; background:#4F378B; border-radius:3px;"></div>
+                    <div style="width:12%; height:60%; background:#7C4DFF; border-radius:3px;"></div>
+                    <div style="width:12%; height:90%; background:#4CAF50; border-radius:3px;"></div>
+                    <div style="width:12%; height:50%; background:#7C4DFF; border-radius:3px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">تقارير الأداء</span>
+            <p>عرض أداء الوحدة والإحصائيات</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP F: سجل النشاط -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="12" onclick="openUnitsWorkflowModal(12)">
+          <div class="screen-badge step-badge"><span class="badge-letter">F</span> سجل النشاط F</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(7)">❮</span>
+                <h2 class="nav-title">سجل النشاط</h2>
+              </div>
+              <div class="activity-log-list">
+                <div class="act-log-item">
+                  <span class="check-ico font-green">✓</span>
+                  <div class="a-info">
+                    <strong>تم تحديث الأسعار</strong>
+                    <span class="muted-xs">10 مايو 2024 - 04:30 م</span>
+                  </div>
+                </div>
+                <div class="act-log-item">
+                  <span class="check-ico font-green">✓</span>
+                  <div class="a-info">
+                    <strong>تمت مزامنة التقويم</strong>
+                    <span class="muted-xs">10 مايو 2024 - 03:15 م</span>
+                  </div>
+                </div>
+                <div class="act-log-item">
+                  <span class="check-ico font-green">✓</span>
+                  <div class="a-info">
+                    <strong>تم تعديل معلومات الوحدة</strong>
+                    <span class="muted-xs">10 مايو 2024 - 09:40 ص</span>
+                  </div>
+                </div>
+                <div class="act-log-item">
+                  <span class="check-ico font-green">✓</span>
+                  <div class="a-info">
+                    <strong>تم إضافة صور جديدة</strong>
+                    <span class="muted-xs">09 مايو 2024 - 04:20 م</span>
+                  </div>
+                </div>
+                <div class="act-log-item">
+                  <span class="check-ico font-green">✓</span>
+                  <div class="a-info">
+                    <strong>تم إنشاء الوحدة</strong>
+                    <span class="muted-xs">09 مايو 2024 - 02:30 م</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">سجل العمليات</span>
+            <p>عرض جميع العمليات والتغييرات</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP G: تعديل الوحدة -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="13" onclick="openUnitsWorkflowModal(13)">
+          <div class="screen-badge step-badge"><span class="badge-letter">G</span> تعديل الوحدة G</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openUnitsWorkflowModal(7)">❮</span>
+                <h2 class="nav-title">تعديل الوحدة</h2>
+              </div>
+              <div class="login-form-box scrollable-form">
+                <div class="form-group">
+                  <label class="form-label">اسم الوحدة</label>
+                  <input type="text" class="form-input" value="A-101">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">نوع الوحدة</label>
+                  <select class="form-input"><option>شقة فندقية</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">عدد غرف النوم</label>
+                  <select class="form-input"><option>2</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">المساحة (م²)</label>
+                  <input type="text" class="form-input" value="85">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">الطابق</label>
+                  <select class="form-input"><option>الطابق الأول</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">الإطلالة</label>
+                  <select class="form-input"><option>إطلالة على المدينة</option></select>
+                </div>
+                <button class="primary-action-btn" onclick="triggerToast('تم حفظ التعديلات بنجاح! ✓', 'success')" style="margin-top: 10px;">حفظ التعديلات</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">تعديل التغييرات</span>
+            <p>تعديل بيانات الوحدة ثم حفظ التعديلات</p>
+          </div>
+        </div>
+
+        <!-- UNITS STEP H: حذف الوحدة -->
+        <div class="screen-card-container workflow-step-card" data-units-workflow-id="14" onclick="openUnitsWorkflowModal(14)">
+          <div class="screen-badge step-badge danger-badge"><span class="badge-letter">H</span> حذف الوحدة H</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen flex-center-content" style="padding: 20px 16px;">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="delete-confirm-box text-center">
+                <div class="warning-icon-lg" style="font-size: 2.2rem; color: #D32F2F; margin-bottom: 8px;">⚠️</div>
+                <h3 class="delete-title" style="color: #D32F2F; font-size: 1.1rem; margin-bottom: 6px;">حذف الوحدة</h3>
+                <p class="delete-desc" style="font-size: 0.75rem; color: var(--text-dark); margin-bottom: 16px;">
+                  هل أنت تأكد من حذف الوحدة A-101؟ لن تمكن من استعادة البيانات بعد الحذف.
+                </p>
+                <button class="primary-action-btn" onclick="triggerToast('تم حذف الوحدة نهائياً.', 'error')" style="background: #D32F2F; margin-bottom: 8px;">حذف الوحدة</button>
+                <button class="outline-action-btn" onclick="openUnitsWorkflowModal(7)">إلغاء</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption danger-caption">
+            <span class="system-tag error">حذف نهائي</span>
+            <p>حذف الوحدة نهائياً (إجراء لا يمكن التراجع عنه)</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- MAP KEY LEGEND BAR (مفتاح الخريطة) -->
-    <section class="map-legend-bar">
-      <div class="legend-header">
-        <span class="map-icon">🗺️</span>
-        <span class="legend-title font-bold">مفتاح الخريطة (Flowchart Legend)</span>
+    <!-- BOOKINGS MANAGEMENT WORKFLOW SECTION: (04_bookings_management_workflow.jpeg) -->
+    <section id="bookings-workflow-section" class="poster-section-block">
+      <div class="section-title-banner">
+        <div class="banner-badge">الخطوة 3: إدارة الحجوزات - تسلسل تدفق المستخدم الكامل (Workflow)</div>
+        <p class="banner-desc">يوضح هذا المخطط جميع الخطوات التي يمر بها المستخدم من إدارة الحجوزات حتى إنهاء عملية الحجز أو إجراء التعديلات المطلوبة.</p>
       </div>
-      <div class="legend-items-wrap">
-        <span class="m-chip legend-main"><i class="dot-color main"></i> شاشة رئيسية</span>
-        <span class="m-chip legend-sub"><i class="dot-color sub"></i> شاشة فرعية</span>
-        <span class="m-chip legend-action"><i class="dot-color action"></i> إجراء / عملية</span>
-        <span class="m-chip legend-decision"><i class="dot-color decision"></i> قرار</span>
-        <span class="m-chip legend-popup"><i class="dot-color popup"></i> نافذة منبثقة</span>
-        <span class="m-chip legend-arrow">➔ انتقال للأمام</span>
-        <span class="m-chip legend-arrow">➔- - رجوع للخلف</span>
-        <span class="m-chip legend-arrow">➔... انتقال اختياري</span>
+
+      <!-- WORKFLOW MAP KEY LEGEND -->
+      <div class="workflow-map-legend">
+        <div class="map-key-item"><span class="key-badge user-action"></span> إجراء المستخدم</div>
+        <div class="map-key-item"><span class="key-badge system-response"></span> استجابة النظام</div>
+        <div class="map-key-item"><span class="key-badge next-step">➔</span> انتقال للخطوة التالية</div>
+        <div class="map-key-item"><span class="key-badge prev-step">⇽</span> رجوع للخطوة السابقة</div>
+        <div class="map-key-item"><span class="key-badge optional-step">┄</span> خيار اختياري</div>
+      </div>
+
+      <!-- BOOKINGS WORKFLOW SCREENS GRID (STEPS 1 to 7) -->
+      <div class="workflow-screens-grid">
+
+        <!-- STEP 1: من الداشبورد -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="1" onclick="openBookingsWorkflowModal(1)">
+          <div class="screen-badge step-badge"><span class="badge-num">1</span> من الداشبورد 1</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="app-header">
+                <div class="user-greeting">
+                  <span class="avatar-sm uploadable-icon">👤</span>
+                  <div>
+                    <span class="sub-greeing">مرحباً، فيصل ☀️</span>
+                    <span class="date-tag">الجمعة 15 مايو 2024</span>
+                  </div>
+                </div>
+                <div class="header-action-icon uploadable-icon">🔔</div>
+              </div>
+              <div class="stats-row">
+                <div class="stat-box primary">
+                  <span class="stat-label">إجمالي الإيرادات</span>
+                  <div class="stat-val">48,250 <span class="cur">ريال</span></div>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-label">نسبة الإشغال</span>
+                  <div class="stat-val">78%</div>
+                  <span class="stat-change pos">+8% عن الأسبوع الماضي</span>
+                </div>
+              </div>
+              <div class="quick-counters-bar">
+                <div class="counter-item"><span class="num">5</span><span class="lbl">حجوزات اليوم</span></div>
+                <div class="counter-item"><span class="num">3</span><span class="lbl">تسجيل الدخول</span></div>
+                <div class="counter-item"><span class="num">2</span><span class="lbl">تسجيل الخروج</span></div>
+              </div>
+              <div class="recent-req-widget">
+                <div class="sec-mini-head">آخر الطلبات</div>
+                <div class="mini-req-item">
+                  <span class="icon uploadable-icon">🧹</span>
+                  <div class="m-info"><span>طلب تنظيف</span><span class="sub">10:30 ص</span></div>
+                </div>
+                <div class="mini-req-item">
+                  <span class="icon uploadable-icon">🛠️</span>
+                  <div class="m-info"><span>صيانة عامة</span><span class="sub">09:15 ص</span></div>
+                </div>
+                <div class="mini-req-item">
+                  <span class="icon uploadable-icon">🛎️</span>
+                  <div class="m-info"><span>تجهيزات إضافية</span><span class="sub">08:45 ص</span></div>
+                </div>
+              </div>
+              <div class="bottom-nav">
+                <div class="nav-item"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
+                <div class="nav-item active highlighted-step-nav"><span class="uploadable-icon">📅</span><span>الحجوزات</span></div>
+                <div class="nav-item"><span class="uploadable-icon">🏢</span><span>الوحدات</span></div>
+                <div class="nav-item"><span class="uploadable-icon">☰</span><span>المزيد</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="user-action-tag">إجراء المستخدم</span>
+            <p>الضغط على أيقونة "الحجوزات"</p>
+          </div>
+        </div>
+
+        <!-- STEP 2: قائمة الحجوزات -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="2" onclick="openBookingsWorkflowModal(2)">
+          <div class="screen-badge step-badge"><span class="badge-num">2</span> قائمة الحجوزات 2</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <h2 class="nav-title">الحجوزات</h2>
+              </div>
+              <div class="search-filter-box">
+                <input type="text" class="form-input search-input-sm" placeholder="🔍 ابحث عن حجز أو ضيف...">
+              </div>
+              <div class="tabs-pills">
+                <span class="pill-tab active">الحالية</span>
+                <span class="pill-tab">القادمة</span>
+                <span class="pill-tab">السابقة</span>
+                <span class="pill-tab">الملغاة</span>
+              </div>
+              <div class="bookings-list">
+                <div class="booking-item-card active-card" onclick="openBookingsWorkflowModal(3)">
+                  <div class="b-head">
+                    <span class="u-code font-bold">A-101</span>
+                    <span class="status-badge current">حالي</span>
+                  </div>
+                  <div class="b-body">
+                    <div class="g-name font-bold">فهد العتيبي</div>
+                    <div class="b-dates muted-xs">📅 15 مايو - 17 مايو 2024</div>
+                  </div>
+                </div>
+                <div class="booking-item-card">
+                  <div class="b-head">
+                    <span class="u-code font-bold">B-205</span>
+                    <span class="status-badge upcoming">قادم</span>
+                  </div>
+                  <div class="b-body">
+                    <div class="g-name font-bold">سارة محمد</div>
+                    <div class="b-dates muted-xs">📅 16 مايو - 18 مايو 2024</div>
+                  </div>
+                </div>
+                <div class="booking-item-card">
+                  <div class="b-head">
+                    <span class="u-code font-bold">C-303</span>
+                    <span class="status-badge upcoming">قادم</span>
+                  </div>
+                  <div class="b-body">
+                    <div class="g-name font-bold">أحمد خالد</div>
+                    <div class="b-dates muted-xs">📅 18 مايو - 20 مايو 2024</div>
+                  </div>
+                </div>
+                <div class="booking-item-card">
+                  <div class="b-head">
+                    <span class="u-code font-bold">D-404</span>
+                    <span class="status-badge expired">منتهي</span>
+                  </div>
+                  <div class="b-body">
+                    <div class="g-name font-bold">نورة عبدالله</div>
+                    <div class="b-dates muted-xs">📅 10 مايو - 12 مايو 2024</div>
+                  </div>
+                </div>
+              </div>
+              <button class="primary-action-btn full-btn" style="margin-top:8px;">+ احجز جديد</button>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="system-tag">استجابة النظام</span>
+            <p>عرض جميع الحجوزات مع الفلاتر والحالة</p>
+          </div>
+        </div>
+
+        <!-- STEP 3: تفاصيل الحجز -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="3" onclick="openBookingsWorkflowModal(3)">
+          <div class="screen-badge step-badge"><span class="badge-num">3</span> تفاصيل الحجز 3</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header space-between">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(2)">❮</span>
+                <h2 class="nav-title">تفاصيل الحجز</h2>
+                <span class="more-options">⋮</span>
+              </div>
+              <div class="booking-detail-content scrollable-form">
+                <div class="unit-code-banner flex-between">
+                  <span class="code-title font-bold">A-101</span>
+                  <span class="status-badge current">حالي</span>
+                </div>
+                <div class="guest-profile-summary text-center">
+                  <div class="avatar-lg uploadable-img">👤</div>
+                  <h3 class="g-title">فهد العتيبي</h3>
+                  <p class="g-sub muted-xs">+966 50 123 4567<br>fahad@example.com</p>
+                </div>
+                <div class="dates-meta-grid">
+                  <div class="meta-box"><span class="lbl">تاريخ الدخول</span><span class="val font-bold">15 مايو 2024</span><span class="time muted-xs">02:00 م</span></div>
+                  <div class="meta-box"><span class="lbl">تاريخ الخروج</span><span class="val font-bold">17 مايو 2024</span><span class="time muted-xs">11:00 ص</span></div>
+                </div>
+                <div class="guests-nights-row flex-between">
+                  <div class="pill-info"><span>الليالي</span> <strong>2 ليلة</strong></div>
+                  <div class="pill-info"><span>عدد الضيوف</span> <strong>2 ضيف</strong></div>
+                </div>
+                <div class="price-summary-bar flex-between">
+                  <span class="p-lbl">إجمالي السعر</span>
+                  <span class="p-val font-bold">1,200 ريال سعودي <span class="status-chip vacant">✓ مدفوع</span></span>
+                </div>
+                <button class="outline-action-btn full-btn" onclick="openBookingsWorkflowModal(6)" style="margin-top:6px;">عرض الفاتورة</button>
+                <div class="circle-actions-bar flex-center gap-12" style="margin-top:10px;">
+                  <button class="action-circle-btn" onclick="openBookingsWorkflowModal(5)" title="تعديل الحجز">✏️<span class="lbl">تعديل الحجز</span></button>
+                  <button class="action-circle-btn" onclick="triggerToast('جاري الاتصال بالضيف...', 'info')" title="اتصال">📞<span class="lbl">اتصال</span></button>
+                  <button class="action-circle-btn" onclick="triggerToast('تم فتح المحادثة عبر الواتساب', 'info')" title="رسالة">💬<span class="lbl">رسالة</span></button>
+                  <button class="action-circle-btn" onclick="openBookingsWorkflowModal(4)" title="المزيد">⋮<span class="lbl">المزيد</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="user-action-tag">إجراء المستخدم</span>
+            <p>اختيار حجز لعرض تفاصيله الكاملة</p>
+          </div>
+        </div>
+
+        <!-- STEP 4: بيانات الضيف -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="4" onclick="openBookingsWorkflowModal(4)">
+          <div class="screen-badge step-badge"><span class="badge-num">4</span> بيانات الضيف 4</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(3)">❮</span>
+                <h2 class="nav-title">بيانات الضيف</h2>
+              </div>
+              <div class="guest-full-details scrollable-form">
+                <div class="text-center" style="margin-bottom:10px;">
+                  <div class="avatar-lg uploadable-img" style="margin: 0 auto 6px;">👤</div>
+                  <h3 class="g-title">فهد العتيبي</h3>
+                </div>
+                <div class="info-table-list">
+                  <div class="info-row"><span class="lbl">رقم الجوال</span><span class="val font-bold" dir="ltr">+966 50 123 4567 📞</span></div>
+                  <div class="info-row"><span class="lbl">البريد الإلكتروني</span><span class="val" dir="ltr">fahad@example.com ✉️</span></div>
+                  <div class="info-row"><span class="lbl">الدولة</span><span class="val">المملكة العربية السعودية</span></div>
+                  <div class="info-row"><span class="lbl">نوع الهوية</span><span class="val">هوية الوطنية</span></div>
+                  <div class="info-row"><span class="lbl">رقم الهوية</span><span class="val font-bold">1234567890</span></div>
+                  <div class="info-row"><span class="lbl">ملاحظات</span><span class="val muted-xs">لا يوجد ملاحظات</span></div>
+                </div>
+                <button class="primary-action-btn full-btn" style="margin-top:14px;">تعديل بيانات الضيف</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="system-tag">عرض البيانات</span>
+            <p>عرض وتعديل بيانات الضيف</p>
+          </div>
+        </div>
+
+        <!-- STEP 5: إدارة الحجز -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="5" onclick="openBookingsWorkflowModal(5)">
+          <div class="screen-badge step-badge"><span class="badge-num">5</span> إدارة الحجز 5</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(3)">❮</span>
+                <h2 class="nav-title">إدارة الحجز</h2>
+              </div>
+              <div class="management-options-list">
+                <div class="option-item-card" onclick="openBookingsWorkflowModal(8)">
+                  <span class="opt-ico">📅</span>
+                  <span class="opt-title">تعديل التواريخ</span>
+                </div>
+                <div class="option-item-card" onclick="triggerToast('تعديل الوحدة المتاحة', 'info')">
+                  <span class="opt-ico">🏢</span>
+                  <span class="opt-title">تعديل الوحدة</span>
+                </div>
+                <div class="option-item-card" onclick="triggerToast('تعديل عدد الضيوف', 'info')">
+                  <span class="opt-ico">👥</span>
+                  <span class="opt-title">تعديل عدد الضيوف</span>
+                </div>
+                <div class="option-item-card" onclick="openBookingsWorkflowModal(9)">
+                  <span class="opt-ico">🛎️</span>
+                  <span class="opt-title">إضافة خدمات إضافية</span>
+                </div>
+                <div class="option-item-card" onclick="openBookingsWorkflowModal(10)">
+                  <span class="opt-ico">🏷️</span>
+                  <span class="opt-title">تطبيق كوبون خصم</span>
+                </div>
+                <div class="option-item-card danger-opt" onclick="openBookingsWorkflowModal(11)">
+                  <span class="opt-ico">🗑️</span>
+                  <span class="opt-title font-red">إلغاء الحجز</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="user-action-tag">إجراء التعديلات</span>
+            <p>إجراء التعديلات المطلوبة على الحجز</p>
+          </div>
+        </div>
+
+        <!-- STEP 6: الفاتورة والدفع -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="6" onclick="openBookingsWorkflowModal(6)">
+          <div class="screen-badge step-badge"><span class="badge-num">6</span> الفاتورة والدفع 6</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(3)">❮</span>
+                <h2 class="nav-title">تفاصيل الدفع</h2>
+              </div>
+              <div class="payment-details-box scrollable-form">
+                <div class="price-breakdown-card">
+                  <div class="p-row"><span class="lbl">إجمالي السعر</span><span class="val font-bold">1,200 ريال سعودي</span></div>
+                  <div class="p-row"><span class="lbl">المدفوع</span><span class="val font-bold font-green">1,200 ريال سعودي</span></div>
+                  <div class="p-row"><span class="lbl">المتبقي</span><span class="val font-bold">0 ريال سعودي</span></div>
+                </div>
+                <div class="payment-method-card">
+                  <span class="lbl muted-xs">طريقة الدفع</span>
+                  <div class="card-brand flex-between">
+                    <span>💳 مدى</span>
+                    <span dir="ltr">4242-****-****-4242</span>
+                  </div>
+                </div>
+                <div class="trans-meta-list">
+                  <div class="info-row"><span class="lbl">رقم العملية</span><span class="val font-bold">#PAY-2024-0158</span></div>
+                  <div class="info-row"><span class="lbl">تاريخ الدفع</span><span class="val">15 مايو 2024 - 02:45 م</span></div>
+                </div>
+                <div class="text-center" style="margin-top:12px;">
+                  <span class="sys-status-chip success">✓ تم الدفع</span>
+                </div>
+                <button class="primary-action-btn full-btn" onclick="triggerToast('جاري تحميل الفاتورة بصيغة PDF...', 'success')" style="margin-top:12px;">تحميل الفاتورة</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="system-tag">الفاتورة والدفع</span>
+            <p>عرض الفاتورة وحالة الدفع وتحميلها</p>
+          </div>
+        </div>
+
+        <!-- STEP 7: تسجيل الدخول / الخروج -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="7" onclick="openBookingsWorkflowModal(7)">
+          <div class="screen-badge step-badge"><span class="badge-num">7</span> تسجيل الدخول / الخروج 7</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(3)">❮</span>
+                <h2 class="nav-title">تسجيل الدخول</h2>
+              </div>
+              <div class="checkin-checkout-box scrollable-form">
+                <div class="check-status-row flex-between">
+                  <div>
+                    <span class="lbl font-bold">تسجيل الدخول</span>
+                    <span class="time muted-xs">15 مايو 2024 - 03:00 م</span>
+                  </div>
+                  <span class="status-chip vacant">تم ✓</span>
+                </div>
+                <div class="check-status-row flex-between" style="margin-top:10px;">
+                  <div>
+                    <span class="lbl font-bold">تسجيل الخروج</span>
+                    <span class="time muted-xs">12 مايو 2024 - 11:00 ص</span>
+                  </div>
+                  <span class="status-chip upcoming">قيد الانتظار</span>
+                </div>
+                <button class="primary-action-btn full-btn" style="margin-top:12px;">تسجيل دخول مبكر</button>
+                <div class="notes-mini-box" style="margin-top:12px;">
+                  <div class="sec-mini-head">ملاحظات</div>
+                  <p class="muted-xs">تم التواصل مع الضيف عبر واتساب في 14 مايو 2024</p>
+                </div>
+                <button class="primary-action-btn full-btn" onclick="openBookingsWorkflowModal(12)" style="margin-top:10px;">إضافة ملاحظة</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="system-tag">إدارة الوصول</span>
+            <p>تسجيل الدخول أو الخروج وإضافة ملاحظات</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SUB-SCREENS TITLE BANNER -->
+      <div class="section-title-banner mini-banner" style="margin-top: 30px;">
+        <div class="banner-badge sub-badge">الشاشات الفرعية (تفاصيل كل خطوة)</div>
+        <p class="banner-desc">استعرض المسارات البديلة والإجراءات الفرعية المتعلقة بتعديل وإلغاء الحجز</p>
+      </div>
+
+      <!-- SUB-SCREENS GRID (STEPS A to E) -->
+      <div class="workflow-screens-grid sub-workflow-grid">
+
+        <!-- SUB-STEP A: تعديل التواريخ -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="8" onclick="openBookingsWorkflowModal(8)">
+          <div class="screen-badge step-badge"><span class="badge-letter">A</span> تعديل التواريخ A</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(5)">❮</span>
+                <h2 class="nav-title">تعديل التواريخ</h2>
+              </div>
+              <div class="date-picker-body scrollable-form">
+                <div class="form-group">
+                  <label class="form-label">تاريخ الدخول</label>
+                  <div class="date-input-field flex-between">
+                    <span>15 مايو 2024</span>
+                    <span>📅</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">تاريخ الخروج</label>
+                  <div class="date-input-field flex-between">
+                    <span>18 مايو 2024</span>
+                    <span>📅</span>
+                  </div>
+                </div>
+                <div class="cal-mini-wrap" style="margin-top:8px;">
+                  <div class="cal-month-head flex-between">
+                    <span>‹</span><strong>مايو 2024</strong><span>›</span>
+                  </div>
+                  <div class="calendar-days-grid" style="font-size:0.55rem;">
+                    <div class="day-cell muted">ح</div><div class="day-cell muted">ن</div><div class="day-cell muted">ث</div><div class="day-cell muted">ر</div><div class="day-cell muted">خ</div><div class="day-cell muted">ج</div><div class="day-cell muted">س</div>
+                    <div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell">3</div><div class="day-cell">4</div><div class="day-cell">5</div><div class="day-cell">6</div><div class="day-cell">7</div>
+                    <div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell">10</div><div class="day-cell">11</div><div class="day-cell">12</div><div class="day-cell">13</div><div class="day-cell">14</div>
+                    <div class="day-cell active-purple">15</div><div class="day-cell active-purple">16</div><div class="day-cell active-purple">17</div><div class="day-cell active-purple">18</div><div class="day-cell">19</div><div class="day-cell">20</div><div class="day-cell">21</div>
+                  </div>
+                </div>
+                <button class="primary-action-btn full-btn" onclick="triggerToast('تم حفظ التغيرات وتحديث التواريخ بنجاح!', 'success')" style="margin-top:12px;">حفظ التغييرات</button>
+                <button class="outline-action-btn full-btn" onclick="openBookingsWorkflowModal(5)" style="margin-top:6px;">إلغاء</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">تحديد التواريخ</span>
+            <p>تعديل تاريخ الدخول والخروج وحفظ التغييرات</p>
+          </div>
+        </div>
+
+        <!-- SUB-STEP B: إضافة خدمات إضافية -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="9" onclick="openBookingsWorkflowModal(9)">
+          <div class="screen-badge step-badge"><span class="badge-letter">B</span> إضافة خدمات إضافية B</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(5)">❮</span>
+                <h2 class="nav-title">الخدمات الإضافية</h2>
+              </div>
+              <div class="services-checklist-body scrollable-form">
+                <div class="services-list">
+                  <label class="service-item-row flex-between">
+                    <div class="s-info flex-center gap-8">
+                      <input type="checkbox" checked>
+                      <span>تنظيف إضافي</span>
+                    </div>
+                    <span class="s-price font-bold">100 ريال</span>
+                  </label>
+                  <label class="service-item-row flex-between">
+                    <div class="s-info flex-center gap-8">
+                      <input type="checkbox" checked>
+                      <span>إفطار</span>
+                    </div>
+                    <span class="s-price font-bold">60 ريال</span>
+                  </label>
+                  <label class="service-item-row flex-between">
+                    <div class="s-info flex-center gap-8">
+                      <input type="checkbox">
+                      <span>سرير إضافي</span>
+                    </div>
+                    <span class="s-price font-bold">50 ريال</span>
+                  </label>
+                  <label class="service-item-row flex-between">
+                    <div class="s-info flex-center gap-8">
+                      <input type="checkbox">
+                      <span>توصيل مطار</span>
+                    </div>
+                    <span class="s-price font-bold">120 ريال</span>
+                  </label>
+                </div>
+                <div class="total-bar flex-between" style="margin-top:12px; padding: 8px 10px; background: #FAF8FC; border-radius: 8px;">
+                  <span class="lbl font-bold">الإجمالي</span>
+                  <span class="val font-bold font-purple">160 ريال</span>
+                </div>
+                <button class="primary-action-btn full-btn" onclick="triggerToast('تمت إضافة الخدمات الإضافية بنجاح!', 'success')" style="margin-top:12px;">إضافة للخدمة</button>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">إدارة الخدمات</span>
+            <p>اختيار الخدمات الإضافية وحساب إجمالي التكلفة</p>
+          </div>
+        </div>
+
+        <!-- SUB-STEP C: تطبيق كوبون خصم -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="10" onclick="openBookingsWorkflowModal(10)">
+          <div class="screen-badge step-badge"><span class="badge-letter">C</span> تطبيق كوبون خصم C</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(5)">❮</span>
+                <h2 class="nav-title">تطبيق كوبون</h2>
+              </div>
+              <div class="coupon-body scrollable-form">
+                <div class="form-group">
+                  <label class="form-label">رمز الكوبون</label>
+                  <input type="text" class="form-input" value="SUMMER20" placeholder="أدخل رمز الكوبون">
+                </div>
+                <button class="primary-action-btn full-btn" onclick="triggerToast('تم تطبيق الكوبون بنجاح!', 'success')" style="margin-top:8px;">تطبيق</button>
+
+                <div class="active-coupon-card flex-between" style="margin-top:14px; padding:10px; background:#E8F5E9; border:1px solid #A5D6A7; border-radius:10px;">
+                  <div>
+                    <strong class="font-green">SUMMER20</strong><br>
+                    <span class="muted-xs font-green">خصم 20% (تم تطبيقه بنجاح)</span>
+                  </div>
+                  <span class="check-ico font-green">✓</span>
+                </div>
+                <div class="discount-total-row flex-between" style="margin-top:12px; font-size:0.75rem;">
+                  <span class="lbl font-bold">إجمالي الخصم</span>
+                  <span class="val font-bold font-green">240 ريال سعودي</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="sub-flow-tag">تطبيق الخصم</span>
+            <p>إدخال رمز الكوبون وعرض قيمة الخصم المطبق</p>
+          </div>
+        </div>
+
+        <!-- SUB-STEP D: إلغاء الحجز وتأكيد الإلغاء -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="11" onclick="openBookingsWorkflowModal(11)">
+          <div class="screen-badge step-badge danger-badge"><span class="badge-letter">D</span> إلغاء الحجز D</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(5)">❮</span>
+                <h2 class="nav-title">إلغاء الحجز</h2>
+              </div>
+              <div class="cancel-booking-form scrollable-form">
+                <div class="form-group">
+                  <label class="form-label">اختر سبب الإلغاء</label>
+                  <select class="form-input"><option>تغيير الخطط</option><option>ظروف طارئة</option></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">ملاحظات (اختياري)</label>
+                  <textarea class="form-input" placeholder="اكتب الملاحظات..." style="height:50px;"></textarea>
+                </div>
+                <button class="primary-action-btn full-btn" style="background:#D32F2F; margin-top:8px;">إلغاء الحجز</button>
+
+                <!-- Modal Overlay Backdrop Mockup inside screen -->
+                <div class="inner-modal-popup text-center" style="margin-top:12px; background:#FFF; border:2px solid #FFCDD2; border-radius:12px; padding:10px;">
+                  <div class="warning-icon-lg" style="font-size:1.8rem; color:#D32F2F;">⚠️</div>
+                  <h4 style="color:#D32F2F; margin: 4px 0;">تأكيد الإلغاء</h4>
+                  <p class="muted-xs" style="margin-bottom:8px;">هل أنت تأكد من إلغاء الحجز 101-A؟</p>
+                  <div class="flex-center gap-8">
+                    <button class="primary-action-btn btn-sm" onclick="triggerToast('تم إلغاء الحجز نهائياً.', 'error')" style="background:#D32F2F;">نعم، إلغاء</button>
+                    <button class="outline-action-btn btn-sm" onclick="openBookingsWorkflowModal(5)">لا، رجوع</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption danger-caption">
+            <span class="system-tag error">تأكيد الإلغاء</span>
+            <p>إلغاء الحجز وتأكيد العملية (إجراء لا يمكن التراجع عنه)</p>
+          </div>
+        </div>
+
+        <!-- SUB-STEP E: إضافة ملاحظة وحفظ النجاح -->
+        <div class="screen-card-container workflow-step-card" data-bookings-workflow-id="12" onclick="openBookingsWorkflowModal(12)">
+          <div class="screen-badge step-badge"><span class="badge-letter">E</span> إضافة ملاحظة E</div>
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+            <div class="phone-screen">
+              <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="icons">📶 🛜 🔋</div>
+              </div>
+              <div class="screen-nav-header center">
+                <span class="back-arrow" onclick="openBookingsWorkflowModal(7)">❮</span>
+                <h2 class="nav-title">إضافة ملاحظة</h2>
+              </div>
+              <div class="add-note-body scrollable-form">
+                <div class="form-group">
+                  <textarea class="form-input" placeholder="اكتب ملاحظتك هنا..." style="height:60px;"></textarea>
+                  <span class="muted-xs pull-left" style="float:left;">0/300</span>
+                </div>
+                <div class="form-group" style="clear:both; margin-top:8px;">
+                  <label class="form-label">اختر النوع</label>
+                  <select class="form-input"><option>ملاحظة عامة</option></select>
+                </div>
+                <button class="primary-action-btn full-btn" style="margin-top:6px;">حفظ الملاحظة</button>
+
+                <!-- Success state inside screen -->
+                <div class="success-note-state text-center" style="margin-top:14px; padding:10px; background:#E8F5E9; border-radius:12px;">
+                  <div class="big-check-circle" style="font-size:2rem; color:#2E7D32;">✓</div>
+                  <strong class="font-green" style="font-size:0.8rem; display:block; margin:4px 0;">تم حفظ الملاحظة بنجاح</strong>
+                  <button class="primary-action-btn btn-sm" onclick="openBookingsWorkflowModal(3)" style="margin-top:6px;">العودة للتفاصيل</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step-caption">
+            <span class="system-tag success">حفظ نجاح</span>
+            <p>إضافة ملاحظة على الحجز وتأكيد حفظها بنجاح</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BOOKINGS MANAGEMENT FOOTER: STATISTICS & QUICK ACTIONS -->
+      <div class="bookings-footer-section" style="margin-top: 30px; background: rgba(255, 255, 255, 0.95); border: 2px solid #EADAFF; border-radius: 24px; padding: 24px;">
+        <!-- BOOKINGS STATISTICS (5 STAT CARDS + OCCUPANCY RATE) -->
+        <div class="sec-mini-head text-center" style="font-size: 1.1rem; color: var(--dark-purple); margin-bottom: 16px;">إحصائيات الحجوزات</div>
+        <div class="booking-stats-footer-grid flex-between gap-12" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 24px;">
+          <div class="stat-footer-box text-center" style="background: #FAF8FC; border: 1px solid #EADAFF; border-radius: 14px; padding: 12px 8px;">
+            <div class="val font-bold font-purple" style="font-size: 1.4rem;">78%</div>
+            <div class="lbl muted-xs">معدل الإشغال</div>
+          </div>
+          <div class="stat-footer-box text-center" style="background: #FFEBEE; border: 1px solid #FFCDD2; border-radius: 14px; padding: 12px 8px;">
+            <div class="val font-bold font-red" style="font-size: 1.4rem;">1</div>
+            <div class="lbl muted-xs">حجز ملغي</div>
+          </div>
+          <div class="stat-footer-box text-center" style="background: #F5F5F5; border: 1px solid #E0E0E0; border-radius: 14px; padding: 12px 8px;">
+            <div class="val font-bold" style="font-size: 1.4rem; color: #616161;">2</div>
+            <div class="lbl muted-xs">حجوزات منتهية</div>
+          </div>
+          <div class="stat-footer-box text-center" style="background: #FFF3E0; border: 1px solid #FFE0B2; border-radius: 14px; padding: 12px 8px;">
+            <div class="val font-bold" style="font-size: 1.4rem; color: #E65100;">4</div>
+            <div class="lbl muted-xs">حجوزات قادمة</div>
+          </div>
+          <div class="stat-footer-box text-center" style="background: #E8F5E9; border: 1px solid #C8E6C9; border-radius: 14px; padding: 12px 8px;">
+            <div class="val font-bold font-green" style="font-size: 1.4rem;">5</div>
+            <div class="lbl muted-xs">حجوزات حالية</div>
+          </div>
+          <div class="stat-footer-box text-center" style="background: #F3EDF7; border: 1px solid #D0BCFF; border-radius: 14px; padding: 12px 8px;">
+            <div class="val font-bold font-purple" style="font-size: 1.4rem;">12</div>
+            <div class="lbl muted-xs">إجمالي الحجوزات</div>
+          </div>
+        </div>
+
+        <!-- QUICK ACTIONS FROM BOOKINGS PAGE (6 BUTTONS) -->
+        <div class="sec-mini-head text-center" style="font-size: 1rem; color: var(--dark-purple); margin-bottom: 12px;">إجراءات سريعة من صفحة الحجوزات</div>
+        <div class="quick-actions-bar-footer flex-center gap-12" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;">
+          <button class="footer-action-chip" onclick="triggerToast('تم الفرز بحسب التاريخ', 'info')" style="padding: 8px 16px; border-radius: 100px; border: 1px solid #EADAFF; background: #FAF8FC; cursor: pointer; font-family: var(--font-main); font-weight: 600; display: flex; align-items: center; gap: 6px;">
+            <span>📶</span> <span>ترتيب</span>
+          </button>
+          <button class="footer-action-chip" onclick="triggerToast('تم فتح فلاتر الحجوزات', 'info')" style="padding: 8px 16px; border-radius: 100px; border: 1px solid #EADAFF; background: #FAF8FC; cursor: pointer; font-family: var(--font-main); font-weight: 600; display: flex; align-items: center; gap: 6px;">
+            <span>🌪️</span> <span>فلترة</span>
+          </button>
+          <button class="footer-action-chip" onclick="triggerToast('تم فتح البحث المتقدم', 'info')" style="padding: 8px 16px; border-radius: 100px; border: 1px solid #EADAFF; background: #FAF8FC; cursor: pointer; font-family: var(--font-main); font-weight: 600; display: flex; align-items: center; gap: 6px;">
+            <span>🔍</span> <span>بحث متقدم</span>
+          </button>
+          <button class="footer-action-chip" onclick="openNotificationDetailsModal(event)" style="padding: 8px 16px; border-radius: 100px; border: 1px solid #EADAFF; background: #FAF8FC; cursor: pointer; font-family: var(--font-main); font-weight: 600; display: flex; align-items: center; gap: 6px;">
+            <span>🔔</span> <span>إشعارات</span>
+          </button>
+          <button class="footer-action-chip" onclick="triggerToast('جاري تصدير التقرير PDF...', 'success')" style="padding: 8px 16px; border-radius: 100px; border: 1px solid #EADAFF; background: #FAF8FC; cursor: pointer; font-family: var(--font-main); font-weight: 600; display: flex; align-items: center; gap: 6px;">
+            <span>📄</span> <span>تصدير التقرير</span>
+          </button>
+          <button class="footer-action-chip primary" onclick="openQuickActionModal('manual_booking', event)" style="padding: 8px 16px; border-radius: 100px; border: none; background: var(--dark-purple); color: white; cursor: pointer; font-family: var(--font-main); font-weight: 700; display: flex; align-items: center; gap: 6px;">
+            <span>➕</span> <span>حجز جديد</span>
+          </button>
+        </div>
+
+        <!-- BOOKING STATUSES BADGES LEGEND -->
+        <div class="sec-mini-head text-center" style="font-size: 0.95rem; color: var(--dark-purple); margin-bottom: 10px;">حالات الحجز</div>
+        <div class="status-legend-chips flex-center gap-16" style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+          <div class="chip-item flex-center gap-6" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #E8F5E9; border-radius: 8px;">
+            <span class="status-badge current">حالي</span>
+            <span class="muted-xs">جاري الإقامة الآن</span>
+          </div>
+          <div class="chip-item flex-center gap-6" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #FFF3E0; border-radius: 8px;">
+            <span class="status-badge upcoming">قادم</span>
+            <span class="muted-xs">سيبدأ قريباً</span>
+          </div>
+          <div class="chip-item flex-center gap-6" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #F5F5F5; border-radius: 8px;">
+            <span class="status-badge expired">منتهي</span>
+            <span class="muted-xs">انتهى الإقامة</span>
+          </div>
+          <div class="chip-item flex-center gap-6" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #FFEBEE; border-radius: 8px;">
+            <span class="status-badge cancelled">ملغى</span>
+            <span class="muted-xs">تم الإلغاء</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -622,7 +1899,10 @@
       <div class="screen-card-container" data-screen-id="1" onclick="openScreenModal(1)">
         <div class="screen-badge"><span class="badge-num">1</span> شاشة الترحيب</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen welcome-bg">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -632,23 +1912,27 @@
             <div class="welcome-hero">
               <div class="welcome-logo uploadable-img" title="اضغط لرفع الشعار">
                 <svg viewBox="0 0 100 100" fill="none">
-                  <rect width="100" height="100" rx="24" fill="#4F378B"/>
-                  <path d="M50 20 L25 42 V75 H75 V42 Z" stroke="white" stroke-width="5" fill="none"/>
-                  <circle cx="30" cy="30" r="4" fill="#D0BCFF"/>
-                  <circle cx="70" cy="30" r="4" fill="#D0BCFF"/>
+                  <rect width="100" height="100" rx="24" fill="#4F378B" />
+                  <path d="M50 20 L25 42 V75 H75 V42 Z" stroke="white" stroke-width="5" fill="none" />
+                  <circle cx="30" cy="30" r="4" fill="#D0BCFF" />
+                  <circle cx="70" cy="30" r="4" fill="#D0BCFF" />
                 </svg>
               </div>
               <h2 class="welcome-brand">خزامى <span class="brand-accent">تشك</span></h2>
-              <p class="welcome-tagline">أهلاً بك في خزامى تشك<br><span class="muted-sm">إدارة أسهل... أرباح أكثر</span></p>
+              <p class="welcome-tagline">أهلاً بك في خزامى تشك<br><span class="muted-sm">إدارة أسهل... أرباح أكثر</span>
+              </p>
             </div>
 
             <div class="welcome-actions">
               <button class="primary-action-btn" onclick="openScreenModal(2)">تسجيل الدخول</button>
-              <button class="outline-action-btn biometric-btn" onclick="triggerToast('تم التعرف على البصمة! جاري تسجيل الدخول...', 'success')">
+              <button class="outline-action-btn biometric-btn"
+                onclick="triggerToast('تم التعرف على البصمة! جاري تسجيل الدخول...', 'success')">
                 <span class="uploadable-icon">🖐️</span> تسجيل الدخول بالبصمة
               </button>
-              <a href="javascript:void(0)" class="forgot-link" onclick="openForgotPasswordModal(event)">نسيت كلمة المرور؟</a>
-              <a href="javascript:void(0)" class="signup-link" onclick="triggerToast('شاشة إنشاء حساب جديد قيد التحميل...', 'info')">إنشاء حساب جديد</a>
+              <a href="javascript:void(0)" class="forgot-link" onclick="openForgotPasswordModal(event)">نسيت كلمة
+                المرور؟</a>
+              <a href="javascript:void(0)" class="signup-link"
+                onclick="triggerToast('شاشة إنشاء حساب جديد قيد التحميل...', 'info')">إنشاء حساب جديد</a>
             </div>
           </div>
         </div>
@@ -658,7 +1942,10 @@
       <div class="screen-card-container" data-screen-id="2" onclick="openScreenModal(2)">
         <div class="screen-badge"><span class="badge-num">2</span> تسجيل الدخول</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -682,10 +1969,12 @@
 
               <div class="form-row-between">
                 <label class="checkbox-lbl"><input type="checkbox" checked> تذكرني</label>
-                <a href="javascript:void(0)" class="forgot-link-sm" onclick="openForgotPasswordModal(event)">نسيت كلمة المرور؟</a>
+                <a href="javascript:void(0)" class="forgot-link-sm" onclick="openForgotPasswordModal(event)">نسيت كلمة
+                  المرور؟</a>
               </div>
 
-              <button class="primary-action-btn" onclick="triggerToast('تم تسجيل الدخول بنجاح! مرحبا بك', 'success'); openScreenModal(3)">دخول</button>
+              <button class="primary-action-btn"
+                onclick="triggerToast('تم تسجيل الدخول بنجاح! مرحبا بك', 'success'); openScreenModal(3)">دخول</button>
 
               <div class="success-chip-box">
                 <span class="sys-status-chip success">✓ نجاح تسجيل الدخول</span>
@@ -700,7 +1989,10 @@
       <div class="screen-card-container" data-screen-id="3" onclick="openScreenModal(3)">
         <div class="screen-badge"><span class="badge-num">3</span> الرئيسية (Dashboard)</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -715,16 +2007,19 @@
                   <span class="date-tag">الأربعاء 15 مايو 2024</span>
                 </div>
               </div>
-              <div class="header-action-icon uploadable-icon" title="اضغط لرفع أيقونة التنبيهات" onclick="openNotificationDetailsModal(event)">🔔</div>
+              <div class="header-action-icon uploadable-icon" title="اضغط لرفع أيقونة التنبيهات"
+                onclick="openNotificationDetailsModal(event)">🔔</div>
             </div>
 
             <div class="stats-row">
-              <div class="stat-box primary clickable-card" onclick="openRevenueDetailsModal(event)" title="انقر لعرض تفاصيل الإيرادات">
+              <div class="stat-box primary clickable-card" onclick="openRevenueDetailsModal(event)"
+                title="انقر لعرض تفاصيل الإيرادات">
                 <span class="stat-label">إجمالي الإيرادات</span>
                 <div class="stat-val">48,250 <span class="cur">ر.س</span></div>
                 <span class="stat-change pos">+12% عن الشهر الماضي</span>
               </div>
-              <div class="stat-box clickable-card" onclick="openOccupancyReportModal(event)" title="انقر لعرض تقرير الإشغال">
+              <div class="stat-box clickable-card" onclick="openOccupancyReportModal(event)"
+                title="انقر لعرض تقرير الإشغال">
                 <span class="stat-label">نسبة الإشغال</span>
                 <div class="stat-val">78%</div>
                 <span class="stat-change pos">+8% عن الشهر الماضي</span>
@@ -753,7 +2048,9 @@
               </div>
               <p class="ai-text">الوحدة 203 فارغة منذ 4 أيام. نقترح تخفيض السعر بنسبة 12% لزيادة الإشغال.</p>
               <div class="ai-btn-row">
-                <button class="ai-action-btn" onclick="event.stopPropagation(); triggerToast('تم تطبيق التوصية بنجاح!', 'success')">تطبيق الاقتراح</button>
+                <button class="ai-action-btn"
+                  onclick="event.stopPropagation(); triggerToast('تم تطبيق التوصية بنجاح!', 'success')">تطبيق
+                  الاقتراح</button>
                 <button class="ai-outline-btn" onclick="openRecommendationDetailsModal(event)">عرض التفاصيل</button>
               </div>
             </div>
@@ -774,9 +2071,12 @@
 
             <div class="bottom-nav">
               <div class="nav-item active"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
-              <div class="nav-item" onclick="openScreenModal(6)"><span class="uploadable-icon">📅</span><span>الحجوزات</span></div>
-              <div class="nav-item" onclick="openScreenModal(4)"><span class="uploadable-icon">🏢</span><span>الوحدات</span></div>
-              <div class="nav-item" onclick="openMoreMenuModal(event)"><span class="uploadable-icon">☰</span><span>المزيد</span></div>
+              <div class="nav-item" onclick="openScreenModal(6)"><span
+                  class="uploadable-icon">📅</span><span>الحجوزات</span></div>
+              <div class="nav-item" onclick="openScreenModal(4)"><span
+                  class="uploadable-icon">🏢</span><span>الوحدات</span></div>
+              <div class="nav-item" onclick="openMoreMenuModal(event)"><span
+                  class="uploadable-icon">☰</span><span>المزيد</span></div>
             </div>
           </div>
         </div>
@@ -786,7 +2086,10 @@
       <div class="screen-card-container" data-screen-id="4" onclick="openScreenModal(4)">
         <div class="screen-badge"><span class="badge-num">4</span> الوحدات</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -858,10 +2161,13 @@
             <button class="fab-btn" onclick="openQuickActionModal('add_unit', event)">+</button>
 
             <div class="bottom-nav">
-              <div class="nav-item" onclick="openScreenModal(3)"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
+              <div class="nav-item" onclick="openScreenModal(3)"><span
+                  class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
               <div class="nav-item active"><span class="uploadable-icon">🏢</span><span>الوحدات</span></div>
-              <div class="nav-item" onclick="openScreenModal(6)"><span class="uploadable-icon">📅</span><span>الحجوزات</span></div>
-              <div class="nav-item" onclick="openMoreMenuModal(event)"><span class="uploadable-icon">☰</span><span>المزيد</span></div>
+              <div class="nav-item" onclick="openScreenModal(6)"><span
+                  class="uploadable-icon">📅</span><span>الحجوزات</span></div>
+              <div class="nav-item" onclick="openMoreMenuModal(event)"><span
+                  class="uploadable-icon">☰</span><span>المزيد</span></div>
             </div>
           </div>
         </div>
@@ -871,7 +2177,10 @@
       <div class="screen-card-container" data-screen-id="5" onclick="openScreenModal(5)">
         <div class="screen-badge"><span class="badge-num">5</span> التقويم</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -889,9 +2198,12 @@
             </div>
 
             <div class="calendar-days-grid">
-              <span class="day-cell muted">28</span><span class="day-cell muted">29</span><span class="day-cell muted">30</span>
-              <span class="day-cell">1</span><span class="day-cell">2</span><span class="day-cell">3</span><span class="day-cell">4</span>
-              <span class="day-cell">5</span><span class="day-cell">6</span><span class="day-cell">7</span><span class="day-cell">8</span>
+              <span class="day-cell muted">28</span><span class="day-cell muted">29</span><span
+                class="day-cell muted">30</span>
+              <span class="day-cell">1</span><span class="day-cell">2</span><span class="day-cell">3</span><span
+                class="day-cell">4</span>
+              <span class="day-cell">5</span><span class="day-cell">6</span><span class="day-cell">7</span><span
+                class="day-cell">8</span>
               <span class="day-cell">9</span><span class="day-cell">10</span><span class="day-cell">11</span>
               <span class="day-cell">12</span><span class="day-cell circle-tag border-purple">13</span>
               <span class="day-cell">14</span><span class="day-cell">15</span><span class="day-cell">16</span>
@@ -922,10 +2234,13 @@
             </div>
 
             <div class="bottom-nav">
-              <div class="nav-item" onclick="openScreenModal(3)"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
+              <div class="nav-item" onclick="openScreenModal(3)"><span
+                  class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
               <div class="nav-item active"><span class="uploadable-icon">📅</span><span>التقويم</span></div>
-              <div class="nav-item" onclick="openScreenModal(4)"><span class="uploadable-icon">🏢</span><span>الوحدات</span></div>
-              <div class="nav-item" onclick="openMoreMenuModal(event)"><span class="uploadable-icon">☰</span><span>المزيد</span></div>
+              <div class="nav-item" onclick="openScreenModal(4)"><span
+                  class="uploadable-icon">🏢</span><span>الوحدات</span></div>
+              <div class="nav-item" onclick="openMoreMenuModal(event)"><span
+                  class="uploadable-icon">☰</span><span>المزيد</span></div>
             </div>
           </div>
         </div>
@@ -935,7 +2250,10 @@
       <div class="screen-card-container" data-screen-id="6" onclick="openScreenModal(6)">
         <div class="screen-badge"><span class="badge-num">6</span> الحجوزات</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -959,7 +2277,8 @@
               <div class="booking-card">
                 <div class="brand-icon airbnb uploadable-icon" title="اضغط لرفع شعار المنصة">A</div>
                 <div class="booking-info">
-                  <div class="b-row"><span class="platform-name">Airbnb</span> <span class="b-status font-green">مؤكد</span></div>
+                  <div class="b-row"><span class="platform-name">Airbnb</span> <span
+                      class="b-status font-green">مؤكد</span></div>
                   <div class="b-guest">سارة العتيبي</div>
                   <div class="b-unit">فيلا الياسمين</div>
                 </div>
@@ -972,7 +2291,8 @@
               <div class="booking-card">
                 <div class="brand-icon booking uploadable-icon" title="اضغط لرفع شعار المنصة">B</div>
                 <div class="booking-info">
-                  <div class="b-row"><span class="platform-name">Booking.com</span> <span class="b-status font-green">مؤكد</span></div>
+                  <div class="b-row"><span class="platform-name">Booking.com</span> <span
+                      class="b-status font-green">مؤكد</span></div>
                   <div class="b-guest">محمد المطيري</div>
                   <div class="b-unit">شقة الخزامى</div>
                 </div>
@@ -985,7 +2305,8 @@
               <div class="booking-card">
                 <div class="brand-icon gathering uploadable-icon" title="اضغط لرفع شعار المنصة">G</div>
                 <div class="booking-info">
-                  <div class="b-row"><span class="platform-name">Gatherin</span> <span class="b-status font-green">مؤكد</span></div>
+                  <div class="b-row"><span class="platform-name">Gatherin</span> <span
+                      class="b-status font-green">مؤكد</span></div>
                   <div class="b-guest">فهد الشهري</div>
                   <div class="b-unit">فيلا اللافندر</div>
                 </div>
@@ -998,7 +2319,8 @@
               <div class="booking-card">
                 <div class="brand-icon airbnb uploadable-icon" title="اضغط لرفع شعار المنصة">A</div>
                 <div class="booking-info">
-                  <div class="b-row"><span class="platform-name">Airbnb</span> <span class="b-status font-green">مؤكد</span></div>
+                  <div class="b-row"><span class="platform-name">Airbnb</span> <span
+                      class="b-status font-green">مؤكد</span></div>
                   <div class="b-guest">نورة السبيعي</div>
                   <div class="b-unit">شقة البنفسج</div>
                 </div>
@@ -1010,10 +2332,13 @@
             </div>
 
             <div class="bottom-nav">
-              <div class="nav-item" onclick="openScreenModal(3)"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
+              <div class="nav-item" onclick="openScreenModal(3)"><span
+                  class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
               <div class="nav-item active"><span class="uploadable-icon">📅</span><span>الحجوزات</span></div>
-              <div class="nav-item" onclick="openScreenModal(4)"><span class="uploadable-icon">🏢</span><span>الوحدات</span></div>
-              <div class="nav-item" onclick="openMoreMenuModal(event)"><span class="uploadable-icon">☰</span><span>المزيد</span></div>
+              <div class="nav-item" onclick="openScreenModal(4)"><span
+                  class="uploadable-icon">🏢</span><span>الوحدات</span></div>
+              <div class="nav-item" onclick="openMoreMenuModal(event)"><span
+                  class="uploadable-icon">☰</span><span>المزيد</span></div>
             </div>
           </div>
         </div>
@@ -1023,7 +2348,10 @@
       <div class="screen-card-container" data-screen-id="7" onclick="openScreenModal(7)">
         <div class="screen-badge"><span class="badge-num">7</span> التسعير الذكي</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -1074,15 +2402,17 @@
             <div class="forecast-card">
               <div class="forecast-badge-val">الأسبوع القادم 92%</div>
               <svg class="forecast-chart-svg" viewBox="0 0 300 70">
-                <path d="M 0 50 Q 50 55, 100 45 T 180 20 T 260 30 T 300 15" fill="none" stroke="#9C27B0" stroke-width="3"/>
-                <circle cx="210" cy="18" r="4" fill="#9C27B0"/>
+                <path d="M 0 50 Q 50 55, 100 45 T 180 20 T 260 30 T 300 15" fill="none" stroke="#9C27B0"
+                  stroke-width="3" />
+                <circle cx="210" cy="18" r="4" fill="#9C27B0" />
               </svg>
               <div class="chart-x-days">
                 <span>أحد</span><span>الجميع</span><span>خميس</span><span>الجمعة</span><span>سبت</span>
               </div>
             </div>
 
-            <button class="primary-action-btn" onclick="openQuickActionModal('edit_prices', event)">تعديل الأسعار بالجملة</button>
+            <button class="primary-action-btn" onclick="openQuickActionModal('edit_prices', event)">تعديل الأسعار
+              بالجملة</button>
           </div>
         </div>
       </div>
@@ -1091,7 +2421,10 @@
       <div class="screen-card-container" data-screen-id="8" onclick="openScreenModal(8)">
         <div class="screen-badge"><span class="badge-num">8</span> التحليلات</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -1126,9 +2459,12 @@
             <div class="analytics-sec-title">مصادر الحجوزات</div>
             <div class="donut-chart-container">
               <svg class="donut-svg" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="38" fill="none" stroke="#4F378B" stroke-width="16" stroke-dasharray="155 85" stroke-dashoffset="0"/>
-                <circle cx="50" cy="50" r="38" fill="none" stroke="#7C4DFF" stroke-width="16" stroke-dasharray="60 180" stroke-dashoffset="-155"/>
-                <circle cx="50" cy="50" r="38" fill="none" stroke="#2196F3" stroke-width="16" stroke-dasharray="25 215" stroke-dashoffset="-215"/>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#4F378B" stroke-width="16" stroke-dasharray="155 85"
+                  stroke-dashoffset="0" />
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#7C4DFF" stroke-width="16" stroke-dasharray="60 180"
+                  stroke-dashoffset="-155" />
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#2196F3" stroke-width="16" stroke-dasharray="25 215"
+                  stroke-dashoffset="-215" />
               </svg>
               <div class="donut-legend">
                 <div class="leg-item"><i class="leg-dot c-purple"></i> Airbnb <span class="pct">65%</span></div>
@@ -1154,10 +2490,13 @@
             </div>
 
             <div class="bottom-nav">
-              <div class="nav-item" onclick="openScreenModal(3)"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
+              <div class="nav-item" onclick="openScreenModal(3)"><span
+                  class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
               <div class="nav-item active"><span class="uploadable-icon">📊</span><span>التحليلات</span></div>
-              <div class="nav-item" onclick="openScreenModal(6)"><span class="uploadable-icon">📅</span><span>الحجوزات</span></div>
-              <div class="nav-item" onclick="openMoreMenuModal(event)"><span class="uploadable-icon">☰</span><span>المزيد</span></div>
+              <div class="nav-item" onclick="openScreenModal(6)"><span
+                  class="uploadable-icon">📅</span><span>الحجوزات</span></div>
+              <div class="nav-item" onclick="openMoreMenuModal(event)"><span
+                  class="uploadable-icon">☰</span><span>المزيد</span></div>
             </div>
           </div>
         </div>
@@ -1167,7 +2506,10 @@
       <div class="screen-card-container" data-screen-id="9" onclick="openScreenModal(9)">
         <div class="screen-badge"><span class="badge-num">9</span> الخدمات والطلبات</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -1229,10 +2571,13 @@
             </div>
 
             <div class="bottom-nav">
-              <div class="nav-item" onclick="openScreenModal(3)"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
+              <div class="nav-item" onclick="openScreenModal(3)"><span
+                  class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
               <div class="nav-item active"><span class="uploadable-icon">🛠️</span><span>الطلبات</span></div>
-              <div class="nav-item" onclick="openScreenModal(4)"><span class="uploadable-icon">🏢</span><span>الوحدات</span></div>
-              <div class="nav-item" onclick="openMoreMenuModal(event)"><span class="uploadable-icon">☰</span><span>المزيد</span></div>
+              <div class="nav-item" onclick="openScreenModal(4)"><span
+                  class="uploadable-icon">🏢</span><span>الوحدات</span></div>
+              <div class="nav-item" onclick="openMoreMenuModal(event)"><span
+                  class="uploadable-icon">☰</span><span>المزيد</span></div>
             </div>
           </div>
         </div>
@@ -1242,7 +2587,10 @@
       <div class="screen-card-container" data-screen-id="10" onclick="openScreenModal(10)">
         <div class="screen-badge"><span class="badge-num">10</span> التراخيص والوثائق</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -1258,8 +2606,9 @@
             <div class="compliance-gauge-card">
               <div class="gauge-meter">
                 <svg viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="42" fill="none" stroke="#E0E0E0" stroke-width="8"/>
-                  <circle cx="50" cy="50" r="42" fill="none" stroke="#4CAF50" stroke-width="8" stroke-dasharray="250" stroke-dashoffset="10"/>
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="#E0E0E0" stroke-width="8" />
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="#4CAF50" stroke-width="8" stroke-dasharray="250"
+                    stroke-dashoffset="10" />
                 </svg>
                 <div class="gauge-text">
                   <span class="gauge-val">96%</span>
@@ -1310,7 +2659,8 @@
               </div>
             </div>
 
-            <button class="primary-action-btn" onclick="openQuickActionModal('upload_doc', event)">إضافة وثيقة جديدة</button>
+            <button class="primary-action-btn" onclick="openQuickActionModal('upload_doc', event)">إضافة وثيقة
+              جديدة</button>
           </div>
         </div>
       </div>
@@ -1319,7 +2669,10 @@
       <div class="screen-card-container" data-screen-id="11" onclick="openScreenModal(11)">
         <div class="screen-badge"><span class="badge-num">11</span> المركز المالي</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -1347,7 +2700,9 @@
               <div class="inv-foot">
                 <span class="inv-amt">1,150 ر.س</span>
                 <span class="inv-badge paid">مدفوع</span>
-                <span class="download-link" onclick="event.stopPropagation(); triggerToast('جاري تحميل فاتورة مايو 2024 (PDF)...', 'info')">تحميل 📄</span>
+                <span class="download-link"
+                  onclick="event.stopPropagation(); triggerToast('جاري تحميل فاتورة مايو 2024 (PDF)...', 'info')">تحميل
+                  📄</span>
               </div>
             </div>
 
@@ -1365,7 +2720,8 @@
               </div>
             </div>
 
-            <button class="outline-action-btn" onclick="triggerToast('قائمة جميع الفواتير والاشتراكات', 'info')">عرض جميع الفواتير</button>
+            <button class="outline-action-btn" onclick="triggerToast('قائمة جميع الفواتير والاشتراكات', 'info')">عرض
+              جميع الفواتير</button>
           </div>
         </div>
       </div>
@@ -1374,7 +2730,10 @@
       <div class="screen-card-container" data-screen-id="12" onclick="openScreenModal(12)">
         <div class="screen-badge"><span class="badge-num">12</span> التنبيهات</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -1434,10 +2793,13 @@
             </div>
 
             <div class="bottom-nav">
-              <div class="nav-item" onclick="openScreenModal(3)"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
+              <div class="nav-item" onclick="openScreenModal(3)"><span
+                  class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
               <div class="nav-item active"><span class="uploadable-icon">🔔</span><span>التنبيهات</span></div>
-              <div class="nav-item" onclick="openScreenModal(5)"><span class="uploadable-icon">📅</span><span>التقويم</span></div>
-              <div class="nav-item" onclick="openMoreMenuModal(event)"><span class="uploadable-icon">☰</span><span>المزيد</span></div>
+              <div class="nav-item" onclick="openScreenModal(5)"><span
+                  class="uploadable-icon">📅</span><span>التقويم</span></div>
+              <div class="nav-item" onclick="openMoreMenuModal(event)"><span
+                  class="uploadable-icon">☰</span><span>المزيد</span></div>
             </div>
           </div>
         </div>
@@ -1447,7 +2809,10 @@
       <div class="screen-card-container" data-screen-id="13" onclick="openScreenModal(13)">
         <div class="screen-badge"><span class="badge-num">13</span> التكاملات</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -1507,7 +2872,8 @@
               </div>
             </div>
 
-            <button class="primary-action-btn" onclick="triggerToast('نافذة إضافة منصة تكامل جديدة', 'info')">إضافة تكامل جديد</button>
+            <button class="primary-action-btn" onclick="triggerToast('نافذة إضافة منصة تكامل جديدة', 'info')">إضافة
+              تكامل جديد</button>
           </div>
         </div>
       </div>
@@ -1516,7 +2882,10 @@
       <div class="screen-card-container" data-screen-id="14" onclick="openScreenModal(14)">
         <div class="screen-badge"><span class="badge-num">14</span> الإعدادات</div>
         <div class="phone-frame">
-          <div class="phone-notch"><div class="camera"></div><div class="speaker"></div></div>
+          <div class="phone-notch">
+            <div class="camera"></div>
+            <div class="speaker"></div>
+          </div>
           <div class="phone-screen">
             <div class="status-bar">
               <span class="time">9:41</span>
@@ -1538,19 +2907,29 @@
             </div>
 
             <div class="settings-menu-list">
-              <div class="menu-item"><span class="m-icon uploadable-icon">👤</span><span class="m-lbl">الملف الشخصي</span><span>›</span></div>
-              <div class="menu-item"><span class="m-icon uploadable-icon">🔒</span><span class="m-lbl">معلومات الحساب</span><span>›</span></div>
-              <div class="menu-item"><span class="m-icon uploadable-icon">🏢</span><span class="m-lbl">الوحدات العقارية</span><span>›</span></div>
-              <div class="menu-item"><span class="m-icon uploadable-icon">💳</span><span class="m-lbl">الفواتير والاشتراكات</span><span>›</span></div>
-              <div class="menu-item"><span class="m-icon uploadable-icon">🔔</span><span class="m-lbl">الإشعارات</span><span>›</span></div>
-              <div class="menu-item"><span class="m-icon uploadable-icon">🌐</span><span class="m-lbl">اللغة</span><span class="val-tag">العربية ›</span></div>
-              <div class="menu-item danger" onclick="triggerToast('تم تسجيل الخروج بنجاح.', 'warning')"><span class="m-icon uploadable-icon">🚪</span><span class="m-lbl">تسجيل الخروج</span><span></span></div>
+              <div class="menu-item"><span class="m-icon uploadable-icon">👤</span><span class="m-lbl">الملف
+                  الشخصي</span><span>›</span></div>
+              <div class="menu-item"><span class="m-icon uploadable-icon">🔒</span><span class="m-lbl">معلومات
+                  الحساب</span><span>›</span></div>
+              <div class="menu-item"><span class="m-icon uploadable-icon">🏢</span><span class="m-lbl">الوحدات
+                  العقارية</span><span>›</span></div>
+              <div class="menu-item"><span class="m-icon uploadable-icon">💳</span><span class="m-lbl">الفواتير
+                  والاشتراكات</span><span>›</span></div>
+              <div class="menu-item"><span class="m-icon uploadable-icon">🔔</span><span
+                  class="m-lbl">الإشعارات</span><span>›</span></div>
+              <div class="menu-item"><span class="m-icon uploadable-icon">🌐</span><span class="m-lbl">اللغة</span><span
+                  class="val-tag">العربية ›</span></div>
+              <div class="menu-item danger" onclick="triggerToast('تم تسجيل الخروج بنجاح.', 'warning')"><span
+                  class="m-icon uploadable-icon">🚪</span><span class="m-lbl">تسجيل الخروج</span><span></span></div>
             </div>
 
             <div class="bottom-nav">
-              <div class="nav-item" onclick="openScreenModal(3)"><span class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
-              <div class="nav-item" onclick="openScreenModal(4)"><span class="uploadable-icon">🏢</span><span>الوحدات</span></div>
-              <div class="nav-item" onclick="openScreenModal(6)"><span class="uploadable-icon">📅</span><span>الحجوزات</span></div>
+              <div class="nav-item" onclick="openScreenModal(3)"><span
+                  class="uploadable-icon">🏠</span><span>الرئيسية</span></div>
+              <div class="nav-item" onclick="openScreenModal(4)"><span
+                  class="uploadable-icon">🏢</span><span>الوحدات</span></div>
+              <div class="nav-item" onclick="openScreenModal(6)"><span
+                  class="uploadable-icon">📅</span><span>الحجوزات</span></div>
               <div class="nav-item active"><span class="uploadable-icon">⚙️</span><span>الإعدادات</span></div>
             </div>
           </div>
@@ -1598,7 +2977,8 @@
     <section class="system-popups-poster-sec">
       <div class="sec-header-badge">النوافذ المنبثقة وحالات النظام (System Popups & States)</div>
       <div class="system-popups-grid">
-        <button class="sys-btn sys-success" onclick="triggerToast('تمت العملية بنجاح! تم حفظ كافة البيانات والتعديلات.', 'success')">
+        <button class="sys-btn sys-success"
+          onclick="triggerToast('تمت العملية بنجاح! تم حفظ كافة البيانات والتعديلات.', 'success')">
           <span class="sys-ico">✓</span>
           <div class="sys-txt">
             <strong>نجاح العملية</strong>
@@ -1606,7 +2986,8 @@
           </div>
         </button>
 
-        <button class="sys-btn sys-error" onclick="triggerToast('عذراً، حدث خطأ في الاتصال بالخادم. يرجى إعادة المحاولة.', 'error')">
+        <button class="sys-btn sys-error"
+          onclick="triggerToast('عذراً، حدث خطأ في الاتصال بالخادم. يرجى إعادة المحاولة.', 'error')">
           <span class="sys-ico">✕</span>
           <div class="sys-txt">
             <strong>خطأ في العملية</strong>
@@ -1614,7 +2995,8 @@
           </div>
         </button>
 
-        <button class="sys-btn sys-warning" onclick="triggerToast('تنبيه: رخصة التأجير تنتهي خلال 15 يوماً.', 'warning')">
+        <button class="sys-btn sys-warning"
+          onclick="triggerToast('تنبيه: رخصة التأجير تنتهي خلال 15 يوماً.', 'warning')">
           <span class="sys-ico">⚠️</span>
           <div class="sys-txt">
             <strong>تحذير</strong>
@@ -1622,7 +3004,8 @@
           </div>
         </button>
 
-        <button class="sys-btn sys-info" onclick="triggerToast('معلومات: تم تحديث توصيات الأسعار وفقاً للذكاء الاصطناعي.', 'info')">
+        <button class="sys-btn sys-info"
+          onclick="triggerToast('معلومات: تم تحديث توصيات الأسعار وفقاً للذكاء الاصطناعي.', 'info')">
           <span class="sys-ico">ℹ️</span>
           <div class="sys-txt">
             <strong>معلومات</strong>
@@ -1644,8 +3027,8 @@
       <div class="footer-card">
         <div class="f-icon-wrap uploadable-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="4"/>
-            <path d="M9 12l2 2 4-4"/>
+            <rect x="3" y="3" width="18" height="18" rx="4" />
+            <path d="M9 12l2 2 4-4" />
           </svg>
         </div>
         <div class="f-text">
@@ -1657,8 +3040,8 @@
       <div class="footer-card">
         <div class="f-icon-wrap uploadable-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="9"/>
-            <polyline points="12 6 12 12 16 14"/>
+            <circle cx="12" cy="12" r="9" />
+            <polyline points="12 6 12 12 16 14" />
           </svg>
         </div>
         <div class="f-text">
@@ -1670,7 +3053,7 @@
       <div class="footer-card">
         <div class="f-icon-wrap uploadable-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
           </svg>
         </div>
         <div class="f-text">
@@ -1682,8 +3065,8 @@
       <div class="footer-card">
         <div class="f-icon-wrap uploadable-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
           </svg>
         </div>
         <div class="f-text">
@@ -1705,4 +3088,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>

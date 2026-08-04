@@ -1,7 +1,7 @@
-# Project Handover Summary - Khuzama Touch (خزامى تشك)
+# Project Handover Summary - Khuzama Touch (لمسة الخزامى)
 
 ## 📌 Project Overview
-Web application and interactive flowchart replica for **Khuzama Touch (خزامى تشك) | Owner App**, implemented in clean HTML5, CSS3, and JavaScript based on design mockups (`all_screens_overview_poster.jpeg` and `01_full_app_flowchart.jpeg`).
+Web application and interactive flowchart replica for **Khuzama Touch (لمسة الخزامى) | Owner App**, implemented in clean HTML5, CSS3, and JavaScript based on design mockups (`all_screens_overview_poster.jpeg` and `01_full_app_flowchart.jpeg`).
 
 ---
 
