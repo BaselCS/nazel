@@ -1,4 +1,4 @@
-// Khuzama Touch (خزامى تشك) Webpage Interactions & Flowchart Logic Engine
+// Khuzama Touch (لمسة خزامى) Webpage Interactions & Flowchart Logic Engine
 
 let currentUploadTarget = null;
 
@@ -44,6 +44,35 @@ document.addEventListener('DOMContentLoaded', () => {
         container.querySelectorAll('.pill-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         triggerToast(`تم اختيار التبويب: ${tab.textContent.trim()}`, 'info');
+      }
+    }
+
+    // Stepper (Increment / Decrement Text Field) Click Handler
+    const stepperBtn = e.target.closest('.stepper-btn');
+    if (stepperBtn) {
+      e.stopPropagation();
+      const group = stepperBtn.closest('.stepper-input-group');
+      if (!group) return;
+      const input = group.querySelector('.stepper-field');
+      if (!input) return;
+
+      const min = input.hasAttribute('min') ? parseFloat(input.getAttribute('min')) : -Infinity;
+      const max = input.hasAttribute('max') ? parseFloat(input.getAttribute('max')) : Infinity;
+      const step = input.hasAttribute('step') ? parseFloat(input.getAttribute('step')) : 1;
+      let val = parseFloat(input.value) || 0;
+
+      const action = stepperBtn.getAttribute('data-action') || (stepperBtn.textContent.trim() === '+' ? 'increment' : 'decrement');
+
+      if (action === 'decrement' || stepperBtn.classList.contains('btn-minus')) {
+        if (val - step >= min) {
+          input.value = val - step;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      } else if (action === 'increment' || stepperBtn.classList.contains('btn-plus')) {
+        if (val + step <= max) {
+          input.value = val + step;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+        }
       }
     }
   });
@@ -454,9 +483,13 @@ function openQuickActionModal(actionKey, e) {
     title = 'تعديل أسعار اليوم';
     bodyHTML = `
       <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.75rem;">
-        <label>السعر الجديد لليوم:</label>
-        <input type="number" value="650" style="padding: 8px; border-radius: 8px; border: 1px solid #CCC;">
-        <button onclick="triggerToast('تم تحديث أسعار اليوم بنجاح! ✓', 'success'); closeScreenModal();" style="background: var(--dark-purple); color: white; border: none; padding: 10px; border-radius: 10px; font-weight: 700; cursor: pointer;">حفظ السعر</button>
+        <label>السعر الجديد لليوم (ر.س):</label>
+        <div class="stepper-input-group">
+          <button type="button" class="stepper-btn btn-minus" data-action="decrement">-</button>
+          <input type="number" class="stepper-field" value="650" min="50" max="10000" step="50">
+          <button type="button" class="stepper-btn btn-plus" data-action="increment">+</button>
+        </div>
+        <button onclick="triggerToast('تم تحديث أسعار اليوم بنجاح! ✓', 'success'); closeScreenModal();" style="background: var(--dark-purple); color: white; border: none; padding: 10px; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 6px;">حفظ السعر</button>
       </div>
     `;
   } else if (actionKey === 'send_notification') {

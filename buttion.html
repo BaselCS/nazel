@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Increment & Decrement Stepper Component - Khuzama Touch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-purple: #4F378B;
+      --dark-purple: #26134B;
+      --accent-purple: #7C4DFF;
+      --light-lavender: #F3EDF7;
+      --border-lavender: #EADAFF;
+      --poster-bg: #FAF8FE;
+      --text-dark: #1D1B20;
+      --font-main: 'Alexandria', system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--poster-bg);
+      color: var(--text-dark);
+      direction: rtl;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-lavender);
+      border-radius: 24px;
+      padding: 32px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 16px 36px rgba(38, 19, 75, 0.1);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--dark-purple);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--dark-purple);
+    }
+
+    /* STEPPER COMPONENT (INCREMENT / DECREMENT TEXT FIELD) */
+    .stepper-input-group {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-lavender);
+      border-radius: 14px;
+      padding: 4px 6px;
+      box-shadow: 0 2px 6px rgba(38, 19, 75, 0.04);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      direction: ltr;
+    }
+
+    .stepper-input-group:focus-within,
+    .stepper-input-group:hover {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3.5px rgba(124, 77, 255, 0.15);
+    }
+
+    .stepper-btn {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      border: none;
+      border-radius: 10px;
+      background: var(--light-lavender);
+      color: var(--dark-purple);
+      font-size: 1.2rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      user-select: none;
+      font-family: var(--font-main);
+      line-height: 1;
+    }
+
+    .stepper-btn:hover {
+      background: var(--dark-purple);
+      color: #FFFFFF;
+      transform: scale(1.05);
+    }
+
+    .stepper-btn:active {
+      transform: scale(0.92);
+    }
+
+    .stepper-field {
+      flex: 1;
+      width: 100%;
+      min-width: 50px;
+      border: none;
+      outline: none;
+      background: transparent;
+      text-align: center;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark-purple);
+      padding: 4px 8px;
+      -moz-appearance: textfield;
+    }
+
+    .stepper-field::-webkit-outer-spin-button,
+    .stepper-field::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2 class="card-title">حقل زيادة ونقصان (Stepper Component)</h2>
+
+    <div class="form-group">
+      <label class="form-label">عدد غرف النوم</label>
+      <div class="stepper-input-group">
+        <button type="button" class="stepper-btn btn-minus" data-action="decrement">-</button>
+        <input type="number" class="stepper-field" value="2" min="1" max="20" step="1">
+        <button type="button" class="stepper-btn btn-plus" data-action="increment">+</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">عدد الحمامات</label>
+      <div class="stepper-input-group">
+        <button type="button" class="stepper-btn btn-minus" data-action="decrement">-</button>
+        <input type="number" class="stepper-field" value="1" min="1" max="10" step="1">
+        <button type="button" class="stepper-btn btn-plus" data-action="increment">+</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('click', (e) => {
+      const stepperBtn = e.target.closest('.stepper-btn');
+      if (stepperBtn) {
+        const group = stepperBtn.closest('.stepper-input-group');
+        if (!group) return;
+        const input = group.querySelector('.stepper-field');
+        if (!input) return;
+
+        const min = input.hasAttribute('min') ? parseFloat(input.getAttribute('min')) : -Infinity;
+        const max = input.hasAttribute('max') ? parseFloat(input.getAttribute('max')) : Infinity;
+        const step = input.hasAttribute('step') ? parseFloat(input.getAttribute('step')) : 1;
+        let val = parseFloat(input.value) || 0;
+
+        const action = stepperBtn.getAttribute('data-action') || (stepperBtn.textContent.trim() === '+' ? 'increment' : 'decrement');
+
+        if (action === 'decrement' || stepperBtn.classList.contains('btn-minus')) {
+          if (val - step >= min) {
+            input.value = val - step;
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        } else if (action === 'increment' || stepperBtn.classList.contains('btn-plus')) {
+          if (val + step <= max) {
+            input.value = val + step;
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
