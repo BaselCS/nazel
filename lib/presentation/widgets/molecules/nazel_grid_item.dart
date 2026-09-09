@@ -11,6 +11,7 @@ class NazelGridProductCard extends StatelessWidget {
   final double price;
   final double rating;
   final VoidCallback onTap;
+  final bool isSelected;
   final Widget? thumbnail;
   final double? width;
   final double? height;
@@ -21,6 +22,7 @@ class NazelGridProductCard extends StatelessWidget {
     required this.price,
     required this.rating,
     required this.onTap,
+    this.isSelected = false,
     this.thumbnail,
     this.width,
     this.height,
@@ -34,7 +36,12 @@ class NazelGridProductCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: NazelColors.surfaceWhite,
         borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
-        border: Border.all(color: NazelColors.borderLight.withValues(alpha: 0.5)),
+        border: Border.all(
+          color: isSelected
+              ? NazelColors.gold
+              : NazelColors.borderLight.withValues(alpha: 0.8),
+          width: isSelected ? 1.5 : 1.0,
+        ),
         boxShadow: [
           BoxShadow(
             color: NazelColors.primary.withValues(alpha: 0.04),

@@ -13,7 +13,7 @@ class StateDoneView extends StatelessWidget {
 
   const StateDoneView({
     super.key,
-    this.title = 'تم استلام طلبك بنجاح',
+    this.title = 'أٌسلتم الطلب',
     required this.description,
     this.buttonText = 'تم',
     required this.onDone,

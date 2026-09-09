@@ -24,11 +24,13 @@ class NazelCategoryChip extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.symmetric(horizontal: 22.0.w, vertical: 10.0.h),
         decoration: BoxDecoration(
-          color: isSelected ? NazelColors.primary : NazelColors.purpleSoft,
+          color: NazelColors.surfaceWhite,
           borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
           border: Border.all(
-            color: isSelected ? NazelColors.primary : Colors.transparent,
-            width: 1.5,
+            color: isSelected
+                ? NazelColors.gold
+                : NazelColors.borderLight.withValues(alpha: 0.8),
+            width: isSelected ? 1.5 : 1.0,
           ),
         ),
         alignment: Alignment.center,
@@ -37,7 +39,7 @@ class NazelCategoryChip extends StatelessWidget {
           style: NazelTypography.arabic(
             fontSize: 16.0,
             fontWeight: FontWeight.w700,
-            color: isSelected ? NazelColors.surfaceWhite : NazelColors.primary,
+            color: isSelected ? NazelColors.primary : NazelColors.textSecondary,
           ),
         ),
       ),

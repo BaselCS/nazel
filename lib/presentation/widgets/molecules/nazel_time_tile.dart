@@ -28,11 +28,13 @@ class NazelTimeTile extends StatelessWidget {
       height: height ?? 73.0.h,
       margin: EdgeInsets.symmetric(vertical: NazelDimens.space6),
       decoration: BoxDecoration(
-        color: isSelected ? NazelColors.purpleSoft : NazelColors.surfaceWhite,
+        color: NazelColors.surfaceWhite,
         borderRadius: BorderRadius.circular(NazelDimens.radiusMd),
         border: Border.all(
-          color: isSelected ? NazelColors.primary : NazelColors.borderLight.withValues(alpha: 0.6),
-          width: isSelected ? 2.0 : 1.0,
+          color: isSelected
+              ? NazelColors.gold
+              : NazelColors.borderLight.withValues(alpha: 0.8),
+          width: isSelected ? 1.5 : 1.0,
         ),
       ),
       child: Material(
@@ -45,7 +47,11 @@ class NazelTimeTile extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: NazelDimens.space16),
             child: Row(
               children: [
-                NazelIcon(type: NazelIconType.clock, size: 24.0.r),
+                NazelIcon(
+                  type: NazelIconType.clock,
+                  size: 24.0.r,
+                  color: NazelColors.primary,
+                ),
                 SizedBox(width: NazelDimens.space12),
                 Expanded(
                   child: Column(
@@ -57,13 +63,17 @@ class NazelTimeTile extends StatelessWidget {
                         style: NazelTypography.arabic(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w800,
-                          color: NazelColors.textPrimary,
+                          color: NazelColors.primary,
                         ),
                       ),
                       if (label != null)
                         Text(
                           label!,
-                          style: NazelTypography.bodySmall,
+                          style: NazelTypography.arabic(
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.w500,
+                            color: NazelColors.textSecondary,
+                          ),
                         ),
                     ],
                   ),

@@ -72,7 +72,7 @@ class NazelChooseCard extends StatelessWidget {
         child: NazelIcon(type: iconType, size: 28.0.r),
       ),
       trailing: Icon(
-        Icons.chevron_left_rounded,
+        Icons.chevron_right,
         size: 28.0.r,
         color: NazelColors.textSecondary,
       ),
@@ -115,8 +115,10 @@ class NazelChooseCard extends StatelessWidget {
         color: NazelColors.surfaceWhite,
         borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
         border: Border.all(
-          color: isSelected ? NazelColors.primary : NazelColors.borderLight.withValues(alpha: 0.5),
-          width: isSelected ? 2.0 : 1.0,
+          color: isSelected
+              ? NazelColors.gold
+              : NazelColors.borderLight.withValues(alpha: 0.8),
+          width: isSelected ? 1.5 : 1.0,
         ),
         boxShadow: [
           BoxShadow(
@@ -150,7 +152,11 @@ class NazelChooseCard extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: NazelTypography.bodyLarge,
+                        style: NazelTypography.arabic(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w800,
+                          color: NazelColors.primary,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -158,7 +164,11 @@ class NazelChooseCard extends StatelessWidget {
                         SizedBox(height: NazelDimens.space4),
                         Text(
                           subtitle!,
-                          style: NazelTypography.bodySmall,
+                          style: NazelTypography.arabic(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w500,
+                            color: NazelColors.textSecondary,
+                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

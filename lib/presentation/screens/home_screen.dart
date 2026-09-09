@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(NazelDimens.radiusFull),
               child: Container(
                 width: 110.0.w,
-                height: 38.0.h,
+                height: 44.0.h,
                 alignment: Alignment.center,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -306,7 +306,7 @@ class HomeScreen extends StatelessWidget {
                   style: NazelTypography.arabic(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w700,
-                    color: const Color(0xFF8F8F8F),
+                    color: NazelColors.textSecondary,
                   ),
                   textAlign: TextAlign.center,
                   maxLines: 1,
@@ -488,268 +488,276 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 90.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // 1. Top Guest Welcome Header
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'مرحبًا فيصل',
-                  style: NazelTypography.arabic(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                    height: 1.1,
+      padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 90.0.h),
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // 1. Top Guest Welcome Header
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'مرحبًا فيصل',
+                    style: NazelTypography.arabic(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                      height: 1.1,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(height: 2.0.h),
-                Text(
-                  'نتمنى لك إقامة مريحة',
-                  style: NazelTypography.arabic(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFFDBBD75),
-                    height: 1.1,
+                  SizedBox(height: 2.0.h),
+                  Text(
+                    'نتمنى لك إقامة مريحة',
+                    style: NazelTypography.arabic(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFFDBBD75),
+                      height: 1.1,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 6.0.h),
+            SizedBox(height: 6.0.h),
 
-          // Luxury Purple Sofa 3D Illustration (Figma: 300x159)
-          SizedBox(
-            width: double.infinity,
-            child: Image.asset(
-              'assets/images/component_copilot_20260428_032411_2_47d6250f.png',
+            // Luxury Purple Sofa 3D Illustration (Figma: 300x159)
+            SizedBox(
               width: double.infinity,
-              fit: BoxFit.fill,
-              errorBuilder: (context, error, stackTrace) {
-                return SizedBox(height: 120.0.h);
-              },
+              child: Image.asset(
+                'assets/images/component_copilot_20260428_032411_2_47d6250f.png',
+                width: double.infinity,
+                fit: BoxFit.fill,
+                errorBuilder: (context, error, stackTrace) {
+                  return SizedBox(height: 120.0.h);
+                },
+              ),
             ),
-          ),
-          SizedBox(height: 6.0.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-            child: const Divider(color: Color(0x40DBBD75), height: 1.0),
-          ),
-          SizedBox(height: 8.0.h),
-
-          // 2. Time Details Section ("تفاصيل الوقت")
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/ipad_clock_3819d9ee.png',
-                      width: 20.0.r,
-                      height: 20.0.r,
-                      errorBuilder: (c, e, s) => Icon(
-                        Icons.access_time_rounded,
-                        size: 20.0.r,
-                        color: const Color(0xFFDBBD75),
-                      ),
-                    ),
-                    SizedBox(width: 8.0.w),
-                    Text(
-                      'تفاصيل الوقت',
-                      style: NazelTypography.arabic(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xFFDBBD75),
-                        height: 1.1,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8.0.h),
-
-                // Check-in, Check-out, Remaining Tiles (Figma Neon Border #8A38F5 & Gold Icon Rings #DBBD75)
-                _buildFigmaTimeTile(
-                  title: 'وقت الدخول',
-                  value: '2027/02/01 - 00:00 PM',
-                  iconPath:
-                      'assets/images/component_calendar_plus_4b5f6e87.png',
-                ),
-                SizedBox(height: 6.0.h),
-                _buildFigmaTimeTile(
-                  title: 'وقت الخروج',
-                  value: '2027/02/04 - 4:30 PM',
-                  iconPath:
-                      'assets/images/component_calendar_minus_86ede528.png',
-                ),
-                SizedBox(height: 6.0.h),
-                _buildFigmaTimeTile(
-                  title: 'الوقت المتبقي',
-                  value: '01:01:40:00',
-                  iconPath: 'assets/images/component_hourglass_53fb8db1.png',
-                  isCountdown: true,
-                ),
-              ],
+            SizedBox(height: 6.0.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: const Divider(color: Color(0x40DBBD75), height: 1.0),
             ),
-          ),
+            SizedBox(height: 8.0.h),
 
-          const Spacer(),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-            child: const Divider(color: Color(0x40DBBD75), height: 1.0),
-          ),
-          SizedBox(height: 8.0.h),
-
-          // 3. Network Details Section at the BOTTOM ("تفاصيل الشبكة")
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/component_wi_fi_80c067aa.png',
-                      width: 20.0.r,
-                      height: 20.0.r,
-                      errorBuilder: (c, e, s) => Icon(
-                        Icons.wifi_rounded,
-                        size: 20.0.r,
-                        color: const Color(0xFFDBBD75),
-                      ),
-                    ),
-                    SizedBox(width: 8.0.w),
-                    Text(
-                      'تفاصيل الشبكة',
-                      style: NazelTypography.arabic(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xFFDBBD75),
-                        height: 1.1,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8.0.h),
-
-                // Wi-Fi Container with QR code & SSID/Password
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10.0.w,
-                    vertical: 8.0.h,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF14022A).withValues(alpha: 0.6),
-                    borderRadius: BorderRadius.circular(15.0.r),
-                    border: Border.all(
-                      color: const Color(0xFF8A38F5),
-                      width: 1.2,
-                    ),
-                  ),
-                  child: Row(
+            // 2. Time Details Section ("تفاصيل الوقت")
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
                     children: [
-                      // QR Code Square (Responsive)
-                      Container(
-                        width: 90.0.r,
-                        height: 90.0.r,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10.0.r),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.25),
-                              blurRadius: 8.0.r,
-                              offset: Offset(0, 3.h),
-                            ),
-                          ],
-                        ),
-                        padding: EdgeInsets.all(4.0.r),
-                        child: Image.asset(
-                          "assets/images/QR code.png",
-                          fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) => Icon(
-                            Icons.qr_code_2_rounded,
-                            size: 80.0.r,
-                            color: Colors.black,
-                          ),
+                      Image.asset(
+                        'assets/images/ipad_clock_3819d9ee.png',
+                        width: 20.0.r,
+                        height: 20.0.r,
+                        errorBuilder: (c, e, s) => Icon(
+                          Icons.access_time_rounded,
+                          size: 20.0.r,
+                          color: const Color(0xFFDBBD75),
                         ),
                       ),
-                      SizedBox(width: 12.0.w),
-
-                      // SSID & Password
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'اسم الشبكة',
-                              style: NazelTypography.arabic(
-                                fontSize: 13.0,
-                                fontWeight: FontWeight.w700,
-                                color: const Color(0xFFDBBD75),
-                                height: 1.15,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Text(
-                              'الاسم',
-                              style: NazelTypography.arabic(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.white,
-                                height: 1.15,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(height: 4.0.h),
-                            Text(
-                              'كلمة المرور',
-                              style: NazelTypography.arabic(
-                                fontSize: 13.0,
-                                fontWeight: FontWeight.w700,
-                                color: const Color(0xFFDBBD75),
-                                height: 1.15,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Text(
-                              'الرقم السري',
-                              style: NazelTypography.arabic(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.white,
-                                height: 1.15,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
+                      SizedBox(width: 8.0.w),
+                      Text(
+                        'تفاصيل الوقت',
+                        style: NazelTypography.arabic(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFFDBBD75),
+                          height: 1.1,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
+                  SizedBox(height: 8.0.h),
+
+                  // Check-in, Check-out, Remaining Tiles (Figma Neon Border #8A38F5 & Gold Icon Rings #DBBD75)
+                  _buildFigmaTimeTile(
+                    title: 'وقت الدخول',
+                    value: '2027/02/01 - 00:00 PM',
+                    iconPath:
+                        'assets/images/component_calendar_plus_4b5f6e87.png',
+                  ),
+                  SizedBox(height: 6.0.h),
+                  _buildFigmaTimeTile(
+                    title: 'وقت الخروج',
+                    value: '2027/02/04 - 4:30 PM',
+                    iconPath:
+                        'assets/images/component_calendar_minus_86ede528.png',
+                  ),
+                  SizedBox(height: 6.0.h),
+                  _buildFigmaTimeTile(
+                    title: 'الوقت المتبقي',
+                    value: '01:01:40:00',
+                    iconPath: 'assets/images/component_hourglass_53fb8db1.png',
+                    isCountdown: true,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+
+            const Spacer(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: const Divider(color: Color(0x40DBBD75), height: 1.0),
+            ),
+            SizedBox(height: 8.0.h),
+
+            // 3. Network Details Section at the BOTTOM ("تفاصيل الشبكة")
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/component_wi_fi_80c067aa.png',
+                        width: 20.0.r,
+                        height: 20.0.r,
+                        errorBuilder: (c, e, s) => Icon(
+                          Icons.wifi_rounded,
+                          size: 20.0.r,
+                          color: const Color(0xFFDBBD75),
+                        ),
+                      ),
+                      SizedBox(width: 8.0.w),
+                      Text(
+                        'تفاصيل الشبكة',
+                        style: NazelTypography.arabic(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFFDBBD75),
+                          height: 1.1,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.0.h),
+
+                  // Wi-Fi Container with QR code & SSID/Password
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.0.w,
+                      vertical: 8.0.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF14022A).withValues(alpha: 0.6),
+                      borderRadius: BorderRadius.circular(15.0.r),
+                      border: Border.all(
+                        color: const Color(0xFF8A38F5),
+                        width: 1.2,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        // QR Code Square (Responsive)
+                        Container(
+                          width: 90.0.r,
+                          height: 90.0.r,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.25),
+                                blurRadius: 8.0.r,
+                                offset: Offset(0, 3.h),
+                              ),
+                            ],
+                          ),
+                          padding: EdgeInsets.all(4.0.r),
+                          child: Image.asset(
+                            "assets/images/QR code.png",
+                            fit: BoxFit.contain,
+                            errorBuilder: (context, error, stackTrace) => Icon(
+                              Icons.qr_code_2_rounded,
+                              size: 80.0.r,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 12.0.w),
+
+                        // SSID & Password
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'اسم الشبكة',
+                                style: NazelTypography.arabic(
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xFFDBBD75),
+                                  height: 1.15,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                'الاسم',
+                                style: NazelTypography.arabic(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white,
+                                  height: 1.15,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(height: 4.0.h),
+                              Text(
+                                'كلمة المرور',
+                                style: NazelTypography.arabic(
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xFFDBBD75),
+                                  height: 1.15,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      'الرقم السري',
+                                      style: NazelTypography.arabic(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.white,
+                                        height: 1.15,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

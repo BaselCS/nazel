@@ -29,14 +29,11 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
   final TextEditingController _notesController = TextEditingController();
 
   final List<Map<String, String>> _services = [
-    {'title': 'تنظيف سريع', 'subtitle': 'ترتيب الغرف وتنظيف الأسطح الأساسية'},
-    {
-      'title': 'تنظيف شامل',
-      'subtitle': 'تنظيف عميق لكافة مرافق الشقة والأرضيات',
-    },
+    {'title': 'تنظيف سريع', 'subtitle': 'تنظيف سريع'},
+    {'title': 'تنظيف شامل', 'subtitle': 'تنظيف شامل'},
     {
       'title': 'تغيير شراشف ومستلزمات حمام',
-      'subtitle': 'استبدال كامل المناشف والمفارش',
+      'subtitle': 'تغيير شراشف ومستلزمات حمام',
     },
   ];
 
@@ -56,7 +53,7 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
   Widget build(BuildContext context) {
     if (_step == 2) {
       return StateDoneView(
-        title: 'تم استلام طلبك بنجاح',
+        title: 'أٌستلم طلبك',
         description:
             'سيصل فريق النظافة في الموعد المحدد (${_times[_selectedTime]}).',
         onDone: () => Navigator.of(context).pop(),
@@ -67,7 +64,14 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('أختر الوقت المناسب', style: NazelTypography.sectionTitle),
+          Text(
+            'أختر الوقت المناسب',
+            style: NazelTypography.arabic(
+              fontSize: 22.0,
+              fontWeight: FontWeight.w900,
+              color: NazelColors.primary,
+            ),
+          ),
           SizedBox(height: NazelDimens.space12),
           ...List.generate(_times.length, (index) {
             return NazelTimeTile(
@@ -77,11 +81,18 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
             );
           }),
           SizedBox(height: NazelDimens.space20),
-          Text('ملاحظات إضافية (اختياري)', style: NazelTypography.sectionTitle),
+          Text(
+            'ملاحظات إضافية (اختياري)',
+            style: NazelTypography.arabic(
+              fontSize: 22.0,
+              fontWeight: FontWeight.w900,
+              color: NazelColors.primary,
+            ),
+          ),
           SizedBox(height: NazelDimens.space8),
           TextField(
             controller: _notesController,
-            maxLines: 3,
+            maxLines: 6,
             decoration: InputDecoration(
               hintText: 'اكتب ملاحظاتك هنا...',
               hintStyle: NazelTypography.bodySmall,
@@ -115,23 +126,133 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
       );
     }
 
-    // Step 0
+    // Step 0: Main Cleaning Menu
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Text('أختر نوع الخدمة', style: NazelTypography.sectionTitle),
-        SizedBox(height: NazelDimens.space16),
+        Text(
+          'أختر نوع الخدمة',
+          style: NazelTypography.arabic(
+            fontSize: 22.0,
+            fontWeight: FontWeight.w900,
+            color: NazelColors.primary,
+          ),
+        ),
+        SizedBox(height: NazelDimens.space12),
         ...List.generate(_services.length, (index) {
           return NazelChooseCard.selectable(
             title: _services[index]['title']!,
             subtitle: _services[index]['subtitle']!,
             isSelected: _selectedService == index,
-            onTap: () => setState(() => _selectedService = index),
+            onTap: () {
+              setState(() => _selectedService = index);
+            },
           );
         }),
-        SizedBox(height: NazelDimens.space28),
+        SizedBox(height: NazelDimens.space20),
+        // Previous Orders Section Header
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'الطلبات السابقة',
+              style: NazelTypography.arabic(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w900,
+                color: NazelColors.primary,
+              ),
+            ),
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {},
+              child: Text(
+                'عرض الكل',
+                style: NazelTypography.arabic(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w800,
+                  color: NazelColors.primary,
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: NazelDimens.space12),
+        // Previous Order Card
+        Container(
+          height: NazelDimens.chooseCardHeight,
+          decoration: BoxDecoration(
+            color: NazelColors.surfaceWhite,
+            borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+            border: Border.all(
+              color: NazelColors.borderLight.withValues(alpha: 0.8),
+              width: 1.0,
+            ),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: NazelDimens.space20,
+            vertical: NazelDimens.space12,
+          ),
+          child: Row(
+            children: [
+              // Broom / Cleaning Icon
+              NazelIcon(
+                type: NazelIconType.clean,
+                size: 28.0.r,
+                color: NazelColors.primary,
+              ),
+              SizedBox(width: NazelDimens.space16),
+              // Title & Date
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'تنظيف سريع',
+                      style: NazelTypography.arabic(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w800,
+                        color: NazelColors.primary,
+                      ),
+                    ),
+                    SizedBox(height: NazelDimens.space4),
+                    Text(
+                      '9:20 - 11 مايو 90 ص',
+                      style: NazelTypography.arabic(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w500,
+                        color: NazelColors.textSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Status Done Badge
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 24.0.w,
+                  vertical: 8.0.h,
+                ),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEFF8EE),
+                  borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
+                ),
+                child: Text(
+                  'تم',
+                  style: NazelTypography.arabic(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w800,
+                    color: NazelColors.success,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const Spacer(),
         NazelButton(
-          text: 'متابعة لاختيار الوقت',
+          text: 'إرسال الطلب',
           onPressed: () => setState(() => _step = 1),
           width: double.infinity,
         ),
@@ -157,7 +278,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
   Widget build(BuildContext context) {
     if (_isDone) {
       return StateDoneView(
-        title: 'تم إرسال طلب التمديد',
+        title: 'أٌرسل طلب تمديد',
         description:
             'أرسلنا الطلب إلى المالك للموافقة على تمديد الحجز لمدة $_extraDays يوم.',
         onDone: () => Navigator.of(context).pop(),
@@ -211,7 +332,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
             ),
           ],
         ),
-        SizedBox(height: NazelDimens.space32),
+        const Spacer(),
         NazelButton(
           text: 'إرسال طلب التمديد للمالك',
           onPressed: () => setState(() => _isDone = true),

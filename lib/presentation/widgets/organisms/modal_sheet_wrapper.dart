@@ -38,7 +38,7 @@ class ModalSheetWrapper extends StatelessWidget {
         title: title,
         content: content,
         width: width ?? NazelDimens.modalWidth,
-        height: height,
+        height: height ?? NazelDimens.modalHeight,
         headerActions: headerActions,
       ),
     );
@@ -51,8 +51,7 @@ class ModalSheetWrapper extends StatelessWidget {
         color: Colors.transparent,
         child: Container(
           width: width ?? NazelDimens.modalWidth,
-          height: height,
-          constraints: BoxConstraints(maxHeight: NazelDimens.modalMaxHeight),
+          height: height ?? NazelDimens.modalHeight,
           margin: EdgeInsets.all(NazelDimens.space24),
           decoration: BoxDecoration(
             color: NazelColors.surfaceWhite,
@@ -67,15 +66,14 @@ class ModalSheetWrapper extends StatelessWidget {
           ),
           clipBehavior: Clip.antiAlias,
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               NazelAppBar(
                 title: title,
                 onBack: onClose ?? () => Navigator.of(context).pop(),
                 actions: headerActions,
               ),
-              const Divider(height: 1.0, color: NazelColors.borderLight),
-              Flexible(
+              Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(NazelDimens.space24),
                   child: content,

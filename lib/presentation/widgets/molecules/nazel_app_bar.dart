@@ -8,57 +8,62 @@ class NazelAppBar extends StatelessWidget {
   final String title;
   final VoidCallback? onBack;
   final List<Widget>? actions;
+  final Color? backgroundColor;
 
   const NazelAppBar({
     super.key,
     required this.title,
     this.onBack,
     this.actions,
+    this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: NazelDimens.appBarHeight,
+      width: double.infinity,
+      height: 72.0.h,
+      decoration: BoxDecoration(
+        color: backgroundColor ?? NazelColors.primary,
+      ),
       padding: EdgeInsets.symmetric(horizontal: NazelDimens.space24),
-      alignment: Alignment.center,
       child: Stack(
         alignment: Alignment.center,
         children: [
           // Centered Title
-          Text(
-            title,
-            style: NazelTypography.modalTitle,
-            textAlign: TextAlign.center,
-          ),
-          // Back button on the leading side
-          Positioned(
-            right: 0,
-            child: IconButton(
-              onPressed: onBack ?? () => Navigator.maybePop(context),
-              icon: Container(
-                padding: EdgeInsets.all(NazelDimens.space8),
-                decoration: BoxDecoration(
-                  color: NazelColors.purpleSoft,
-                  borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
-                ),
-                child: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 20.0.r,
-                  color: NazelColors.primary,
-                ),
+          Center(
+            child: Text(
+              title,
+              style: NazelTypography.arabic(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w900,
+                color: NazelColors.surfaceWhite,
               ),
-              splashRadius: 24.0.r,
+              textAlign: TextAlign.center,
             ),
           ),
-          // Actions on the trailing side
+          // Back button on left with forward arrow for Arabic RTL
+          Positioned(
+            left: 0,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: onBack ?? () => Navigator.maybePop(context),
+              child: Container(
+                padding: EdgeInsets.all(NazelDimens.space12),
+                color: Colors.transparent,
+                child: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 22.0.r,
+                  color: NazelColors.surfaceWhite,
+                ),
+              ),
+            ),
+          ),
+          // Actions on the right side
           if (actions != null)
             Positioned(
-              left: 0,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: actions!,
-              ),
+              right: 0,
+              child: Row(mainAxisSize: MainAxisSize.min, children: actions!),
             ),
         ],
       ),

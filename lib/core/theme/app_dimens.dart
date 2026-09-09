@@ -38,6 +38,7 @@ class NazelDimens {
 
   // Component Sizes (Responsive)
   static double get modalWidth => 800.0.w;
+  static double get modalHeight => 760.0.h;
   static double get modalMaxHeight => 900.0.h;
   static double get appBarHeight => 106.0.h;
   static double get serviceCardWidth => 225.0.w;

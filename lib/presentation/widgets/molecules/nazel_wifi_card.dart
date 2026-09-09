@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
+import '../atoms/nazel_button.dart';
 import '../atoms/nazel_icon.dart';
 
 class NazelWifiCard extends StatelessWidget {
@@ -84,13 +85,22 @@ class NazelWifiCard extends StatelessWidget {
           // Network Info Rows
           _buildInfoRow('اسم الشبكة', networkName),
           SizedBox(height: NazelDimens.space8),
-          _buildInfoRow('كلمة المرور', password),
+          _buildInfoRow('كلمة المرور', password, showForwardIcon: true),
+          SizedBox(height: NazelDimens.space16),
+          // Button for sending the request
+          SizedBox(
+            width: double.infinity,
+            child: NazelButton(
+              text: 'إرسال الطلب',
+              onPressed: () {},
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildInfoRow(String label, String value) {
+  Widget _buildInfoRow(String label, String value, {bool showForwardIcon = false}) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: NazelDimens.space12,
@@ -104,13 +114,26 @@ class NazelWifiCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(label, style: NazelTypography.bodySmall),
-          Text(
-            value,
-            style: NazelTypography.arabic(
-              fontSize: 15.0,
-              fontWeight: FontWeight.w700,
-              color: NazelColors.textPrimary,
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                value,
+                style: NazelTypography.arabic(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w700,
+                  color: NazelColors.textPrimary,
+                ),
+              ),
+              if (showForwardIcon) ...[
+                SizedBox(width: NazelDimens.space6),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 14.0.r,
+                  color: NazelColors.primary,
+                ),
+              ],
+            ],
           ),
         ],
       ),

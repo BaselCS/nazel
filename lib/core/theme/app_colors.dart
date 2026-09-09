@@ -27,7 +27,7 @@ class NazelColors {
   static const Color surfaceDark = Color(0xFF1D1B20);
   static const Color background = Color(0xFFF8F5FB);
   static const Color textPrimary = Color(0xFF000000);
-  static const Color textSecondary = Color(0xFF8F8F8F);
+  static const Color textSecondary = Color(0xFF666666);
   static const Color borderLight = Color(0xFFD9D9D9);
   static const Color overlayDim = Color(0x73000000);
 
