@@ -5,5 +5,6 @@
     "dimens"
   ],
   "dart.flutterHotReloadOnSave": "all",
-  "dart.hotReloadOnSave": "all"
+  "dart.hotReloadOnSave": "all",
+  "files.autoSave": "afterDelay"
 }

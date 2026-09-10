@@ -12,8 +12,7 @@ class NazelAssets {
       'assets/images/component_toursim_5618ef5e.png';
   static const String delivery3d =
       'assets/images/component_delviery_a7c0cea2.png';
-  static const String copilotBanner1 =
-      'assets/images/component_copilot_20260428_032411_2_47d6250f.png';
+  static const String copilotBanner1 = 'assets/images/Sofa.png';
   static const String copilotBanner2 =
       'assets/images/component_copilot_20260613_150121_2_7763537f.png';
   static const String luggage3d =

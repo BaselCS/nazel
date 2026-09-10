@@ -4,6 +4,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 
+import '../atoms/nazel_back_button.dart';
+
 class NazelAppBar extends StatelessWidget {
   final String title;
   final VoidCallback? onBack;
@@ -45,18 +47,8 @@ class NazelAppBar extends StatelessWidget {
           // Back button on left with forward arrow for Arabic RTL
           Positioned(
             left: 0,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: onBack ?? () => Navigator.maybePop(context),
-              child: Container(
-                padding: EdgeInsets.all(NazelDimens.space12),
-                color: Colors.transparent,
-                child: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 22.0.r,
-                  color: NazelColors.surfaceWhite,
-                ),
-              ),
+            child: NazelBackButton(
+              onPressed: onBack,
             ),
           ),
           // Actions on the right side

@@ -73,23 +73,26 @@ class NazelButton extends StatelessWidget {
             ),
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: NazelDimens.space20),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (icon != null) ...[
-                  icon!,
-                  SizedBox(width: NazelDimens.space8),
-                ],
-                Text(
-                  text,
-                  style: NazelTypography.arabic(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w800,
-                    color: fg,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (icon != null) ...[
+                    icon!,
+                    SizedBox(width: NazelDimens.space8),
+                  ],
+                  Text(
+                    text,
+                    style: NazelTypography.arabic(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w800,
+                      color: fg,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

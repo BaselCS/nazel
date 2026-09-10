@@ -11,6 +11,8 @@ class ModalSheetWrapper extends StatelessWidget {
   final double? height;
   final VoidCallback? onClose;
   final List<Widget>? headerActions;
+  /// Optional full-width footer rendered outside the padded content area.
+  final Widget? footer;
 
   const ModalSheetWrapper({
     super.key,
@@ -20,15 +22,16 @@ class ModalSheetWrapper extends StatelessWidget {
     this.height,
     this.onClose,
     this.headerActions,
+    this.footer,
   });
 
-  static Future<T?> show<T>({
-    required BuildContext context,
+  static Future<T?> show<T>(BuildContext context, {
     required String title,
     required Widget content,
     double? width,
     double? height,
     List<Widget>? headerActions,
+    Widget? footer,
   }) {
     return showDialog<T>(
       context: context,
@@ -40,6 +43,7 @@ class ModalSheetWrapper extends StatelessWidget {
         width: width ?? NazelDimens.modalWidth,
         height: height ?? NazelDimens.modalHeight,
         headerActions: headerActions,
+        footer: footer,
       ),
     );
   }
@@ -79,6 +83,7 @@ class ModalSheetWrapper extends StatelessWidget {
                   child: content,
                 ),
               ),
+              ?footer,
             ],
           ),
         ),

@@ -7,9 +7,20 @@ class NazelColors {
   static const Color primary = Color(0xFF532093);
   static const Color primaryDark = Color(0xFF391069);
   static const Color primaryLight = Color(0xFF681CB0);
+  static const Color accentPurple = Color(0xFF8A38F5);
   static const Color purpleTint = Color(0xFFEAD9FF);
   static const Color purpleSoft = Color(0xFFF1E9F8);
   static const Color purpleBorder = Color(0xFFAE88D5);
+
+  // Sidebar dark purples (used in the right sidebar background/cards)
+  static const Color sidebarBg = Color(0xFF1A0A2D);
+  static const Color sidebarDeep = Color(0xFF14022A);
+  static const Color sidebarCard = Color(0xFF260D49);
+
+  // Const alpha-variants (for use inside const widget trees / gradients)
+  static const Color primaryFade93 = Color(0xEE532093); // ~93% opacity
+  static const Color primaryFade40 = Color(0x66532093); // ~40% opacity
+  static const Color goldDivider = Color(0xffF5C989);
 
   // Warm & Gold accents
   static const Color gold = Color(0xFFDBBD75);
