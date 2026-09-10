@@ -3,13 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../l10n/app_localizations.dart';
 import '../atoms/nazel_button.dart';
 
 class NazelAdBanner extends StatelessWidget {
   final String title;
   final String discount;
   final String description;
-  final String buttonText;
+  final String? buttonText;
   final VoidCallback onAction;
   final double? height;
   final LinearGradient gradient;
@@ -19,7 +20,7 @@ class NazelAdBanner extends StatelessWidget {
     required this.title,
     required this.discount,
     required this.description,
-    this.buttonText = 'احجز الآن',
+    this.buttonText,
     required this.onAction,
     this.height,
     this.gradient = NazelColors.primaryGradient,
@@ -27,6 +28,9 @@ class NazelAdBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final effectiveButton = buttonText ?? l10n?.bookNow ?? 'احجز الآن';
+
     return Container(
       height: height ?? 200.0.h,
       margin: EdgeInsets.symmetric(vertical: NazelDimens.space8),
@@ -95,7 +99,7 @@ class NazelAdBanner extends StatelessWidget {
           SizedBox(width: NazelDimens.space16),
           // Action CTA
           NazelButton(
-            text: buttonText,
+            text: effectiveButton,
             variant: NazelButtonVariant.gold,
             onPressed: onAction,
             height: 48.0.h,

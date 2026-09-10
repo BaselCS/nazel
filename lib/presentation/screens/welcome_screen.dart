@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_dimens.dart';
 import '../../core/theme/app_typography.dart';
+import '../../l10n/app_localizations.dart';
+import '../../main.dart';
 import 'home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -10,6 +12,11 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final tagline = l10n?.appTagline ?? 'رحلتك تحتاج شاشة';
+    final arabicLabel = l10n?.arabic ?? 'عربي';
+    final englishLabel = l10n?.english ?? 'English';
+
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -82,9 +89,9 @@ class WelcomeScreen extends StatelessWidget {
 
                     SizedBox(height: NazelDimens.space24),
 
-                    // Tagline: "رحلتك تحتاج شاشة"
+                    // Tagline: "رحلتك تحتاج شاشة" / "Your journey needs a screen"
                     Text(
-                      'رحلتك تحتاج شاشة',
+                      tagline,
                       style: NazelTypography.arabic(
                         fontSize: 36.0,
                         fontWeight: FontWeight.w900,
@@ -110,8 +117,9 @@ class WelcomeScreen extends StatelessWidget {
                         // Arabic Button
                         _buildLanguagePillButton(
                           context: context,
-                          label: 'عربي',
+                          label: arabicLabel,
                           onTap: () {
+                            appLocaleNotifier.value = const Locale('ar');
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -126,8 +134,9 @@ class WelcomeScreen extends StatelessWidget {
                         // English Button
                         _buildLanguagePillButton(
                           context: context,
-                          label: 'English',
+                          label: englishLabel,
                           onTap: () {
+                            appLocaleNotifier.value = const Locale('en');
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

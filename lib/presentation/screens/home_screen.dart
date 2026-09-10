@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_dimens.dart';
 import '../../core/theme/app_typography.dart';
+import '../../l10n/app_localizations.dart';
 import '../widgets/organisms/modal_sheet_wrapper.dart';
 import '../widgets/organisms/service_modals.dart';
 import 'welcome_screen.dart';
@@ -17,52 +18,57 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: NazelColors.purpleSoft,
-      body: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // 1. RIGHT SIDEBAR (In RTL Row, 1st child is on the RIGHT side: 300px width in Figma)
-            _buildRightSidebar(context),
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // 1. SIDEBAR (Start side: 300px width in Figma)
+          _buildSidebar(context, l10n),
 
-            // 2. MAIN DASHBOARD CONTENT (In RTL Row, 2nd child is on the LEFT side)
-            Expanded(
-              child: Container(
-                color: NazelColors.purpleSoft,
-                padding: EdgeInsets.fromLTRB(24.0.w, 12.0.h, 24.0.w, 14.0.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Section 1: Top Header Bar (flex: 1) - Language button & Brand Logo
-                    Expanded(flex: 1, child: _buildTopHeader(context)),
-                    SizedBox(height: 8.0.h),
+          // 2. MAIN DASHBOARD CONTENT
+          Expanded(
+            child: Container(
+              color: NazelColors.purpleSoft,
+              padding: EdgeInsets.fromLTRB(24.0.w, 12.0.h, 24.0.w, 14.0.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Section 1: Top Header Bar (flex: 1) - Language button & Brand Logo
+                  Expanded(flex: 1, child: _buildTopHeader(context, l10n)),
+                  SizedBox(height: 8.0.h),
 
-                    // Section 2: 8 Service Cards Grid (flex: 6)
-                    Expanded(flex: 6, child: _buildServiceCardsGrid(context)),
-                    SizedBox(height: 22.0.h),
+                  // Section 2: 8 Service Cards Grid (flex: 6)
+                  Expanded(
+                    flex: 6,
+                    child: _buildServiceCardsGrid(context, l10n),
+                  ),
+                  SizedBox(height: 22.0.h),
 
-                    // Section 3: Bottom Cruise Promotion Banner (flex: 2)
-                    Expanded(flex: 2, child: _buildBottomCruiseBanner(context)),
-                  ],
-                ),
+                  // Section 3: Bottom Promotion Banner (flex: 2)
+                  Expanded(
+                    flex: 2,
+                    child: _buildBottomPromoBanner(context, l10n),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   // --- TOP HEADER (App Icon & Tagline centered, Language button at edge) ---
-  Widget _buildTopHeader(BuildContext context) {
+  Widget _buildTopHeader(BuildContext context, AppLocalizations l10n) {
     return Stack(
       alignment: Alignment.center,
       children: [
         // Far Edge Language Pill Button
         Align(
-          alignment: Alignment.centerRight,
+          alignment: AlignmentDirectional.centerStart,
           child: Material(
             color: NazelColors.primary,
             borderRadius: BorderRadius.circular(NazelDimens.radiusFull),
@@ -90,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     SizedBox(width: 6.0.w),
                     Text(
-                      'اللغة',
+                      l10n.language,
                       style: NazelTypography.arabic(
                         fontSize: 14.5,
                         fontWeight: FontWeight.w700,
@@ -105,7 +111,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
 
-        // Center: Brand Logo (Horizontal) + Golden Tagline ("رحلتك تحتاج شاشة")
+        // Center: Brand Logo (Horizontal) + Golden Tagline
         FittedBox(
           fit: BoxFit.scaleDown,
           child: Column(
@@ -125,7 +131,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 2.0.h),
               Text(
-                'رحلتك تحتاج شاشة',
+                l10n.appTagline,
                 style: NazelTypography.arabic(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w700,
@@ -142,65 +148,82 @@ class HomeScreen extends StatelessWidget {
   }
 
   // --- 8 SERVICES GRID (4x2) EXPANDED TO EXACT PROPORTIONS ---
-  Widget _buildServiceCardsGrid(BuildContext context) {
+  Widget _buildServiceCardsGrid(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) {
     final services = [
       // Row 1
       {
-        'title': 'طلب تنظيف',
-        'subtitle': 'اطلب خدمة تنظيف',
+        'title': l10n.serviceCleaning,
+        'subtitle': l10n.serviceCleaningDesc,
         'image': 'assets/images/component_clean_681b0f2d.png',
-        'action': () =>
-            _openModal(context, 'طلب تنظيف', const CleaningServiceModal()),
+        'action': () => _openModal(
+          context,
+          l10n.serviceCleaning,
+          const CleaningServiceModal(),
+        ),
       },
       {
-        'title': 'طلبات التوصيل',
-        'subtitle': 'مطاعم، بقائل، صيدليات',
+        'title': l10n.serviceDelivery,
+        'subtitle': l10n.serviceDeliveryDesc,
         'image': 'assets/images/component_delviery_a7c0cea2.png',
         'action': () => DeliveryServiceModal.show(context),
       },
       {
-        'title': 'مرافق قريبة',
-        'subtitle': 'اكتشف الأماكن القريبة',
+        'title': l10n.serviceAmenities,
+        'subtitle': l10n.serviceAmenitiesDesc,
         'image': 'assets/images/component_location_43ee054e.png',
         'action': () => NearestPlacesModal.show(context),
       },
       {
-        'title': 'سياحة وتجارب',
-        'subtitle': 'أنشطة وجولات سياحية',
+        'title': l10n.serviceTourism,
+        'subtitle': l10n.serviceTourismDesc,
         'image': 'assets/images/component_toursim_5618ef5e.png',
-        'action': () =>
-            _openModal(context, 'سياحة وتجارب', const TourismModal()),
+        'action': () => _openModal(
+          context,
+          l10n.serviceTourism,
+          const TourismModal(),
+        ),
       },
       // Row 2
       {
-        'title': 'تمديد الحجز',
-        'subtitle': 'إطالة مدة إقامتك',
+        'title': l10n.serviceExtendStay,
+        'subtitle': l10n.serviceExtendStayDesc,
         'image':
             'assets/images/component_copilot_20260613_195934_1_3fe84186.png',
-        'action': () =>
-            _openModal(context, 'تمديد الحجز', const ExtendBookingModal()),
+        'action': () => _openModal(
+          context,
+          l10n.serviceExtendStay,
+          const ExtendBookingModal(),
+        ),
       },
       {
-        'title': 'معلومات الحجز',
-        'subtitle': 'دليل وتعليمات الحجز',
+        'title': l10n.serviceApartmentInfo,
+        'subtitle': l10n.serviceApartmentInfoDesc,
         'image':
             'assets/images/component_copilot_20260613_195800_1_fcc7a387.png',
-        'action': () =>
-            _openModal(context, 'معلومات الشقة', const ApartmentInfoModal()),
+        'action': () => _openModal(
+          context,
+          l10n.apartmentInfoTitle,
+          const ApartmentInfoModal(),
+        ),
       },
       {
-        'title': 'طوارئ',
-        'subtitle': 'تواصل سريع للطوارئ',
+        'title': l10n.serviceEmergency,
+        'subtitle': l10n.serviceEmergencyDesc,
         'image':
             'assets/images/component_copilot_20260613_195408_1_d80dbf9a.png',
-        'action': () => _openModal(context, 'طوارئ', const EmergencyModal()),
+        'action': () =>
+            _openModal(context, l10n.serviceEmergency, const EmergencyModal()),
       },
       {
-        'title': 'عروض وإعلانات',
-        'subtitle': 'عروض وخدمات مميزة',
+        'title': l10n.serviceAds,
+        'subtitle': l10n.serviceAdsDesc,
         'image':
             'assets/images/component_copilot_20260613_150121_2_7763537f.png',
-        'action': () => _openModal(context, 'عروض وإعلانات', const AdsModal()),
+        'action': () =>
+            _openModal(context, l10n.serviceAds, const AdsModal()),
       },
     ];
 
@@ -321,24 +344,28 @@ class HomeScreen extends StatelessWidget {
   }
 
   // --- BOTTOM PROMOTIONAL BANNER CAROUSEL (flex: 2) ---
-  Widget _buildBottomCruiseBanner(BuildContext context) {
+  Widget _buildBottomPromoBanner(BuildContext context, AppLocalizations l10n) {
     return _HomeScreenBottomPromoBanner(
-      onOpenModal: (modalTitle) {
-        if (modalTitle == 'طلب تنظيف') {
-          _openModal(context, 'طلب تنظيف', const CleaningServiceModal());
-        } else if (modalTitle == 'سياحة وتجارب') {
-          _openModal(context, 'سياحة وتجارب', const TourismModal());
-        } else if (modalTitle == 'طلبات التوصيل') {
+      onOpenModal: (categoryKey) {
+        if (categoryKey == 'cleaning') {
+          _openModal(
+            context,
+            l10n.serviceCleaning,
+            const CleaningServiceModal(),
+          );
+        } else if (categoryKey == 'tourism') {
+          _openModal(context, l10n.serviceTourism, const TourismModal());
+        } else if (categoryKey == 'delivery') {
           DeliveryServiceModal.show(context);
         } else {
-          _openModal(context, 'عروض وإعلانات', const AdsModal());
+          _openModal(context, l10n.serviceAds, const AdsModal());
         }
       },
     );
   }
 
-  // --- RIGHT SIDEBAR PANEL WITH FIGMA LINEAR COLORS & BOTTOM WI-FI ---
-  Widget _buildRightSidebar(BuildContext context) {
+  // --- SIDEBAR PANEL WITH FIGMA LINEAR COLORS & BOTTOM WI-FI ---
+  Widget _buildSidebar(BuildContext context, AppLocalizations l10n) {
     return Container(
       width: NazelDimens.sidebarWidth,
       decoration: const BoxDecoration(
@@ -367,7 +394,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'مرحبًا فيصل',
+                      l10n.guestGreeting,
                       style: NazelTypography.arabic(
                         fontSize: 30.0,
                         fontWeight: FontWeight.w900,
@@ -379,7 +406,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 2.0.h),
                     Text(
-                      'نتمنى لك إقامة مريحة',
+                      l10n.guestWish,
                       style: NazelTypography.arabic(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w700,
@@ -438,7 +465,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         SizedBox(width: 8.0.w),
                         Text(
-                          'تفاصيل الوقت',
+                          l10n.timeDetails,
                           style: NazelTypography.arabic(
                             fontSize: 15.0,
                             fontWeight: FontWeight.w700,
@@ -449,20 +476,20 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     _buildFigmaTimeTile(
-                      title: 'وقت الدخول',
-                      value: '2027/02/01 - 00:00 PM',
+                      title: l10n.checkInTime,
+                      value: l10n.checkInTimeValue,
                       iconPath:
                           'assets/images/component_calendar_plus_4b5f6e87.png',
                     ),
                     _buildFigmaTimeTile(
-                      title: 'وقت الخروج',
-                      value: '2027/02/04 - 4:30 PM',
+                      title: l10n.checkOutTime,
+                      value: l10n.checkOutTimeValue,
                       iconPath:
                           'assets/images/component_calendar_minus_86ede528.png',
                     ),
                     _buildFigmaTimeTile(
-                      title: 'الوقت المتبقي',
-                      value: '01:01:40:00',
+                      title: l10n.remainingTime,
+                      value: l10n.remainingTimeValue,
                       iconPath:
                           'assets/images/component_hourglass_53fb8db1.png',
                       isCountdown: true,
@@ -503,7 +530,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         SizedBox(width: 8.0.w),
                         Text(
-                          'تفاصيل الشبكة',
+                          l10n.networkDetails,
                           style: NazelTypography.arabic(
                             fontSize: 15.0,
                             fontWeight: FontWeight.w700,
@@ -559,7 +586,7 @@ class HomeScreen extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  'اسم الشبكة',
+                                  l10n.networkName,
                                   style: NazelTypography.arabic(
                                     fontSize: 13.0,
                                     fontWeight: FontWeight.w700,
@@ -570,7 +597,7 @@ class HomeScreen extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
-                                  'لمسة الخزامى',
+                                  l10n.networkNameValue,
                                   style: NazelTypography.arabic(
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.w900,
@@ -582,7 +609,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 4.0.h),
                                 Text(
-                                  'كلمة المرور',
+                                  l10n.networkPassword,
                                   style: NazelTypography.arabic(
                                     fontSize: 13.0,
                                     fontWeight: FontWeight.w700,
@@ -596,7 +623,7 @@ class HomeScreen extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        'زهرة الخزامى',
+                                        l10n.networkPasswordValue,
                                         style: NazelTypography.arabic(
                                           fontSize: 15.0,
                                           fontWeight: FontWeight.w900,
@@ -635,7 +662,6 @@ class HomeScreen extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(minHeight: 68.0.h),
       padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 6.0.h),
-
       child: Row(
         children: [
           // Circular Icon on start with Golden Outline Frame
@@ -723,41 +749,6 @@ class _HomeScreenBottomPromoBannerState
   Timer? _autoScrollTimer;
   int _currentPage = 0;
 
-  final List<Map<String, dynamic>> _banners = const [
-    {
-      'tag': 'احجز الآن',
-      'titleLine1': 'خصم 20% على',
-      'titleLine2': 'خدمات التنظيف',
-      'buttonText': 'احجز الان',
-      'image': 'assets/images/ipad_image_e6ced3cf.png',
-      'modalTitle': 'طلب تنظيف',
-    },
-    {
-      'tag': 'احجز الآن',
-      'titleLine1': 'خصم 15% على',
-      'titleLine2': 'الرحلات البحرية',
-      'buttonText': 'احجز الآن',
-      'image': 'assets/images/ipad_image_ac159ff3.png',
-      'modalTitle': 'سياحة وتجارب',
-    },
-    {
-      'tag': 'اطلب الآن',
-      'titleLine1': 'خصم 10% على',
-      'titleLine2': 'توصيل البقالة',
-      'buttonText': 'اطلب الآن',
-      'image': 'assets/images/ipad_image_a92eb603.png',
-      'modalTitle': 'طلبات التوصيل',
-    },
-    {
-      'tag': 'احجز الآن',
-      'titleLine1': 'خصم 10% على',
-      'titleLine2': 'تأجير السيارات',
-      'buttonText': 'احجز الآن',
-      'image': 'assets/images/ipad_image_33a2ad6d.png',
-      'modalTitle': 'عروض وإعلانات',
-    },
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -785,10 +776,44 @@ class _HomeScreenBottomPromoBannerState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    final banners = [
+      {
+        'tag': l10n.bookNow,
+        'title': l10n.promoDiscount20Cleaning,
+        'buttonText': l10n.bookNow,
+        'image': 'assets/images/ipad_image_e6ced3cf.png',
+        'key': 'cleaning',
+      },
+      {
+        'tag': l10n.bookNow,
+        'title': l10n.promoDiscount15Cruises,
+        'buttonText': l10n.bookNow,
+        'image': 'assets/images/ipad_image_ac159ff3.png',
+        'key': 'tourism',
+      },
+      {
+        'tag': l10n.orderNow,
+        'title': l10n.promoDiscount10Grocery,
+        'buttonText': l10n.orderNow,
+        'image': 'assets/images/ipad_image_a92eb603.png',
+        'key': 'delivery',
+      },
+      {
+        'tag': l10n.bookNow,
+        'title': l10n.promoDiscount10CarRental,
+        'buttonText': l10n.bookNow,
+        'image': 'assets/images/ipad_image_33a2ad6d.png',
+        'key': 'ads',
+      },
+    ];
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final cardWidth = constraints.maxWidth;
-        final imageWidth = cardWidth * 0.50;
+        final imageWidth = cardWidth * 0.68;
+        final isRtl = Directionality.of(context) == TextDirection.rtl;
 
         return Container(
           decoration: BoxDecoration(
@@ -810,32 +835,39 @@ class _HomeScreenBottomPromoBannerState
                 controller: _pageController,
                 physics: const BouncingScrollPhysics(),
                 onPageChanged: (index) {
-                  setState(() => _currentPage = index % _banners.length);
+                  setState(() => _currentPage = index % banners.length);
                 },
                 itemBuilder: (context, index) {
-                  final banner = _banners[index % _banners.length];
+                  final banner = banners[index % banners.length];
 
                   return InkWell(
                     onTap: () {
-                      widget.onOpenModal?.call(banner['modalTitle'] as String);
+                      widget.onOpenModal?.call(banner['key'] as String);
                     },
                     child: Stack(
                       children: [
-                        // Left side image covering 50% with fade mask
-                        Positioned(
-                          left: 0,
+                        // Image covering 68% with soft directional fade mask
+                        Positioned.directional(
+                          textDirection: Directionality.of(context),
+                          start: 0,
                           top: 0,
                           bottom: 0,
                           width: imageWidth,
                           child: ShaderMask(
                             shaderCallback: (rect) {
-                              return const LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                stops: [0.0, 0.65, 1.0],
+                              return LinearGradient(
+                                begin: isRtl
+                                    ? Alignment.centerRight
+                                    : Alignment.centerLeft,
+                                end: isRtl
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
+                                stops: const [0.0, 0.40, 0.65, 0.85, 1.0],
                                 colors: [
                                   Colors.black,
-                                  Colors.black,
+                                  Colors.black.withValues(alpha: 0.95),
+                                  Colors.black.withValues(alpha: 0.65),
+                                  Colors.black.withValues(alpha: 0.25),
                                   Colors.transparent,
                                 ],
                               ).createShader(rect);
@@ -844,17 +876,20 @@ class _HomeScreenBottomPromoBannerState
                             child: Image.asset(
                               banner['image'] as String,
                               fit: BoxFit.cover,
-                              alignment: Alignment.centerLeft,
+                              alignment: isRtl
+                                  ? Alignment.centerRight
+                                  : Alignment.centerLeft,
                             ),
                           ),
                         ),
 
-                        // Right side content
-                        Positioned(
-                          right: 0,
+                        // Content side
+                        Positioned.directional(
+                          textDirection: Directionality.of(context),
+                          end: 0,
                           top: 0,
                           bottom: 0,
-                          left: imageWidth * 0.85,
+                          start: imageWidth * 0.70,
                           child: Center(
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
@@ -873,7 +908,7 @@ class _HomeScreenBottomPromoBannerState
                                   ),
                                   SizedBox(height: 3.0.h),
                                   Text(
-                                    '${banner['titleLine1']}\n${banner['titleLine2']}',
+                                    banner['title'] as String,
                                     textAlign: TextAlign.center,
                                     style: NazelTypography.arabic(
                                       fontSize: 18.0.sp,
@@ -915,12 +950,13 @@ class _HomeScreenBottomPromoBannerState
               ),
 
               // Carousel Page Indicator Dots
-              Positioned(
-                left: 16.0.w,
+              Positioned.directional(
+                textDirection: Directionality.of(context),
+                start: 16.0.w,
                 bottom: 12.0.h,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: List.generate(_banners.length, (i) {
+                  children: List.generate(banners.length, (i) {
                     final isSelected = _currentPage == i;
                     return AnimatedContainer(
                       duration: const Duration(milliseconds: 250),

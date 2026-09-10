@@ -71,10 +71,14 @@ class NazelChooseCard extends StatelessWidget {
         alignment: Alignment.center,
         child: NazelIcon(type: iconType, size: 28.0.r),
       ),
-      trailing: Icon(
-        Icons.chevron_right,
-        size: 28.0.r,
-        color: NazelColors.textSecondary,
+      trailing: Builder(
+        builder: (context) {
+          return Icon(
+            NazelDirectionalIcons.chevronForward(context),
+            size: 28.0.r,
+            color: NazelColors.textSecondary,
+          );
+        },
       ),
     );
   }

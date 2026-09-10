@@ -3,20 +3,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../l10n/app_localizations.dart';
 import '../atoms/nazel_button.dart';
 
 class StateSoonView extends StatelessWidget {
-  final String message;
+  final String? message;
   final VoidCallback? onBack;
 
   const StateSoonView({
     super.key,
-    this.message = 'ستتوفر الخدمة قريباً',
+    this.message,
     this.onBack,
   });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final effectiveMessage =
+        message ?? l10n?.serviceSoonTitle ?? 'ستتوفر الخدمة قريباً';
+    final effectiveDesc = l10n?.serviceSoonDesc ??
+        'نعمل حالياً على تجهيز هذه الميزة لتقديم أفضل تجربة لإقامتك';
+    final effectiveBack = l10n?.backToHome ?? 'العودة للرئيسية';
+
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -45,7 +53,7 @@ class StateSoonView extends StatelessWidget {
             SizedBox(height: NazelDimens.space24),
             // Message
             Text(
-              message,
+              effectiveMessage,
               style: NazelTypography.arabic(
                 fontSize: 28.0,
                 fontWeight: FontWeight.w900,
@@ -55,14 +63,14 @@ class StateSoonView extends StatelessWidget {
             ),
             SizedBox(height: NazelDimens.space12),
             Text(
-              'نعمل حالياً على تجهيز هذه الميزة لتقديم أفضل تجربة لإقامتك',
+              effectiveDesc,
               style: NazelTypography.serviceSubtitle,
               textAlign: TextAlign.center,
             ),
             if (onBack != null) ...[
               SizedBox(height: NazelDimens.space32),
               NazelButton(
-                text: 'العودة للرئيسية',
+                text: effectiveBack,
                 variant: NazelButtonVariant.secondary,
                 onPressed: onBack,
                 width: 220.0.w,

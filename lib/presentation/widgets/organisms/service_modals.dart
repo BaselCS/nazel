@@ -5,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../l10n/app_localizations.dart';
 import '../atoms/nazel_back_button.dart';
 import '../atoms/nazel_button.dart';
 import '../atoms/nazel_icon.dart';
@@ -28,21 +29,6 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
   int _selectedTime = 0;
   final TextEditingController _notesController = TextEditingController();
 
-  final List<Map<String, String>> _services = [
-    {'title': 'تنظيف سريع', 'subtitle': 'تنظيف سريع'},
-    {'title': 'تنظيف شامل', 'subtitle': 'تنظيف شامل'},
-    {
-      'title': 'تغيير شراشف ومستلزمات حمام',
-      'subtitle': 'تغيير شراشف ومستلزمات حمام',
-    },
-  ];
-
-  final List<String> _times = [
-    'اليوم 11:00 ص (أقرب موعد)',
-    'اليوم 02:00 م',
-    'اليوم 05:00 م',
-  ];
-
   @override
   void dispose() {
     _notesController.dispose();
@@ -51,11 +37,27 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    final services = [
+      {'title': l10n.cleaningQuick, 'subtitle': l10n.cleaningQuick},
+      {'title': l10n.cleaningDeep, 'subtitle': l10n.cleaningDeep},
+      {
+        'title': l10n.cleaningLinen,
+        'subtitle': l10n.cleaningLinen,
+      },
+    ];
+
+    final times = [
+      l10n.timeSlotToday11AM,
+      l10n.timeSlotToday2PM,
+      l10n.timeSlotToday5PM,
+    ];
+
     if (_step == 2) {
       return StateDoneView(
-        title: 'أٌستلم طلبك',
-        description:
-            'سيصل فريق النظافة في الموعد المحدد (${_times[_selectedTime]}).',
+        title: l10n.orderReceived,
+        description: l10n.cleaningOrderDoneDesc(times[_selectedTime]),
         onDone: () => Navigator.of(context).pop(),
       );
     }
@@ -65,7 +67,7 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'أختر الوقت المناسب',
+            l10n.selectSuitableTime,
             style: NazelTypography.arabic(
               fontSize: 22.0,
               fontWeight: FontWeight.w900,
@@ -73,16 +75,16 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
             ),
           ),
           SizedBox(height: NazelDimens.space12),
-          ...List.generate(_times.length, (index) {
+          ...List.generate(times.length, (index) {
             return NazelTimeTile(
-              timeText: _times[index],
+              timeText: times[index],
               isSelected: _selectedTime == index,
               onTap: () => setState(() => _selectedTime = index),
             );
           }),
           SizedBox(height: NazelDimens.space20),
           Text(
-            'ملاحظات إضافية (اختياري)',
+            l10n.additionalNotesOptional,
             style: NazelTypography.arabic(
               fontSize: 22.0,
               fontWeight: FontWeight.w900,
@@ -94,7 +96,7 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
             controller: _notesController,
             maxLines: 6,
             decoration: InputDecoration(
-              hintText: 'اكتب ملاحظاتك هنا...',
+              hintText: l10n.notesPlaceholder,
               hintStyle: NazelTypography.bodySmall,
               filled: true,
               fillColor: NazelColors.background,
@@ -109,13 +111,13 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
             children: [
               Expanded(
                 child: NazelButton(
-                  text: 'أطلب الآن',
+                  text: l10n.orderNow,
                   onPressed: () => setState(() => _step = 2),
                 ),
               ),
               SizedBox(width: NazelDimens.space12),
               NazelButton(
-                text: 'السابق',
+                text: l10n.back,
                 variant: NazelButtonVariant.secondary,
                 onPressed: () => setState(() => _step = 0),
                 width: 120.0.w,
@@ -134,7 +136,7 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'أختر نوع الخدمة',
+            l10n.cleaningSelectService,
             style: NazelTypography.arabic(
               fontSize: 22.0,
               fontWeight: FontWeight.w900,
@@ -142,10 +144,10 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
             ),
           ),
           SizedBox(height: NazelDimens.space12),
-          ...List.generate(_services.length, (index) {
+          ...List.generate(services.length, (index) {
             return NazelChooseCard.selectable(
-              title: _services[index]['title']!,
-              subtitle: _services[index]['subtitle']!,
+              title: services[index]['title']!,
+              subtitle: services[index]['subtitle']!,
               isSelected: _selectedService == index,
               onTap: () {
                 setState(() => _selectedService = index);
@@ -158,7 +160,7 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'الطلبات السابقة',
+                l10n.previousOrders,
                 style: NazelTypography.arabic(
                   fontSize: 22.0,
                   fontWeight: FontWeight.w900,
@@ -169,7 +171,7 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
                 behavior: HitTestBehavior.opaque,
                 onTap: () {},
                 child: Text(
-                  'عرض الكل',
+                  l10n.viewAll,
                   style: NazelTypography.arabic(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w800,
@@ -209,7 +211,7 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'تنظيف سريع',
+                        l10n.cleaningQuick,
                         style: NazelTypography.arabic(
                           fontSize: 18.0,
                           fontWeight: FontWeight.w800,
@@ -218,7 +220,7 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
                       ),
                       SizedBox(height: NazelDimens.space4),
                       Text(
-                        '9:20 - 11 مايو 90 ص',
+                        l10n.sampleOrderDate,
                         style: NazelTypography.arabic(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w500,
@@ -238,7 +240,7 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
                     borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
                   ),
                   child: Text(
-                    'مكتمل',
+                    l10n.completed,
                     style: NazelTypography.arabic(
                       fontSize: 13.0,
                       fontWeight: FontWeight.w700,
@@ -251,9 +253,9 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
           ),
           SizedBox(height: NazelDimens.space20),
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: NazelButton(
-              text: 'متابعة',
+              text: l10n.continueText,
               onPressed: () => setState(() => _step = 1),
               width: 140.0.w,
             ),
@@ -279,11 +281,12 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     if (_isDone) {
       return StateDoneView(
-        title: 'أٌرسل طلب تمديد',
-        description:
-            'أرسلنا الطلب إلى المالك للموافقة على تمديد الحجز لمدة $_extraDays يوم.',
+        title: l10n.extendRequestSent,
+        description: l10n.extendRequestDoneDesc(_extraDays),
         onDone: () => Navigator.of(context).pop(),
       );
     }
@@ -309,7 +312,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'معلومات الحجز',
+                l10n.bookingInfo,
                 style: NazelTypography.arabic(
                   fontSize: 20.0,
                   fontWeight: FontWeight.w800,
@@ -321,22 +324,22 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
                 children: [
                   Expanded(
                     child: _buildInfoColumn(
-                      'تاريخ المغادرة',
-                      '15 مايو 2026',
+                      l10n.departureDate,
+                      l10n.sampleDepartureDate,
                       alignment: CrossAxisAlignment.start,
                     ),
                   ),
                   Expanded(
                     child: _buildInfoColumn(
-                      'وقت المغادرة',
-                      '12 : 30 م',
+                      l10n.departureTime,
+                      l10n.sampleDepartureTime,
                       alignment: CrossAxisAlignment.center,
                     ),
                   ),
                   Expanded(
                     child: _buildInfoColumn(
-                      'رقم الحجز',
-                      '#NZE-2024-1258',
+                      l10n.bookingNumber,
+                      l10n.sampleBookingNumber,
                       alignment: CrossAxisAlignment.end,
                     ),
                   ),
@@ -361,7 +364,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'تمديد الحجز',
+                l10n.serviceExtendStay,
                 style: NazelTypography.arabic(
                   fontSize: 20.0,
                   fontWeight: FontWeight.w800,
@@ -378,7 +381,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'سعر اليوم',
+                        l10n.dailyRate,
                         style: NazelTypography.arabic(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w500,
@@ -387,7 +390,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
                       ),
                       SizedBox(height: NazelDimens.space6),
                       Text(
-                        '350 رس',
+                        '350 ${l10n.currencySar}',
                         style: NazelTypography.arabic(
                           fontSize: 22.0,
                           fontWeight: FontWeight.w900,
@@ -401,7 +404,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'أيام التمديد',
+                        l10n.extensionDays,
                         style: NazelTypography.arabic(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w500,
@@ -448,7 +451,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'الإجمالي :',
+                      l10n.total,
                       style: NazelTypography.arabic(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,
@@ -457,7 +460,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
                     ),
                     SizedBox(height: NazelDimens.space4),
                     Text(
-                      '$total رس',
+                      '$total ${l10n.currencySar}',
                       style: NazelTypography.arabic(
                         fontSize: 28.0,
                         fontWeight: FontWeight.w900,
@@ -469,7 +472,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
               ),
               SizedBox(height: NazelDimens.space20),
               NazelButton(
-                text: 'تمديد',
+                text: l10n.extend,
                 variant: NazelButtonVariant.gold,
                 width: double.infinity,
                 height: 56.h,
@@ -477,7 +480,7 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
               ),
               SizedBox(height: NazelDimens.space12),
               Text(
-                'سنرسل طلبك إلى المالك للموافقة',
+                l10n.extendApprovalNotice,
                 textAlign: TextAlign.center,
                 style: NazelTypography.arabic(
                   fontSize: 13.0,
@@ -544,49 +547,6 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
   final MapController _mapController = MapController();
   int _selectedPlaceIndex = -1;
 
-  final List<Map<String, dynamic>> _places = [
-    {
-      'title': 'بقالة',
-      'fullTitle': 'بقالة وميني ماركت الحي',
-      'dist': '0.3 كم',
-      'time': '5 دقائق',
-      'icon': Icons.shopping_cart_outlined,
-      'latLng': const LatLng(21.4232, 39.8250),
-    },
-    {
-      'title': 'محطة حافلات',
-      'fullTitle': 'محطة حافلات النقل العام',
-      'dist': '10 كم',
-      'time': '20 دقيقة',
-      'icon': Icons.directions_bus_outlined,
-      'latLng': const LatLng(21.4255, 39.8282),
-    },
-    {
-      'title': 'مستشفى السلام',
-      'fullTitle': 'مستشفى السلام الطبي',
-      'dist': '30 كم',
-      'time': '60 دقيقة',
-      'icon': Icons.local_hospital_outlined,
-      'latLng': const LatLng(21.4208, 39.8225),
-    },
-    {
-      'title': 'مسجد الحي',
-      'fullTitle': 'جامع الهدى',
-      'dist': '50 كم',
-      'time': '45 دقيقة',
-      'icon': Icons.mosque_outlined,
-      'latLng': const LatLng(21.4270, 39.8298),
-    },
-    {
-      'title': 'صيدلية النهدي',
-      'fullTitle': 'صيدلية النهدي 24 ساعة',
-      'dist': '0.8 كم',
-      'time': '10 دقائق',
-      'icon': Icons.local_pharmacy_outlined,
-      'latLng': const LatLng(21.4220, 39.8268),
-    },
-  ];
-
   @override
   void dispose() {
     _mapController.dispose();
@@ -595,6 +555,51 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    final places = [
+      {
+        'title': l10n.placeGrocery,
+        'fullTitle': l10n.placeGroceryFull,
+        'dist': l10n.distUnitKm('0.3'),
+        'time': l10n.timeUnitMinutes('5'),
+        'icon': Icons.shopping_cart_outlined,
+        'latLng': const LatLng(21.4232, 39.8250),
+      },
+      {
+        'title': l10n.placeBus,
+        'fullTitle': l10n.placeBusFull,
+        'dist': l10n.distUnitKm('10'),
+        'time': l10n.timeUnitMinutes('20'),
+        'icon': Icons.directions_bus_outlined,
+        'latLng': const LatLng(21.4255, 39.8282),
+      },
+      {
+        'title': l10n.placeHospital,
+        'fullTitle': l10n.placeHospitalFull,
+        'dist': l10n.distUnitKm('30'),
+        'time': l10n.timeUnitMinutes('60'),
+        'icon': Icons.local_hospital_outlined,
+        'latLng': const LatLng(21.4208, 39.8225),
+      },
+      {
+        'title': l10n.placeMosque,
+        'fullTitle': l10n.placeMosqueFull,
+        'dist': l10n.distUnitKm('50'),
+        'time': l10n.timeUnitMinutes('45'),
+        'icon': Icons.mosque_outlined,
+        'latLng': const LatLng(21.4270, 39.8298),
+      },
+      {
+        'title': l10n.placePharmacy,
+        'fullTitle': l10n.placePharmacyFull,
+        'dist': l10n.distUnitKm('0.8'),
+        'time': l10n.timeUnitMinutes('10'),
+        'icon': Icons.local_pharmacy_outlined,
+        'latLng': const LatLng(21.4220, 39.8268),
+      },
+    ];
+
     return Center(
       child: Material(
         color: Colors.transparent,
@@ -628,7 +633,7 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
                   children: [
                     Center(
                       child: Text(
-                        'مرافق قريبة',
+                        l10n.nearestPlacesTitle,
                         style: NazelTypography.arabic(
                           fontSize: 22.0,
                           fontWeight: FontWeight.w900,
@@ -636,7 +641,11 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
                         ),
                       ),
                     ),
-                    Positioned(left: 0, child: const NazelBackButton()),
+                    Positioned.directional(
+                      textDirection: Directionality.of(context),
+                      end: 0,
+                      child: const NazelBackButton(),
+                    ),
                   ],
                 ),
               ),
@@ -663,8 +672,8 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
                         userAgentPackageName: 'com.nazel.app',
                       ),
                       MarkerLayer(
-                        markers: List.generate(_places.length, (index) {
-                          final place = _places[index];
+                        markers: List.generate(places.length, (index) {
+                          final place = places[index];
                           final isSelected = _selectedPlaceIndex == index;
                           return Marker(
                             point: place['latLng'] as LatLng,
@@ -697,11 +706,11 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
                       horizontal: NazelDimens.space24,
                       vertical: NazelDimens.space16,
                     ),
-                    itemCount: _places.length,
+                    itemCount: places.length,
                     separatorBuilder: (context, index) =>
                         SizedBox(height: NazelDimens.space12),
                     itemBuilder: (context, index) {
-                      final place = _places[index];
+                      final place = places[index];
                       final isSelected = _selectedPlaceIndex == index;
                       return _buildPlaceCard(place, isSelected, index);
                     },
@@ -785,7 +794,7 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
             padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 14.0.h),
             child: Row(
               children: [
-                // 1. In RTL: Right Side - Circular Icon Badge
+                // 1. Icon Badge
                 Container(
                   width: 52.0.r,
                   height: 52.0.r,
@@ -826,7 +835,7 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
                   ),
                 ),
 
-                // 3. Left Side - Distance and Time
+                // 3. Distance and Time
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -897,54 +906,6 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
   bool _isDone = false;
   final TextEditingController _searchController = TextEditingController();
 
-  final List<String> _categories = [
-    'مطاعم',
-    'بقالة',
-    'كافيهات',
-    'بوافي',
-    'عصائر',
-    'أمور أخرى',
-  ];
-
-  final List<_DeliveryRestaurant> _restaurants = const [
-    _DeliveryRestaurant(
-      name: 'هرفي',
-      tags: 'برجر، سندوشات',
-      rating: 4.5,
-      logoPath: 'assets/images/restaurant_herfy.png',
-    ),
-    _DeliveryRestaurant(
-      name: 'البيك',
-      tags: 'دجاج مقلي',
-      rating: 5.0,
-      logoPath: 'assets/images/restaurant_albaik.png',
-    ),
-    _DeliveryRestaurant(
-      name: 'ماكدونالدز',
-      tags: 'برجر، سندوشات',
-      rating: 2.0,
-      logoPath: 'assets/images/restaurant_mcdonalds.png',
-    ),
-    _DeliveryRestaurant(
-      name: 'رايق',
-      tags: 'شاورما، وجبات',
-      rating: 4.6,
-      logoPath: 'assets/images/restaurant_raeq.png',
-    ),
-    _DeliveryRestaurant(
-      name: 'الشلال',
-      tags: 'خبز، وجبات',
-      rating: 4.4,
-      logoPath: 'assets/images/restaurant_shallal.png',
-    ),
-    _DeliveryRestaurant(
-      name: 'كودو',
-      tags: 'برجر، دجاج',
-      rating: 4.8,
-      logoPath: 'assets/images/restaurant_kudu.png',
-    ),
-  ];
-
   @override
   void dispose() {
     _searchController.dispose();
@@ -953,6 +914,56 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    final categories = [
+      l10n.catRestaurants,
+      l10n.catGrocery,
+      l10n.catCafes,
+      l10n.catBuffets,
+      l10n.catJuices,
+      l10n.catOther,
+    ];
+
+    final restaurants = [
+      _DeliveryRestaurant(
+        name: l10n.restaurantHerfy,
+        tags: l10n.restaurantHerfyTags,
+        rating: 4.5,
+        logoPath: 'assets/images/restaurant_herfy.png',
+      ),
+      _DeliveryRestaurant(
+        name: l10n.restaurantAlbaik,
+        tags: l10n.restaurantAlbaikTags,
+        rating: 5.0,
+        logoPath: 'assets/images/restaurant_albaik.png',
+      ),
+      _DeliveryRestaurant(
+        name: l10n.restaurantMcDonalds,
+        tags: l10n.restaurantMcDonaldsTags,
+        rating: 2.0,
+        logoPath: 'assets/images/restaurant_mcdonalds.png',
+      ),
+      _DeliveryRestaurant(
+        name: l10n.restaurantRaeq,
+        tags: l10n.restaurantRaeqTags,
+        rating: 4.6,
+        logoPath: 'assets/images/restaurant_raeq.png',
+      ),
+      _DeliveryRestaurant(
+        name: l10n.restaurantShallal,
+        tags: l10n.restaurantShallalTags,
+        rating: 4.4,
+        logoPath: 'assets/images/restaurant_shallal.png',
+      ),
+      _DeliveryRestaurant(
+        name: l10n.restaurantKudu,
+        tags: l10n.restaurantKuduTags,
+        rating: 4.8,
+        logoPath: 'assets/images/restaurant_kudu.png',
+      ),
+    ];
+
     if (_isDone) {
       return Center(
         child: Material(
@@ -967,9 +978,8 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
             ),
             clipBehavior: Clip.antiAlias,
             child: StateDoneView(
-              title: 'تم استلام طلبك',
-              description:
-                  'تم إرسال طلب التوصيل بنجاح وسيتم إيصاله إلى غرفتك بأسرع وقت.',
+              title: l10n.deliveryOrderReceived,
+              description: l10n.deliveryOrderDoneDesc,
               onDone: () => Navigator.of(context).pop(),
             ),
           ),
@@ -1009,7 +1019,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                   children: [
                     Center(
                       child: Text(
-                        'طلبات التوصيل',
+                        l10n.deliveryTitle,
                         style: NazelTypography.arabic(
                           fontSize: 22.0,
                           fontWeight: FontWeight.w900,
@@ -1017,7 +1027,11 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                         ),
                       ),
                     ),
-                    Positioned(left: 0, child: const NazelBackButton()),
+                    Positioned.directional(
+                      textDirection: Directionality.of(context),
+                      end: 0,
+                      child: const NazelBackButton(),
+                    ),
                   ],
                 ),
               ),
@@ -1035,11 +1049,11 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Search Bar
-                      _buildSearchBar(),
+                      _buildSearchBar(l10n),
                       SizedBox(height: NazelDimens.space16),
 
                       // Category Chips
-                      _buildCategoryChips(),
+                      _buildCategoryChips(categories),
                       SizedBox(height: NazelDimens.space20),
 
                       // Section Header
@@ -1047,7 +1061,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'مطاعم قريبة',
+                            l10n.nearbyRestaurants,
                             style: NazelTypography.arabic(
                               fontSize: 22.0,
                               fontWeight: FontWeight.w900,
@@ -1058,7 +1072,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                             behavior: HitTestBehavior.opaque,
                             onTap: () {},
                             child: Text(
-                              'عرض الكل',
+                              l10n.viewAll,
                               style: NazelTypography.arabic(
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.w800,
@@ -1070,7 +1084,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                       ),
                       SizedBox(height: NazelDimens.space12),
 
-                      // Restaurant Grid (3 columns)
+                      // Restaurant Grid (4 columns)
                       Expanded(
                         child: GridView.builder(
                           gridDelegate:
@@ -1080,9 +1094,9 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                                 mainAxisSpacing: NazelDimens.space16,
                                 childAspectRatio: 0.6,
                               ),
-                          itemCount: _restaurants.length,
+                          itemCount: restaurants.length,
                           itemBuilder: (context, index) =>
-                              _buildRestaurantCard(_restaurants[index]),
+                              _buildRestaurantCard(restaurants[index]),
                         ),
                       ),
                     ],
@@ -1091,7 +1105,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
               ),
 
               // ── Cart Bar (full-width, outside padding) ─────────────────
-              if (_cartCount > 0) _buildCartBar(),
+              if (_cartCount > 0) _buildCartBar(l10n),
             ],
           ),
         ),
@@ -1099,7 +1113,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
     );
   }
 
-  Widget _buildSearchBar() {
+  Widget _buildSearchBar(AppLocalizations l10n) {
     return Container(
       height: 52.0.h,
       decoration: BoxDecoration(
@@ -1122,13 +1136,12 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
           Expanded(
             child: TextField(
               controller: _searchController,
-              textDirection: TextDirection.rtl,
               style: NazelTypography.arabic(
                 fontSize: 16.0,
                 color: NazelColors.textPrimary,
               ),
               decoration: InputDecoration(
-                hintText: '...',
+                hintText: l10n.searchHint,
                 hintStyle: NazelTypography.arabic(
                   fontSize: 16.0,
                   color: NazelColors.textSecondary,
@@ -1145,14 +1158,14 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
     );
   }
 
-  Widget _buildCategoryChips() {
+  Widget _buildCategoryChips(List<String> categories) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: List.generate(_categories.length, (index) {
+        children: List.generate(categories.length, (index) {
           final selected = _selectedCategory == index;
           return Padding(
-            padding: EdgeInsets.only(left: NazelDimens.space8),
+            padding: EdgeInsetsDirectional.only(end: NazelDimens.space8),
             child: GestureDetector(
               onTap: () => setState(() => _selectedCategory = index),
               child: AnimatedContainer(
@@ -1174,7 +1187,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                   ),
                 ),
                 child: Text(
-                  _categories[index],
+                  categories[index],
                   style: NazelTypography.arabic(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w700,
@@ -1306,7 +1319,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
     );
   }
 
-  Widget _buildCartBar() {
+  Widget _buildCartBar(AppLocalizations l10n) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -1326,9 +1339,10 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                 color: NazelColors.surfaceWhite,
               ),
               if (_cartCount > 0)
-                Positioned(
+                Positioned.directional(
+                  textDirection: Directionality.of(context),
                   top: -4.0.h,
-                  right: -6.0.w,
+                  end: -6.0.w,
                   child: Container(
                     padding: EdgeInsets.symmetric(
                       horizontal: 6.0.w,
@@ -1359,7 +1373,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'السلة ($_cartCount عناصر)',
+                l10n.cartItemsCount(_cartCount),
                 style: NazelTypography.arabic(
                   fontSize: 12.0,
                   fontWeight: FontWeight.w600,
@@ -1367,7 +1381,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                 ),
               ),
               Text(
-                '${_cartTotal.toStringAsFixed(2)} ريال',
+                '${_cartTotal.toStringAsFixed(2)} ${l10n.currencyRiyal}',
                 style: NazelTypography.arabic(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w900,
@@ -1379,7 +1393,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
           const Spacer(),
           // Send / Order Button
           NazelButton(
-            text: 'إرسال الطلب',
+            text: l10n.sendRequest,
             variant: NazelButtonVariant.gold,
             height: 44.0.h,
             onPressed: () {
@@ -1398,19 +1412,21 @@ class EmergencyModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     final contacts = [
       {
-        'title': 'الشرطة والأمن',
+        'title': l10n.emergencyPolice,
         'number': '999',
         'icon': NazelIconType.emergency,
       },
       {
-        'title': 'الإسعاف والطوارئ الطبية',
+        'title': l10n.emergencyAmbulance,
         'number': '997',
         'icon': NazelIconType.ambulance,
       },
       {
-        'title': 'طوارئ الصيانة والعقار',
+        'title': l10n.emergencyMaintenance,
         'number': '+966 50 000 0000',
         'icon': NazelIconType.wrench,
       },
@@ -1420,7 +1436,7 @@ class EmergencyModal extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'أرقام الاتصال السريع المباشر',
+          l10n.directEmergencyNumbers,
           style: NazelTypography.sectionTitle,
         ),
         SizedBox(height: NazelDimens.space16),
@@ -1453,7 +1469,7 @@ class EmergencyModal extends StatelessWidget {
                 borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
               ),
               child: Text(
-                'اتصال',
+                l10n.call,
                 style: NazelTypography.arabic(
                   fontSize: 15.0,
                   fontWeight: FontWeight.w800,
@@ -1477,62 +1493,63 @@ class ApartmentInfoModal extends StatefulWidget {
 }
 
 class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
-  String?
-  _selectedCategory; // null: main menu, 'devices', 'checkout', 'contacts', 'about'
-
-  final List<Map<String, dynamic>> _menuItems = const [
-    {
-      'id': 'devices',
-      'title': 'تعليمات الأجهزة',
-      'desc': 'دليل استخدام الأجهزة الكهربائية',
-      'icon': Icons.iron_outlined,
-    },
-    {
-      'id': 'checkout',
-      'title': 'سياسة الخروج',
-      'desc': 'تسجيل الخروج قبل الساعة 12:00 م',
-      'icon': Icons.hotel_rounded,
-    },
-    {
-      'id': 'contacts',
-      'title': 'أرقام مهمة',
-      'desc': 'أرقام التواصل و الخدمات',
-      'icon': Icons.phone_rounded,
-    },
-    {
-      'id': 'about',
-      'title': 'عن الشقة',
-      'desc': 'معلومات و مميزات الشقة',
-      'icon': Icons.home_outlined,
-    },
-  ];
+  String? _selectedCategory; // null: main menu, 'devices', 'checkout', 'contacts', 'about'
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     if (_selectedCategory == null) {
-      return _buildMainMenu();
+      return _buildMainMenu(l10n);
     }
 
     switch (_selectedCategory) {
       case 'devices':
-        return _buildDevicesDetail();
+        return _buildDevicesDetail(l10n);
       case 'checkout':
-        return _buildCheckoutDetail();
+        return _buildCheckoutDetail(l10n);
       case 'contacts':
-        return _buildContactsDetail();
+        return _buildContactsDetail(l10n);
       case 'about':
-        return _buildAboutDetail();
+        return _buildAboutDetail(l10n);
       default:
-        return _buildMainMenu();
+        return _buildMainMenu(l10n);
     }
   }
 
-  Widget _buildMainMenu() {
+  Widget _buildMainMenu(AppLocalizations l10n) {
+    final menuItems = [
+      {
+        'id': 'devices',
+        'title': l10n.deviceInstructions,
+        'desc': l10n.deviceInstructionsDesc,
+        'icon': Icons.iron_outlined,
+      },
+      {
+        'id': 'checkout',
+        'title': l10n.checkoutPolicy,
+        'desc': l10n.checkoutPolicyDesc,
+        'icon': Icons.hotel_rounded,
+      },
+      {
+        'id': 'contacts',
+        'title': l10n.importantContacts,
+        'desc': l10n.importantContactsDesc,
+        'icon': Icons.phone_rounded,
+      },
+      {
+        'id': 'about',
+        'title': l10n.aboutApartment,
+        'desc': l10n.aboutApartmentDesc,
+        'icon': Icons.home_outlined,
+      },
+    ];
+
     return ListView(
       physics: const BouncingScrollPhysics(),
       padding: EdgeInsets.zero,
       children: [
-        ..._menuItems.map((item) {
+        ...menuItems.map((item) {
           return NazelChooseCard(
             height: 104.0.h,
             title: item['title'] as String,
@@ -1584,7 +1601,7 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
               child: Padding(
                 padding: EdgeInsets.all(NazelDimens.space8),
                 child: Icon(
-                  Icons.arrow_back_ios_rounded,
+                  NazelDirectionalIcons.back(context),
                   size: 20.0.r,
                   color: NazelColors.primary,
                 ),
@@ -1606,44 +1623,39 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
   }
 
   // 1. Devices Instruction Detail
-  Widget _buildDevicesDetail() {
+  Widget _buildDevicesDetail(AppLocalizations l10n) {
     final devices = [
       {
-        'name': 'المكيف',
+        'name': l10n.applianceAC,
         'icon': Icons.ac_unit_rounded,
-        'instructions':
-            'درجة الحرارة الموصى بها هي (22°C - 24°C). يمكنك استخدام زر Quiet لتفعيل الوضع الصامت أثناء النوم.',
+        'instructions': l10n.applianceACDesc,
       },
       {
-        'name': 'تلفزيون ذكي',
+        'name': l10n.applianceTV,
         'icon': Icons.tv_rounded,
-        'instructions':
-            'تطبيقات Netflix و Shahid و YouTube مثبتة مسبقاً. لمشاركة الشاشة، اختر AirPlay أو Screen Cast بنفس شبكة Wi-Fi.',
+        'instructions': l10n.applianceTVDesc,
       },
       {
-        'name': 'غسالة الملابس والمجفف',
+        'name': l10n.applianceWasher,
         'icon': Icons.local_laundry_service_rounded,
-        'instructions':
-            'برنامج Quick 30m مناسب للغسيل اليومي السريع. مساحيق الغسيل الإضافية متوفرة في خزانة الحمام أسفل الحوض.',
+        'instructions': l10n.applianceWasherDesc,
       },
       {
-        'name': 'صانعة القهوة والغلاية',
+        'name': l10n.applianceCoffee,
         'icon': Icons.coffee_maker_rounded,
-        'instructions':
-            'تتوفر كبسولات قهوة وشاي ومياه نقية مجاناً يومياً. يرجى ملء الخزان بالماء العذب قبل بدء التشغيل.',
+        'instructions': l10n.applianceCoffeeDesc,
       },
       {
-        'name': 'الميكروويف والفرن',
+        'name': l10n.applianceMicrowave,
         'icon': Icons.microwave_rounded,
-        'instructions':
-            'يرجى استخدام الأواني الزجاجية والحرارية المخصصة، وتجنب إدخال أي أدوات معدنية أو قصدير.',
+        'instructions': l10n.applianceMicrowaveDesc,
       },
     ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildDetailHeader('دليل استخدام الأجهزة الكهربائية'),
+        _buildDetailHeader(l10n.deviceInstructionsDesc),
         Expanded(
           child: ListView.separated(
             physics: const BouncingScrollPhysics(),
@@ -1721,11 +1733,11 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
   }
 
   // 2. Checkout Policy Detail
-  Widget _buildCheckoutDetail() {
+  Widget _buildCheckoutDetail(AppLocalizations l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildDetailHeader('سياسة تسجيل الخروج'),
+        _buildDetailHeader(l10n.checkoutPolicy),
         Expanded(
           child: ListView(
             physics: const BouncingScrollPhysics(),
@@ -1764,7 +1776,7 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'موعد تسجيل الخروج: 12:00 م',
+                            l10n.checkoutTimeHighlight,
                             style: NazelTypography.arabic(
                               fontSize: 18.0,
                               fontWeight: FontWeight.w800,
@@ -1773,7 +1785,7 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
                           ),
                           SizedBox(height: NazelDimens.space4),
                           Text(
-                            'نرجو تسليم الشقة بالوقت المحدد لتجهيزها للنزيل القادم',
+                            l10n.checkoutTimeNote,
                             style: NazelTypography.arabic(
                               fontSize: 13.0,
                               fontWeight: FontWeight.w500,
@@ -1791,30 +1803,26 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
               // Checklist points
               _buildPolicyCard(
                 icon: Icons.key_rounded,
-                title: 'تسليم المفتاح الذكي',
-                desc:
-                    'يرجى ترك بطاقة الدخول الذكية داخل صندوق الاستقبال عند المغادرة أو تسليمها لموظف الاستقبال.',
+                title: l10n.policySmartKey,
+                desc: l10n.policySmartKeyDesc,
               ),
               SizedBox(height: NazelDimens.space10),
               _buildPolicyCard(
                 icon: Icons.luggage_rounded,
-                title: 'التأكد من الأمتعة والخزنة',
-                desc:
-                    'تأكد من عدم نسيان أي مقتنيات شخصية في الدواليب أو تفريغ الخزنة الإلكترونية قبل الخروج.',
+                title: l10n.policyLuggage,
+                desc: l10n.policyLuggageDesc,
               ),
               SizedBox(height: NazelDimens.space10),
               _buildPolicyCard(
                 icon: Icons.power_settings_new_rounded,
-                title: 'إطفاء الأجهزة والإضاءة',
-                desc:
-                    'يُرجى إيقاف تشغيل أجهزة التكييف والإنارة حفاظاً على البيئة والسلامة العامة.',
+                title: l10n.policyPower,
+                desc: l10n.policyPowerDesc,
               ),
               SizedBox(height: NazelDimens.space10),
               _buildPolicyCard(
                 icon: Icons.update_rounded,
-                title: 'طلب تمديد الإقامة',
-                desc:
-                    'في حال رغبتك بتمديد الإقامة، يمكنك طلب ذلك عبر خدمة "تمديد الحجز" قبل الساعة 10:00 صباحاً.',
+                title: l10n.policyExtendStay,
+                desc: l10n.policyExtendStayDesc,
               ),
             ],
           ),
@@ -1870,29 +1878,29 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
   }
 
   // 3. Important Contacts Detail
-  Widget _buildContactsDetail() {
+  Widget _buildContactsDetail(AppLocalizations l10n) {
     final contacts = [
       {
-        'title': 'الاستقبال وخدمة النزلاء',
-        'ext': 'تحويلة: 100',
+        'title': l10n.contactReception,
+        'ext': l10n.extensionExt('100'),
         'phone': '0551234567',
         'icon': Icons.desk_rounded,
       },
       {
-        'title': 'خدمة الغرف وتوصيل الطلبات',
-        'ext': 'تحويلة: 102',
+        'title': l10n.contactRoomService,
+        'ext': l10n.extensionExt('102'),
         'phone': '0551234568',
         'icon': Icons.room_service_rounded,
       },
       {
-        'title': 'الصيانة والدعم الفني',
-        'ext': 'تحويلة: 104',
+        'title': l10n.contactMaintenance,
+        'ext': l10n.extensionExt('104'),
         'phone': '0551234569',
         'icon': Icons.build_rounded,
       },
       {
-        'title': 'الأمن والسلامة',
-        'ext': 'تحويلة: 109',
+        'title': l10n.contactSecurity,
+        'ext': l10n.extensionExt('109'),
         'phone': '0551234570',
         'icon': Icons.security_rounded,
       },
@@ -1901,7 +1909,7 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildDetailHeader('أرقام التواصل والخدمات'),
+        _buildDetailHeader(l10n.importantContactsDesc),
         Expanded(
           child: ListView.separated(
             physics: const BouncingScrollPhysics(),
@@ -1983,7 +1991,7 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
                           ),
                           SizedBox(width: NazelDimens.space6),
                           Text(
-                            'اتصال',
+                            l10n.call,
                             style: NazelTypography.arabic(
                               fontSize: 14.0,
                               fontWeight: FontWeight.w800,
@@ -2004,25 +2012,25 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
   }
 
   // 4. About Apartment Detail
-  Widget _buildAboutDetail() {
+  Widget _buildAboutDetail(AppLocalizations l10n) {
     final specs = [
-      {'label': 'رقم الوحدة', 'val': 'جناح 402 - الدور الرابع'},
-      {'label': 'نوع الإقامة', 'val': 'جناح فندقي تنفيذي فاخر'},
-      {'label': 'المساحة', 'val': '85 متر مربع'},
-      {'label': 'الطاقة الاستيعابية', 'val': 'حتى 4 أشخاص'},
+      {'label': l10n.aboutUnitNumber, 'val': l10n.aboutUnitNumberVal},
+      {'label': l10n.aboutStayType, 'val': l10n.aboutStayTypeVal},
+      {'label': l10n.aboutArea, 'val': l10n.aboutAreaVal},
+      {'label': l10n.aboutCapacity, 'val': l10n.aboutCapacityVal},
       {
-        'label': 'المرافق',
-        'val': 'غرفة ماستر، صالة معيشة، مطبخ مجهز، 2 دورات مياه',
+        'label': l10n.aboutFacilities,
+        'val': l10n.aboutFacilitiesVal,
       },
-      {'label': 'شبكة الإنترنت', 'val': 'ألياف بصرية فائقة السرعة'},
-      {'label': 'سياسة التدخين', 'val': 'ممنوع التدخين داخل الوحدة تماماً'},
-      {'label': 'ساعات الهدوء', 'val': 'من الساعة 11:00 م حتى 07:00 ص'},
+      {'label': l10n.aboutInternet, 'val': l10n.aboutInternetVal},
+      {'label': l10n.aboutSmoking, 'val': l10n.aboutSmokingVal},
+      {'label': l10n.aboutQuietHours, 'val': l10n.aboutQuietHoursVal},
     ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildDetailHeader('عن الشقة والمميزات'),
+        _buildDetailHeader(l10n.aboutApartmentDesc),
         Expanded(
           child: ListView(
             physics: const BouncingScrollPhysics(),
@@ -2093,85 +2101,6 @@ class _TourismModalState extends State<TourismModal> {
   int _selectedTimeSlot = 0;
   Map<String, dynamic>? _selectedActivity;
 
-  final List<String> _categories = [
-    'الكل',
-    'رحلات بحرية',
-    'جولات',
-    'سيارات',
-    'أسواق',
-    'اخرى',
-  ];
-
-  final List<Map<String, dynamic>> _activities = [
-    {
-      'title': 'رحلات بحرية خاصة',
-      'category': 'رحلات بحرية',
-      'duration': '3 ساعات',
-      'rating': 5.0,
-      'reviews': 94,
-      'price': 350,
-      'isHero': true,
-      'image': 'assets/images/ipad_image_de8207a6.png',
-      'description':
-          'استمتع برحلة بحرية خاصة مع إطلالات ساحرة ومشروبات منعشة طوال الجولة.',
-    },
-    {
-      'title': 'جولة الدرعية التاريخية',
-      'category': 'جولات',
-      'duration': '5 ساعات',
-      'rating': 4.6,
-      'reviews': 120,
-      'price': 250,
-      'isHero': true,
-      'image': 'assets/images/ipad_ads_ab02c289.png',
-      'subtitle': 'شامل المرشد السياحي المعتمد وزيارة حي الطريف التراثي',
-      'description':
-          'جولة ثقافية ثرية لأبرز معالم الدرعية التاريخية وحي الطريف المسجل في اليونسكو.',
-    },
-    {
-      'title': 'رحلة سفاري وتخييم صحراوي فاخر',
-      'category': 'جولات',
-      'duration': '5 ساعات',
-      'rating': 5.0,
-      'reviews': 85,
-      'price': 450,
-      'isHero': false,
-      'subtitle': 'شامل العشاء وعروض الترفيه الحية',
-      'description':
-          'تجربة استثنائية بين الكثبان الذهبية مع جلسة شواء راقية وعروض حية.',
-    },
-    {
-      'title': 'تأجير سيارة فاخرة مع سائق خاص',
-      'category': 'سيارات',
-      'duration': 'يوم كامل',
-      'rating': 4.8,
-      'reviews': 42,
-      'price': 600,
-      'isHero': false,
-      'subtitle': 'سيارة مرسيدس S-Class مع سائق محترف',
-      'description':
-          'خدمة تنقل راقية ومريحة مع سائق خاص على دراية تامة بكافة الوجهات.',
-    },
-    {
-      'title': 'جولة تسوق في أشهر الأسواق الشعبية والمولات',
-      'category': 'أسواق',
-      'duration': '4 ساعات',
-      'rating': 4.7,
-      'reviews': 63,
-      'price': 180,
-      'isHero': false,
-      'subtitle': 'جولة تسوق متكاملة مع التوصيل',
-      'description': 'اكتشف أفضل المتاجر والمنتجات التقليدية والمولات الحديثة.',
-    },
-  ];
-
-  final List<String> _timeSlots = [
-    'صباحاً (09:00 ص - 12:00 م)',
-    'ظهراً (01:00 م - 04:00 م)',
-    'مساءً (05:00 م - 08:00 م)',
-    'ليلاً (08:30 م - 11:30 م)',
-  ];
-
   @override
   void dispose() {
     _searchController.dispose();
@@ -2186,44 +2115,122 @@ class _TourismModalState extends State<TourismModal> {
     });
   }
 
-  List<Map<String, dynamic>> get _filteredActivities {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    final categories = [
+      l10n.catAll,
+      l10n.catSeaTrips,
+      l10n.catTours,
+      l10n.catCars,
+      l10n.catMarkets,
+      l10n.catOtherTours,
+    ];
+
+    final activities = [
+      {
+        'title': l10n.tourSeaCruises,
+        'category': l10n.catSeaTrips,
+        'duration': l10n.hoursCount(3),
+        'rating': 5.0,
+        'reviews': 94,
+        'price': 350,
+        'isHero': true,
+        'image': 'assets/images/ipad_image_de8207a6.png',
+        'description': l10n.tourSeaCruisesDesc,
+      },
+      {
+        'title': l10n.tourDiriyah,
+        'category': l10n.catTours,
+        'duration': l10n.hoursCount(5),
+        'rating': 4.6,
+        'reviews': 120,
+        'price': 250,
+        'isHero': true,
+        'image': 'assets/images/ipad_ads_ab02c289.png',
+        'subtitle': l10n.tourDiriyahSub,
+        'description': l10n.tourDiriyahDesc,
+      },
+      {
+        'title': l10n.tourSafari,
+        'category': l10n.catTours,
+        'duration': l10n.hoursCount(5),
+        'rating': 5.0,
+        'reviews': 85,
+        'price': 450,
+        'isHero': false,
+        'subtitle': l10n.tourSafariSub,
+        'description': l10n.tourSafariDesc,
+      },
+      {
+        'title': l10n.tourLuxuryCar,
+        'category': l10n.catCars,
+        'duration': l10n.fullDay,
+        'rating': 4.8,
+        'reviews': 42,
+        'price': 600,
+        'isHero': false,
+        'subtitle': l10n.tourLuxuryCarSub,
+        'description': l10n.tourLuxuryCarDesc,
+      },
+      {
+        'title': l10n.tourShopping,
+        'category': l10n.catMarkets,
+        'duration': l10n.hoursCount(4),
+        'rating': 4.7,
+        'reviews': 63,
+        'price': 180,
+        'isHero': false,
+        'subtitle': l10n.tourShoppingSub,
+        'description': l10n.tourShoppingDesc,
+      },
+    ];
+
+    final timeSlots = [
+      l10n.timeSlotMorning,
+      l10n.timeSlotAfternoon,
+      l10n.timeSlotEvening,
+      l10n.timeSlotNight,
+    ];
+
+    if (_step == 2) {
+      return StateDoneView(
+        title: l10n.bookingRequestReceived,
+        description: l10n.bookingRequestDoneDesc,
+        onDone: () => Navigator.of(context).pop(),
+      );
+    }
+
+    if (_step == 1 && _selectedActivity != null) {
+      return _buildBookingStep(l10n, timeSlots);
+    }
+
+    return _buildMainMenuStep(l10n, categories, activities);
+  }
+
+  Widget _buildMainMenuStep(
+    AppLocalizations l10n,
+    List<String> categories,
+    List<Map<String, dynamic>> activities,
+  ) {
     final query = _searchController.text.trim().toLowerCase();
-    return _activities.where((act) {
+    final filteredActivities = activities.where((act) {
       final matchesCategory =
           _selectedCategory == 0 ||
-          act['category'] == _categories[_selectedCategory];
+          act['category'] == categories[_selectedCategory];
       final matchesQuery =
           query.isEmpty ||
           (act['title'] as String).toLowerCase().contains(query) ||
           (act['category'] as String).toLowerCase().contains(query);
       return matchesCategory && matchesQuery;
     }).toList();
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    if (_step == 2) {
-      return StateDoneView(
-        title: 'تم استلام طلب الحجز',
-        description:
-            'تم إرسال طلب الحجز بنجاح وسيتواصل معك موظف الاستقبال لتأكيد الموعد.',
-        onDone: () => Navigator.of(context).pop(),
-      );
-    }
-
-    if (_step == 1 && _selectedActivity != null) {
-      return _buildBookingStep();
-    }
-
-    return _buildMainMenuStep();
-  }
-
-  Widget _buildMainMenuStep() {
-    final seaTrips = _filteredActivities
-        .where((a) => a['category'] == 'رحلات بحرية')
+    final seaTrips = filteredActivities
+        .where((a) => a['category'] == l10n.catSeaTrips)
         .toList();
-    final otherTours = _filteredActivities
-        .where((a) => a['category'] != 'رحلات بحرية')
+    final otherTours = filteredActivities
+        .where((a) => a['category'] != l10n.catSeaTrips)
         .toList();
 
     return SingleChildScrollView(
@@ -2262,9 +2269,9 @@ class _TourismModalState extends State<TourismModal> {
                       color: NazelColors.textPrimary,
                     ),
                     decoration: InputDecoration(
-                      hintText: '...',
+                      hintText: l10n.searchHint,
                       hintStyle: NazelTypography.arabic(
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.bold,
                         color: NazelColors.textSecondary.withValues(alpha: 0.5),
                       ),
@@ -2285,7 +2292,7 @@ class _TourismModalState extends State<TourismModal> {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
-              itemCount: _categories.length,
+              itemCount: categories.length,
               separatorBuilder: (_, _) => SizedBox(width: NazelDimens.space10),
               itemBuilder: (context, index) {
                 final isSelected = _selectedCategory == index;
@@ -2313,7 +2320,7 @@ class _TourismModalState extends State<TourismModal> {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      _categories[index],
+                      categories[index],
                       style: NazelTypography.arabic(
                         fontSize: 15.0,
                         fontWeight: isSelected
@@ -2331,13 +2338,13 @@ class _TourismModalState extends State<TourismModal> {
           ),
           SizedBox(height: NazelDimens.space20),
 
-          // 3. Section 1: رحلات بحرية (Sea Trips Hero Card)
+          // 3. Section 1: Sea Cruises
           if (seaTrips.isNotEmpty) ...[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'رحلات بحرية',
+                  l10n.catSeaTrips,
                   style: NazelTypography.arabic(
                     fontSize: 22.0,
                     fontWeight: FontWeight.w900,
@@ -2348,7 +2355,7 @@ class _TourismModalState extends State<TourismModal> {
                   behavior: HitTestBehavior.opaque,
                   onTap: () => setState(() => _selectedCategory = 1),
                   child: Text(
-                    'عرض الكل',
+                    l10n.viewAll,
                     style: NazelTypography.arabic(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w800,
@@ -2359,17 +2366,17 @@ class _TourismModalState extends State<TourismModal> {
               ],
             ),
             SizedBox(height: NazelDimens.space12),
-            ...seaTrips.map((act) => _buildHeroCard(act)),
+            ...seaTrips.map((act) => _buildHeroCard(act, l10n)),
             SizedBox(height: NazelDimens.space24),
           ],
 
-          // 4. Section 2: جولات سياحية (Tours & Experiences)
+          // 4. Section 2: Tours & Experiences
           if (otherTours.isNotEmpty) ...[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'جولات سياحية',
+                  l10n.catTours,
                   style: NazelTypography.arabic(
                     fontSize: 22.0,
                     fontWeight: FontWeight.w900,
@@ -2380,7 +2387,7 @@ class _TourismModalState extends State<TourismModal> {
                   behavior: HitTestBehavior.opaque,
                   onTap: () => setState(() => _selectedCategory = 2),
                   child: Text(
-                    'عرض الكل',
+                    l10n.viewAll,
                     style: NazelTypography.arabic(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w800,
@@ -2395,13 +2402,13 @@ class _TourismModalState extends State<TourismModal> {
               if (act['isHero'] == true) {
                 return Padding(
                   padding: EdgeInsets.only(bottom: NazelDimens.space12),
-                  child: _buildHeroCard(act),
+                  child: _buildHeroCard(act, l10n),
                 );
               }
               return NazelChooseCard(
                 title: act['title'] as String,
                 subtitle:
-                    '${act['duration']} • ${act['subtitle'] ?? act['description']} • ${act['price']} رس',
+                    '${act['duration']} • ${act['subtitle'] ?? act['description']} • ${act['price']} ${l10n.currencySar}',
                 onTap: () => _startBooking(act),
                 trailing: NazelRatingBadge(
                   rating: (act['rating'] as num).toDouble(),
@@ -2415,7 +2422,7 @@ class _TourismModalState extends State<TourismModal> {
     );
   }
 
-  Widget _buildHeroCard(Map<String, dynamic> act) {
+  Widget _buildHeroCard(Map<String, dynamic> act, AppLocalizations l10n) {
     return GestureDetector(
       onTap: () => _startBooking(act),
       child: Container(
@@ -2439,12 +2446,12 @@ class _TourismModalState extends State<TourismModal> {
               act['image'] ?? 'assets/images/ipad_image_de8207a6.png',
               fit: BoxFit.cover,
             ),
-            // Luxury RTL Purple Gradient Overlay
+            // Luxury Gradient Overlay
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.centerRight,
-                  end: Alignment.centerLeft,
+                  begin: AlignmentDirectional.centerStart,
+                  end: AlignmentDirectional.centerEnd,
                   colors: [
                     NazelColors.primary.withValues(alpha: 0.95),
                     NazelColors.primary.withValues(alpha: 0.85),
@@ -2455,7 +2462,7 @@ class _TourismModalState extends State<TourismModal> {
                 ),
               ),
             ),
-            // Text Content (RTL Right side)
+            // Text Content
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: NazelDimens.space24,
@@ -2510,7 +2517,7 @@ class _TourismModalState extends State<TourismModal> {
                   ),
                   // Price Tag
                   Text(
-                    '${act['price']} رس',
+                    '${act['price']} ${l10n.currencySar}',
                     style: NazelTypography.arabic(
                       fontSize: 24.0,
                       fontWeight: FontWeight.w900,
@@ -2526,7 +2533,7 @@ class _TourismModalState extends State<TourismModal> {
     );
   }
 
-  Widget _buildBookingStep() {
+  Widget _buildBookingStep(AppLocalizations l10n, List<String> timeSlots) {
     final act = _selectedActivity!;
     final totalPrice = (act['price'] as int) * _guestsCount;
 
@@ -2572,7 +2579,7 @@ class _TourismModalState extends State<TourismModal> {
                   ),
                 ),
                 Text(
-                  '${act['price']} رس / شخص',
+                  '${act['price']} ${l10n.perPerson}',
                   style: NazelTypography.arabic(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w800,
@@ -2586,7 +2593,7 @@ class _TourismModalState extends State<TourismModal> {
 
           // 1. Number of Guests
           Text(
-            'عدد الأشخاص',
+            l10n.numberOfGuests,
             style: NazelTypography.arabic(
               fontSize: 18.0,
               fontWeight: FontWeight.w800,
@@ -2604,7 +2611,7 @@ class _TourismModalState extends State<TourismModal> {
 
           // 2. Preferred Time Slot
           Text(
-            'الوقت المفضل',
+            l10n.preferredTime,
             style: NazelTypography.arabic(
               fontSize: 18.0,
               fontWeight: FontWeight.w800,
@@ -2612,9 +2619,9 @@ class _TourismModalState extends State<TourismModal> {
             ),
           ),
           SizedBox(height: NazelDimens.space10),
-          ...List.generate(_timeSlots.length, (index) {
+          ...List.generate(timeSlots.length, (index) {
             return NazelTimeTile(
-              timeText: _timeSlots[index],
+              timeText: timeSlots[index],
               isSelected: _selectedTimeSlot == index,
               onTap: () => setState(() => _selectedTimeSlot = index),
             );
@@ -2623,7 +2630,7 @@ class _TourismModalState extends State<TourismModal> {
 
           // 3. Special Notes
           Text(
-            'ملاحظات خاصة (اختياري)',
+            l10n.specialNotesOptional,
             style: NazelTypography.arabic(
               fontSize: 16.0,
               fontWeight: FontWeight.w700,
@@ -2640,7 +2647,7 @@ class _TourismModalState extends State<TourismModal> {
               color: NazelColors.textPrimary,
             ),
             decoration: InputDecoration(
-              hintText: 'أي متطلبات خاصة أو استفسارات إضافية...',
+              hintText: l10n.specialNotesHint,
               hintStyle: NazelTypography.arabic(
                 fontSize: 14.0,
                 color: NazelColors.textSecondary.withValues(alpha: 0.7),
@@ -2678,7 +2685,7 @@ class _TourismModalState extends State<TourismModal> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'الإجمالي المتوقع',
+                      l10n.expectedTotal,
                       style: NazelTypography.arabic(
                         fontSize: 13.0,
                         fontWeight: FontWeight.w600,
@@ -2686,7 +2693,7 @@ class _TourismModalState extends State<TourismModal> {
                       ),
                     ),
                     Text(
-                      '$totalPrice رس',
+                      '$totalPrice ${l10n.currencySar}',
                       style: NazelTypography.arabic(
                         fontSize: 22.0,
                         fontWeight: FontWeight.w900,
@@ -2697,13 +2704,13 @@ class _TourismModalState extends State<TourismModal> {
                 ),
               ),
               NazelButton(
-                text: 'تأكيد طلب الحجز',
+                text: l10n.confirmBookingRequest,
                 onPressed: () => setState(() => _step = 2),
                 width: 200.0.w,
               ),
               SizedBox(width: NazelDimens.space12),
               NazelButton(
-                text: 'رجوع',
+                text: l10n.back,
                 variant: NazelButtonVariant.secondary,
                 onPressed: () => setState(() => _step = 0),
                 width: 110.0.w,
@@ -2722,18 +2729,20 @@ class AdsModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // 1. Featured Top Banner (Cleaning Offer)
-          _buildFeaturedBanner(context),
+          _buildFeaturedBanner(context, l10n),
           SizedBox(height: 16.0.h),
 
           // 2. Section Title
           Text(
-            'عروض مميزة',
+            l10n.featuredOffers,
             style: NazelTypography.arabic(
               fontSize: 18.0.sp,
               fontWeight: FontWeight.w800,
@@ -2746,9 +2755,8 @@ class AdsModal extends StatelessWidget {
           _buildOfferCard(
             context: context,
             image: 'assets/images/ipad_image_ac159ff3.png',
-            titleLine1: 'خصم 15% على',
-            titleLine2: 'للرحلات للبحرية',
-            actionText: 'احجز الآن',
+            titleText: l10n.discount15Cruises,
+            actionText: l10n.bookNow,
             onTap: () {},
           ),
           SizedBox(height: 12.0.h),
@@ -2756,9 +2764,8 @@ class AdsModal extends StatelessWidget {
           _buildOfferCard(
             context: context,
             image: 'assets/images/ipad_image_a92eb603.png',
-            titleLine1: 'خصم 10% على',
-            titleLine2: 'توصيل البقالة',
-            actionText: 'اطلب الآن',
+            titleText: l10n.discount10Grocery,
+            actionText: l10n.orderNow,
             onTap: () {},
           ),
           SizedBox(height: 12.0.h),
@@ -2766,9 +2773,8 @@ class AdsModal extends StatelessWidget {
           _buildOfferCard(
             context: context,
             image: 'assets/images/ipad_image_33a2ad6d.png',
-            titleLine1: 'خصم 10% على',
-            titleLine2: 'تأجير السيارات',
-            actionText: 'احجز الآن',
+            titleText: l10n.discount10CarRental,
+            actionText: l10n.bookNow,
             onTap: () {},
           ),
         ],
@@ -2776,11 +2782,12 @@ class AdsModal extends StatelessWidget {
     );
   }
 
-  Widget _buildFeaturedBanner(BuildContext context) {
+  Widget _buildFeaturedBanner(BuildContext context, AppLocalizations l10n) {
     return LayoutBuilder(
       builder: (context, constraints) {
         final cardWidth = constraints.maxWidth;
-        final imageWidth = cardWidth * 0.50;
+        final imageWidth = cardWidth * 0.68;
+        final isRtl = Directionality.of(context) == TextDirection.rtl;
 
         return Container(
           height: cardWidth * 0.20,
@@ -2798,36 +2805,50 @@ class AdsModal extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           child: Stack(
             children: [
-              // Left side image covering half width with fade mask
-              Positioned(
-                left: 0,
+              // Image covering 68% with soft fade mask
+              Positioned.directional(
+                textDirection: Directionality.of(context),
+                start: 0,
                 top: 0,
                 bottom: 0,
                 width: imageWidth,
                 child: ShaderMask(
                   shaderCallback: (rect) {
-                    return const LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      stops: [0.0, 0.65, 1.0],
-                      colors: [Colors.black, Colors.black, Colors.transparent],
+                    return LinearGradient(
+                      begin: isRtl
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
+                      end: isRtl
+                          ? Alignment.centerLeft
+                          : Alignment.centerRight,
+                      stops: const [0.0, 0.40, 0.65, 0.85, 1.0],
+                      colors: [
+                        Colors.black,
+                        Colors.black.withValues(alpha: 0.95),
+                        Colors.black.withValues(alpha: 0.65),
+                        Colors.black.withValues(alpha: 0.25),
+                        Colors.transparent,
+                      ],
                     ).createShader(rect);
                   },
                   blendMode: BlendMode.dstIn,
                   child: Image.asset(
                     'assets/images/ipad_image_e6ced3cf.png',
                     fit: BoxFit.cover,
-                    alignment: Alignment.centerLeft,
+                    alignment: isRtl
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
                   ),
                 ),
               ),
 
-              // Right side content
-              Positioned(
-                right: 0,
+              // Content
+              Positioned.directional(
+                textDirection: Directionality.of(context),
+                end: 0,
                 top: 0,
                 bottom: 0,
-                left: imageWidth * 0.85,
+                start: imageWidth * 0.70,
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -2835,7 +2856,7 @@ class AdsModal extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'احجز الآن',
+                        l10n.bookNow,
                         style: NazelTypography.arabic(
                           fontSize: 16.0.sp,
                           fontWeight: FontWeight.w700,
@@ -2844,7 +2865,7 @@ class AdsModal extends StatelessWidget {
                       ),
                       SizedBox(height: 4.0.h),
                       Text(
-                        'خصم 20% على\nلخدمات التنظيف',
+                        l10n.discount20Cleaning,
                         textAlign: TextAlign.center,
                         style: NazelTypography.arabic(
                           fontSize: 16.0.sp,
@@ -2867,7 +2888,7 @@ class AdsModal extends StatelessWidget {
                             borderRadius: BorderRadius.circular(6.0.r),
                           ),
                           child: Text(
-                            'احجز الان',
+                            l10n.bookNow,
                             style: NazelTypography.arabic(
                               fontSize: 13.0.sp,
                               fontWeight: FontWeight.w700,
@@ -2890,15 +2911,15 @@ class AdsModal extends StatelessWidget {
   Widget _buildOfferCard({
     required BuildContext context,
     required String image,
-    required String titleLine1,
-    required String titleLine2,
+    required String titleText,
     required String actionText,
     required VoidCallback onTap,
   }) {
     return LayoutBuilder(
       builder: (context, constraints) {
         final cardWidth = constraints.maxWidth;
-        final imageWidth = cardWidth * 0.48;
+        final imageWidth = cardWidth * 0.65;
+        final isRtl = Directionality.of(context) == TextDirection.rtl;
 
         return InkWell(
           onTap: onTap,
@@ -2920,21 +2941,22 @@ class AdsModal extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: Stack(
               children: [
-                // Left image covering ~50% with fade mask
-                Positioned(
-                  left: 0,
+                // Image covering ~65% with soft fade mask
+                Positioned.directional(
+                  textDirection: Directionality.of(context),
+                  start: 0,
                   top: 0,
                   bottom: 0,
                   width: imageWidth,
                   child: ShaderMask(
                     shaderCallback: (rect) {
-                      return const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        stops: [0.0, 0.65, 1.0],
+                      return LinearGradient(
+                        begin: isRtl ? Alignment.centerRight : Alignment.centerLeft,
+                        end: isRtl ? Alignment.centerLeft : Alignment.centerRight,
+                        stops: const [0.5, 0.8, 1.0],
                         colors: [
                           Colors.black,
-                          Colors.black,
+                          Colors.black.withValues(alpha: 0.4),
                           Colors.transparent,
                         ],
                       ).createShader(rect);
@@ -2943,50 +2965,36 @@ class AdsModal extends StatelessWidget {
                     child: Image.asset(
                       image,
                       fit: BoxFit.cover,
-                      alignment: Alignment.centerLeft,
+                      alignment: isRtl ? Alignment.centerRight : Alignment.centerLeft,
                     ),
                   ),
                 ),
 
                 // Middle offer text
-                Positioned(
-                  left: imageWidth * 0.75,
-                  right: 110.0.w,
+                Positioned.directional(
+                  textDirection: Directionality.of(context),
+                  start: imageWidth * 0.75,
+                  end: 110.0.w,
                   top: 0,
                   bottom: 0,
                   child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          titleLine1,
-                          textAlign: TextAlign.center,
-                          style: NazelTypography.arabic(
-                            fontSize: 15.0.sp,
-                            fontWeight: FontWeight.w800,
-                            color: NazelColors.primary,
-                            height: 1.2,
-                          ),
-                        ),
-                        Text(
-                          titleLine2,
-                          textAlign: TextAlign.center,
-                          style: NazelTypography.arabic(
-                            fontSize: 15.0.sp,
-                            fontWeight: FontWeight.w800,
-                            color: NazelColors.primary,
-                            height: 1.2,
-                          ),
-                        ),
-                      ],
+                    child: Text(
+                      titleText,
+                      textAlign: TextAlign.center,
+                      style: NazelTypography.arabic(
+                        fontSize: 15.0.sp,
+                        fontWeight: FontWeight.w800,
+                        color: NazelColors.primary,
+                        height: 1.2,
+                      ),
                     ),
                   ),
                 ),
 
-                // Right action text
-                Positioned(
-                  right: 24.0.w,
+                // Action text
+                Positioned.directional(
+                  textDirection: Directionality.of(context),
+                  end: 24.0.w,
                   top: 0,
                   bottom: 0,
                   child: Center(

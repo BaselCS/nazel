@@ -3,24 +3,29 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../l10n/app_localizations.dart';
 import '../atoms/nazel_button.dart';
 
 class StateDoneView extends StatelessWidget {
-  final String title;
+  final String? title;
   final String description;
-  final String buttonText;
+  final String? buttonText;
   final VoidCallback onDone;
 
   const StateDoneView({
     super.key,
-    this.title = 'أٌسلتم الطلب',
+    this.title,
     required this.description,
-    this.buttonText = 'تم',
+    this.buttonText,
     required this.onDone,
   });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final effectiveTitle = title ?? l10n?.orderReceived ?? 'أُستلم الطلب';
+    final effectiveButton = buttonText ?? l10n?.done ?? 'تم';
+
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -49,7 +54,7 @@ class StateDoneView extends StatelessWidget {
             SizedBox(height: NazelDimens.space24),
             // Title
             Text(
-              title,
+              effectiveTitle,
               style: NazelTypography.arabic(
                 fontSize: 28.0,
                 fontWeight: FontWeight.w900,
@@ -70,7 +75,7 @@ class StateDoneView extends StatelessWidget {
             ),
             SizedBox(height: NazelDimens.space36),
             NazelButton(
-              text: buttonText,
+              text: effectiveButton,
               variant: NazelButtonVariant.primary,
               onPressed: onDone,
               width: 240.0.w,

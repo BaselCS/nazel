@@ -1,0 +1,919 @@
+{
+  "@@locale": "en",
+  "appName": "Nazel - Khuzama Touch",
+  "@appName": {
+    "description": "The title of the application"
+  },
+  "appTagline": "Your journey needs a screen",
+  "@appTagline": {
+    "description": "App promotional tagline"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language button text"
+  },
+  "arabic": "عربي",
+  "@arabic": {
+    "description": "Arabic language selection label"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language selection label"
+  },
+  "done": "Done",
+  "@done": {
+    "description": "Generic done button"
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Generic back button"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Generic cancel button"
+  },
+  "continueText": "Continue",
+  "@continueText": {
+    "description": "Generic continue button"
+  },
+  "orderNow": "Order Now",
+  "@orderNow": {
+    "description": "Order now button"
+  },
+  "bookNow": "Book Now",
+  "@bookNow": {
+    "description": "Book now button"
+  },
+  "viewAll": "View All",
+  "@viewAll": {
+    "description": "View all link"
+  },
+  "completed": "Completed",
+  "@completed": {
+    "description": "Completed status badge"
+  },
+  "currencySar": "SAR",
+  "@currencySar": {
+    "description": "Saudi Riyal currency abbreviation"
+  },
+  "currencyRiyal": "Riyal",
+  "@currencyRiyal": {
+    "description": "Saudi Riyal full word"
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Total label"
+  },
+  "expectedTotal": "Expected Total",
+  "@expectedTotal": {
+    "description": "Expected total label"
+  },
+  "call": "Call",
+  "@call": {
+    "description": "Call action button"
+  },
+  "searchHint": "Search...",
+  "@searchHint": {
+    "description": "Search field hint"
+  },
+  "sendRequest": "Send Request",
+  "@sendRequest": {
+    "description": "Send request button"
+  },
+
+  "guestGreeting": "Welcome Faisal",
+  "@guestGreeting": {
+    "description": "Guest welcome heading"
+  },
+  "guestWish": "We wish you a pleasant stay",
+  "@guestWish": {
+    "description": "Guest welcome sub-wish"
+  },
+  "timeDetails": "Time Details",
+  "@timeDetails": {
+    "description": "Time details section title"
+  },
+  "checkInTime": "Check-in Time",
+  "@checkInTime": {
+    "description": "Check-in time label"
+  },
+  "checkInTimeValue": "2027/02/01 - 00:00 PM",
+  "@checkInTimeValue": {
+    "description": "Check-in time value display"
+  },
+  "checkOutTime": "Check-out Time",
+  "@checkOutTime": {
+    "description": "Check-out time label"
+  },
+  "checkOutTimeValue": "2027/02/04 - 4:30 PM",
+  "@checkOutTimeValue": {
+    "description": "Check-out time value display"
+  },
+  "remainingTime": "Remaining Time",
+  "@remainingTime": {
+    "description": "Remaining stay countdown title"
+  },
+  "remainingTimeValue": "01:01:40:00",
+  "@remainingTimeValue": {
+    "description": "Remaining stay countdown value"
+  },
+  "networkDetails": "Network Details",
+  "@networkDetails": {
+    "description": "Network section title"
+  },
+  "networkName": "Network Name",
+  "@networkName": {
+    "description": "Wi-Fi SSID label"
+  },
+  "networkNameValue": "Khuzama Touch",
+  "@networkNameValue": {
+    "description": "Default Wi-Fi SSID name"
+  },
+  "networkPassword": "Password",
+  "@networkPassword": {
+    "description": "Wi-Fi Password label"
+  },
+  "networkPasswordValue": "Khuzama Flower",
+  "@networkPasswordValue": {
+    "description": "Default Wi-Fi password"
+  },
+  "wifi": "Wi-Fi",
+  "@wifi": {
+    "description": "Wi-Fi card title"
+  },
+
+  "serviceCleaning": "Cleaning Request",
+  "@serviceCleaning": {
+    "description": "Cleaning service grid title"
+  },
+  "serviceCleaningDesc": "Request cleaning service",
+  "@serviceCleaningDesc": {
+    "description": "Cleaning service grid subtitle"
+  },
+  "serviceDelivery": "Delivery Orders",
+  "@serviceDelivery": {
+    "description": "Delivery orders grid title"
+  },
+  "serviceDeliveryDesc": "Restaurants, groceries, pharmacies",
+  "@serviceDeliveryDesc": {
+    "description": "Delivery orders grid subtitle"
+  },
+  "serviceAmenities": "Nearby Amenities",
+  "@serviceAmenities": {
+    "description": "Nearby amenities grid title"
+  },
+  "serviceAmenitiesDesc": "Discover nearby places",
+  "@serviceAmenitiesDesc": {
+    "description": "Nearby amenities grid subtitle"
+  },
+  "serviceTourism": "Tourism & Experiences",
+  "@serviceTourism": {
+    "description": "Tourism grid title"
+  },
+  "serviceTourismDesc": "Activities & guided tours",
+  "@serviceTourismDesc": {
+    "description": "Tourism grid subtitle"
+  },
+  "serviceExtendStay": "Extend Booking",
+  "@serviceExtendStay": {
+    "description": "Extend stay grid title"
+  },
+  "serviceExtendStayDesc": "Extend your stay duration",
+  "@serviceExtendStayDesc": {
+    "description": "Extend stay grid subtitle"
+  },
+  "serviceApartmentInfo": "Booking Info",
+  "@serviceApartmentInfo": {
+    "description": "Apartment info grid title"
+  },
+  "serviceApartmentInfoDesc": "Booking guide & instructions",
+  "@serviceApartmentInfoDesc": {
+    "description": "Apartment info grid subtitle"
+  },
+  "serviceEmergency": "Emergency",
+  "@serviceEmergency": {
+    "description": "Emergency grid title"
+  },
+  "serviceEmergencyDesc": "Quick emergency contact",
+  "@serviceEmergencyDesc": {
+    "description": "Emergency grid subtitle"
+  },
+  "serviceAds": "Offers & Ads",
+  "@serviceAds": {
+    "description": "Offers and ads grid title"
+  },
+  "serviceAdsDesc": "Special offers & featured services",
+  "@serviceAdsDesc": {
+    "description": "Offers and ads grid subtitle"
+  },
+
+  "promoDiscount20Cleaning": "20% off\non Cleaning Services",
+  "@promoDiscount20Cleaning": {
+    "description": "Cleaning discount promo text"
+  },
+  "promoDiscount15Cruises": "15% off\non Sea Cruises",
+  "@promoDiscount15Cruises": {
+    "description": "Sea cruise discount promo text"
+  },
+  "promoDiscount10Grocery": "10% off\non Grocery Delivery",
+  "@promoDiscount10Grocery": {
+    "description": "Grocery discount promo text"
+  },
+  "promoDiscount10CarRental": "10% off\non Car Rental",
+  "@promoDiscount10CarRental": {
+    "description": "Car rental discount promo text"
+  },
+
+  "cleaningSelectService": "Select Service Type",
+  "@cleaningSelectService": {
+    "description": "Title for selecting cleaning service"
+  },
+  "cleaningQuick": "Quick Clean",
+  "@cleaningQuick": {
+    "description": "Quick clean option"
+  },
+  "cleaningDeep": "Deep Clean",
+  "@cleaningDeep": {
+    "description": "Deep clean option"
+  },
+  "cleaningLinen": "Linen & Towel Change",
+  "@cleaningLinen": {
+    "description": "Linen & towel change option"
+  },
+  "previousOrders": "Previous Orders",
+  "@previousOrders": {
+    "description": "Previous orders header"
+  },
+  "sampleOrderDate": "9:20 - 11 May 9:00 AM",
+  "@sampleOrderDate": {
+    "description": "Sample previous order date"
+  },
+  "selectSuitableTime": "Select Suitable Time",
+  "@selectSuitableTime": {
+    "description": "Select suitable time title"
+  },
+  "timeSlotToday11AM": "Today 11:00 AM (Earliest)",
+  "@timeSlotToday11AM": {
+    "description": "Time slot 11 AM"
+  },
+  "timeSlotToday2PM": "Today 02:00 PM",
+  "@timeSlotToday2PM": {
+    "description": "Time slot 2 PM"
+  },
+  "timeSlotToday5PM": "Today 05:00 PM",
+  "@timeSlotToday5PM": {
+    "description": "Time slot 5 PM"
+  },
+  "additionalNotesOptional": "Additional Notes (Optional)",
+  "@additionalNotesOptional": {
+    "description": "Additional notes header"
+  },
+  "notesPlaceholder": "Write your notes here...",
+  "@notesPlaceholder": {
+    "description": "Notes input placeholder"
+  },
+  "orderReceived": "Order Received",
+  "@orderReceived": {
+    "description": "Order received title"
+  },
+  "cleaningOrderDoneDesc": "The cleaning team will arrive at the scheduled time ({timeSlot}).",
+  "@cleaningOrderDoneDesc": {
+    "description": "Cleaning order done description with time slot",
+    "placeholders": {
+      "timeSlot": {
+        "type": "String"
+      }
+    }
+  },
+
+  "bookingInfo": "Booking Information",
+  "@bookingInfo": {
+    "description": "Booking info card title"
+  },
+  "departureDate": "Departure Date",
+  "@departureDate": {
+    "description": "Departure date label"
+  },
+  "sampleDepartureDate": "15 May 2026",
+  "@sampleDepartureDate": {
+    "description": "Sample departure date"
+  },
+  "departureTime": "Departure Time",
+  "@departureTime": {
+    "description": "Departure time label"
+  },
+  "sampleDepartureTime": "12:30 PM",
+  "@sampleDepartureTime": {
+    "description": "Sample departure time"
+  },
+  "bookingNumber": "Booking Number",
+  "@bookingNumber": {
+    "description": "Booking number label"
+  },
+  "sampleBookingNumber": "#NZE-2024-1258",
+  "@sampleBookingNumber": {
+    "description": "Sample booking number"
+  },
+  "dailyRate": "Daily Rate",
+  "@dailyRate": {
+    "description": "Daily rate label"
+  },
+  "extensionDays": "Extension Days",
+  "@extensionDays": {
+    "description": "Extension days label"
+  },
+  "extend": "Extend",
+  "@extend": {
+    "description": "Extend action button"
+  },
+  "extendApprovalNotice": "We will send your request to the owner for approval",
+  "@extendApprovalNotice": {
+    "description": "Notice below extend button"
+  },
+  "extendRequestSent": "Extension Request Sent",
+  "@extendRequestSent": {
+    "description": "Extension request sent title"
+  },
+  "extendRequestDoneDesc": "We sent the request to the owner to approve extending your booking for {days} days.",
+  "@extendRequestDoneDesc": {
+    "description": "Extension request confirmation message",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+
+  "nearestPlacesTitle": "Nearby Amenities",
+  "@nearestPlacesTitle": {
+    "description": "Nearby places title"
+  },
+  "placeGrocery": "Grocery Store",
+  "@placeGrocery": {
+    "description": "Grocery place name"
+  },
+  "placeGroceryFull": "Neighborhood Grocery & Mini Market",
+  "@placeGroceryFull": {
+    "description": "Grocery full title"
+  },
+  "placeBus": "Bus Station",
+  "@placeBus": {
+    "description": "Bus station place name"
+  },
+  "placeBusFull": "Public Transit Bus Station",
+  "@placeBusFull": {
+    "description": "Bus station full title"
+  },
+  "placeHospital": "Al Salam Hospital",
+  "@placeHospital": {
+    "description": "Hospital place name"
+  },
+  "placeHospitalFull": "Al Salam Medical Hospital",
+  "@placeHospitalFull": {
+    "description": "Hospital full title"
+  },
+  "placeMosque": "Neighborhood Mosque",
+  "@placeMosque": {
+    "description": "Mosque place name"
+  },
+  "placeMosqueFull": "Al Huda Grand Mosque",
+  "@placeMosqueFull": {
+    "description": "Mosque full title"
+  },
+  "placePharmacy": "Al Nahdi Pharmacy",
+  "@placePharmacy": {
+    "description": "Pharmacy place name"
+  },
+  "placePharmacyFull": "Al Nahdi 24/7 Pharmacy",
+  "@placePharmacyFull": {
+    "description": "Pharmacy full title"
+  },
+  "distUnitKm": "{dist} km",
+  "@distUnitKm": {
+    "description": "Distance in kilometers",
+    "placeholders": {
+      "dist": {
+        "type": "String"
+      }
+    }
+  },
+  "timeUnitMinutes": "{mins} mins",
+  "@timeUnitMinutes": {
+    "description": "Time in minutes",
+    "placeholders": {
+      "mins": {
+        "type": "String"
+      }
+    }
+  },
+
+  "deliveryTitle": "Delivery Orders",
+  "@deliveryTitle": {
+    "description": "Delivery modal title"
+  },
+  "catRestaurants": "Restaurants",
+  "@catRestaurants": {
+    "description": "Restaurants category"
+  },
+  "catGrocery": "Grocery",
+  "@catGrocery": {
+    "description": "Grocery category"
+  },
+  "catCafes": "Cafes",
+  "@catCafes": {
+    "description": "Cafes category"
+  },
+  "catBuffets": "Buffets",
+  "@catBuffets": {
+    "description": "Buffets category"
+  },
+  "catJuices": "Juices",
+  "@catJuices": {
+    "description": "Juices category"
+  },
+  "catOther": "Other",
+  "@catOther": {
+    "description": "Other category"
+  },
+  "nearbyRestaurants": "Nearby Restaurants",
+  "@nearbyRestaurants": {
+    "description": "Nearby restaurants header"
+  },
+  "cartItemsCount": "Cart ({count} items)",
+  "@cartItemsCount": {
+    "description": "Cart items count label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deliveryOrderReceived": "Order Received",
+  "@deliveryOrderReceived": {
+    "description": "Delivery order received title"
+  },
+  "deliveryOrderDoneDesc": "Your delivery request has been sent successfully and will be delivered to your room promptly.",
+  "@deliveryOrderDoneDesc": {
+    "description": "Delivery order success description"
+  },
+
+  "restaurantHerfy": "Herfy",
+  "@restaurantHerfy": {
+    "description": "Herfy restaurant name"
+  },
+  "restaurantHerfyTags": "Burgers, Sandwiches",
+  "@restaurantHerfyTags": {
+    "description": "Herfy tags"
+  },
+  "restaurantAlbaik": "Albaik",
+  "@restaurantAlbaik": {
+    "description": "Albaik restaurant name"
+  },
+  "restaurantAlbaikTags": "Fried Chicken",
+  "@restaurantAlbaikTags": {
+    "description": "Albaik tags"
+  },
+  "restaurantMcDonalds": "McDonald''s",
+  "@restaurantMcDonalds": {
+    "description": "McDonalds restaurant name"
+  },
+  "restaurantMcDonaldsTags": "Burgers, Sandwiches",
+  "@restaurantMcDonaldsTags": {
+    "description": "McDonalds tags"
+  },
+  "restaurantRaeq": "Raeq",
+  "@restaurantRaeq": {
+    "description": "Raeq restaurant name"
+  },
+  "restaurantRaeqTags": "Shawarma, Meals",
+  "@restaurantRaeqTags": {
+    "description": "Raeq tags"
+  },
+  "restaurantShallal": "Al Shallal",
+  "@restaurantShallal": {
+    "description": "Shallal restaurant name"
+  },
+  "restaurantShallalTags": "Bakery, Meals",
+  "@restaurantShallalTags": {
+    "description": "Shallal tags"
+  },
+  "restaurantKudu": "Kudu",
+  "@restaurantKudu": {
+    "description": "Kudu restaurant name"
+  },
+  "restaurantKuduTags": "Burgers, Chicken",
+  "@restaurantKuduTags": {
+    "description": "Kudu tags"
+  },
+
+  "emergencyTitle": "Emergency",
+  "@emergencyTitle": {
+    "description": "Emergency modal title"
+  },
+  "directEmergencyNumbers": "Direct Fast Contact Numbers",
+  "@directEmergencyNumbers": {
+    "description": "Direct emergency numbers header"
+  },
+  "emergencyPolice": "Police & Security",
+  "@emergencyPolice": {
+    "description": "Police emergency contact"
+  },
+  "emergencyAmbulance": "Ambulance & Medical Emergency",
+  "@emergencyAmbulance": {
+    "description": "Ambulance emergency contact"
+  },
+  "emergencyMaintenance": "Facility & Property Maintenance",
+  "@emergencyMaintenance": {
+    "description": "Maintenance emergency contact"
+  },
+
+  "apartmentInfoTitle": "Apartment Information",
+  "@apartmentInfoTitle": {
+    "description": "Apartment info modal title"
+  },
+  "deviceInstructions": "Appliance Instructions",
+  "@deviceInstructions": {
+    "description": "Appliance instructions title"
+  },
+  "deviceInstructionsDesc": "Guide for using electrical appliances",
+  "@deviceInstructionsDesc": {
+    "description": "Appliance instructions subtitle"
+  },
+  "checkoutPolicy": "Checkout Policy",
+  "@checkoutPolicy": {
+    "description": "Checkout policy title"
+  },
+  "checkoutPolicyDesc": "Check out before 12:00 PM",
+  "@checkoutPolicyDesc": {
+    "description": "Checkout policy subtitle"
+  },
+  "importantContacts": "Important Contacts",
+  "@importantContacts": {
+    "description": "Important contacts title"
+  },
+  "importantContactsDesc": "Contact numbers & services",
+  "@importantContactsDesc": {
+    "description": "Important contacts subtitle"
+  },
+  "aboutApartment": "About Apartment",
+  "@aboutApartment": {
+    "description": "About apartment title"
+  },
+  "aboutApartmentDesc": "Apartment features & information",
+  "@aboutApartmentDesc": {
+    "description": "About apartment subtitle"
+  },
+
+  "applianceAC": "Air Conditioner",
+  "@applianceAC": {
+    "description": "AC appliance name"
+  },
+  "applianceACDesc": "Recommended temperature is (22°C - 24°C). You can use the Quiet button for silent mode while sleeping.",
+  "@applianceACDesc": {
+    "description": "AC instructions"
+  },
+  "applianceTV": "Smart TV",
+  "@applianceTV": {
+    "description": "Smart TV name"
+  },
+  "applianceTVDesc": "Netflix, Shahid, and YouTube apps are pre-installed. To share your screen, choose AirPlay or Screen Cast on the same Wi-Fi.",
+  "@applianceTVDesc": {
+    "description": "Smart TV instructions"
+  },
+  "applianceWasher": "Washing Machine & Dryer",
+  "@applianceWasher": {
+    "description": "Washer appliance name"
+  },
+  "applianceWasherDesc": "Quick 30m program is ideal for fast daily laundry. Extra laundry detergents are in the bathroom cabinet under the sink.",
+  "@applianceWasherDesc": {
+    "description": "Washer instructions"
+  },
+  "applianceCoffee": "Coffee Maker & Kettle",
+  "@applianceCoffee": {
+    "description": "Coffee maker appliance name"
+  },
+  "applianceCoffeeDesc": "Complimentary coffee capsules, tea, and pure water are provided daily. Please fill the tank with fresh water before use.",
+  "@applianceCoffeeDesc": {
+    "description": "Coffee maker instructions"
+  },
+  "applianceMicrowave": "Microwave & Oven",
+  "@applianceMicrowave": {
+    "description": "Microwave appliance name"
+  },
+  "applianceMicrowaveDesc": "Please use designated glassware and oven-safe cookware, and avoid inserting metal or aluminum foil.",
+  "@applianceMicrowaveDesc": {
+    "description": "Microwave instructions"
+  },
+
+  "checkoutTimeHighlight": "Checkout Time: 12:00 PM",
+  "@checkoutTimeHighlight": {
+    "description": "Checkout time highlight"
+  },
+  "checkoutTimeNote": "Please hand over the apartment on time so we can prepare it for the next guest",
+  "@checkoutTimeNote": {
+    "description": "Checkout note"
+  },
+  "policySmartKey": "Hand in Smart Key",
+  "@policySmartKey": {
+    "description": "Smart key policy title"
+  },
+  "policySmartKeyDesc": "Please leave the smart access card inside the reception box upon departure or hand it to the receptionist.",
+  "@policySmartKeyDesc": {
+    "description": "Smart key policy description"
+  },
+  "policyLuggage": "Check Luggage & Safe",
+  "@policyLuggage": {
+    "description": "Luggage policy title"
+  },
+  "policyLuggageDesc": "Make sure not to leave any personal belongings in the wardrobes and empty the digital safe before leaving.",
+  "@policyLuggageDesc": {
+    "description": "Luggage policy description"
+  },
+  "policyPower": "Turn Off Appliances & Lights",
+  "@policyPower": {
+    "description": "Power policy title"
+  },
+  "policyPowerDesc": "Please turn off air conditioning and lights to preserve the environment and ensure general safety.",
+  "@policyPowerDesc": {
+    "description": "Power policy description"
+  },
+  "policyExtendStay": "Request Stay Extension",
+  "@policyExtendStay": {
+    "description": "Extend stay policy title"
+  },
+  "policyExtendStayDesc": "If you wish to extend your stay, you can request it via the 'Extend Booking' service before 10:00 AM.",
+  "@policyExtendStayDesc": {
+    "description": "Extend stay policy description"
+  },
+
+  "contactReception": "Reception & Guest Service",
+  "@contactReception": {
+    "description": "Reception contact title"
+  },
+  "contactRoomService": "Room Service & Orders",
+  "@contactRoomService": {
+    "description": "Room service contact title"
+  },
+  "contactMaintenance": "Maintenance & Technical Support",
+  "@contactMaintenance": {
+    "description": "Maintenance contact title"
+  },
+  "contactSecurity": "Safety & Security",
+  "@contactSecurity": {
+    "description": "Security contact title"
+  },
+  "extensionExt": "Ext: {number}",
+  "@extensionExt": {
+    "description": "Extension number format",
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+
+  "aboutUnitNumber": "Unit Number",
+  "@aboutUnitNumber": {
+    "description": "Unit number label"
+  },
+  "aboutUnitNumberVal": "Suite 402 - 4th Floor",
+  "@aboutUnitNumberVal": {
+    "description": "Unit number value"
+  },
+  "aboutStayType": "Stay Type",
+  "@aboutStayType": {
+    "description": "Stay type label"
+  },
+  "aboutStayTypeVal": "Luxury Executive Hotel Suite",
+  "@aboutStayTypeVal": {
+    "description": "Stay type value"
+  },
+  "aboutArea": "Area",
+  "@aboutArea": {
+    "description": "Area label"
+  },
+  "aboutAreaVal": "85 sq m",
+  "@aboutAreaVal": {
+    "description": "Area value"
+  },
+  "aboutCapacity": "Capacity",
+  "@aboutCapacity": {
+    "description": "Capacity label"
+  },
+  "aboutCapacityVal": "Up to 4 Persons",
+  "@aboutCapacityVal": {
+    "description": "Capacity value"
+  },
+  "aboutFacilities": "Facilities",
+  "@aboutFacilities": {
+    "description": "Facilities label"
+  },
+  "aboutFacilitiesVal": "Master Bedroom, Living Room, Fitted Kitchen, 2 Bathrooms",
+  "@aboutFacilitiesVal": {
+    "description": "Facilities value"
+  },
+  "aboutInternet": "Internet Network",
+  "@aboutInternet": {
+    "description": "Internet label"
+  },
+  "aboutInternetVal": "Ultra High Speed Fiber Optic",
+  "@aboutInternetVal": {
+    "description": "Internet value"
+  },
+  "aboutSmoking": "Smoking Policy",
+  "@aboutSmoking": {
+    "description": "Smoking policy label"
+  },
+  "aboutSmokingVal": "Strictly No Smoking Inside the Unit",
+  "@aboutSmokingVal": {
+    "description": "Smoking policy value"
+  },
+  "aboutQuietHours": "Quiet Hours",
+  "@aboutQuietHours": {
+    "description": "Quiet hours label"
+  },
+  "aboutQuietHoursVal": "From 11:00 PM to 07:00 AM",
+  "@aboutQuietHoursVal": {
+    "description": "Quiet hours value"
+  },
+
+  "tourismTitle": "Tourism & Experiences",
+  "@tourismTitle": {
+    "description": "Tourism modal title"
+  },
+  "catAll": "All",
+  "@catAll": {
+    "description": "All category filter"
+  },
+  "catSeaTrips": "Sea Cruises",
+  "@catSeaTrips": {
+    "description": "Sea cruises category"
+  },
+  "catTours": "Tours",
+  "@catTours": {
+    "description": "Tours category"
+  },
+  "catCars": "Cars",
+  "@catCars": {
+    "description": "Cars category"
+  },
+  "catMarkets": "Markets",
+  "@catMarkets": {
+    "description": "Markets category"
+  },
+  "catOtherTours": "Other",
+  "@catOtherTours": {
+    "description": "Other tourism category"
+  },
+  "tourSeaCruises": "Private Sea Cruises",
+  "@tourSeaCruises": {
+    "description": "Private sea cruise title"
+  },
+  "tourSeaCruisesDesc": "Enjoy a private sea cruise with scenic views and refreshing drinks throughout the trip.",
+  "@tourSeaCruisesDesc": {
+    "description": "Private sea cruise description"
+  },
+  "tourDiriyah": "Historical Diriyah Tour",
+  "@tourDiriyah": {
+    "description": "Diriyah tour title"
+  },
+  "tourDiriyahDesc": "A rich cultural tour of the top landmarks of historic Diriyah and the UNESCO-listed At-Turaif district.",
+  "@tourDiriyahDesc": {
+    "description": "Diriyah tour description"
+  },
+  "tourDiriyahSub": "Includes certified tour guide & visit to heritage At-Turaif district",
+  "@tourDiriyahSub": {
+    "description": "Diriyah tour subtitle"
+  },
+  "tourSafari": "Luxury Desert Safari & Camping",
+  "@tourSafari": {
+    "description": "Desert safari tour title"
+  },
+  "tourSafariDesc": "An exceptional experience among golden dunes with premium BBQ dining and live entertainment.",
+  "@tourSafariDesc": {
+    "description": "Desert safari tour description"
+  },
+  "tourSafariSub": "Includes dinner & live entertainment shows",
+  "@tourSafariSub": {
+    "description": "Desert safari tour subtitle"
+  },
+  "tourLuxuryCar": "Luxury Car Rental with Private Chauffeur",
+  "@tourLuxuryCar": {
+    "description": "Luxury car rental title"
+  },
+  "tourLuxuryCarDesc": "Upscale and comfortable transport service with a private chauffeur knowledgeable of all destinations.",
+  "@tourLuxuryCarDesc": {
+    "description": "Luxury car rental description"
+  },
+  "tourLuxuryCarSub": "Mercedes S-Class with professional chauffeur",
+  "@tourLuxuryCarSub": {
+    "description": "Luxury car rental subtitle"
+  },
+  "tourShopping": "Shopping Tour in Popular Souqs & Malls",
+  "@tourShopping": {
+    "description": "Shopping tour title"
+  },
+  "tourShoppingDesc": "Discover the best shops, traditional products, and modern shopping malls.",
+  "@tourShoppingDesc": {
+    "description": "Shopping tour description"
+  },
+  "tourShoppingSub": "Complete shopping tour with transfer",
+  "@tourShoppingSub": {
+    "description": "Shopping tour subtitle"
+  },
+  "numberOfGuests": "Number of Guests",
+  "@numberOfGuests": {
+    "description": "Number of guests label"
+  },
+  "preferredTime": "Preferred Time",
+  "@preferredTime": {
+    "description": "Preferred time label"
+  },
+  "specialNotesOptional": "Special Notes (Optional)",
+  "@specialNotesOptional": {
+    "description": "Special notes label"
+  },
+  "specialNotesHint": "Any special requirements or additional inquiries...",
+  "@specialNotesHint": {
+    "description": "Special notes placeholder"
+  },
+  "confirmBookingRequest": "Confirm Booking Request",
+  "@confirmBookingRequest": {
+    "description": "Confirm booking request button"
+  },
+  "bookingRequestReceived": "Booking Request Received",
+  "@bookingRequestReceived": {
+    "description": "Booking request received title"
+  },
+  "bookingRequestDoneDesc": "Your booking request was sent successfully and the receptionist will contact you to confirm the appointment.",
+  "@bookingRequestDoneDesc": {
+    "description": "Booking request done description"
+  },
+  "perPerson": "SAR / Person",
+  "@perPerson": {
+    "description": "Per person price suffix"
+  },
+  "fullDay": "Full Day",
+  "@fullDay": {
+    "description": "Full day duration"
+  },
+  "hoursCount": "{count} Hours",
+  "@hoursCount": {
+    "description": "Hours duration",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeSlotMorning": "Morning (09:00 AM - 12:00 PM)",
+  "@timeSlotMorning": {
+    "description": "Morning time slot"
+  },
+  "timeSlotAfternoon": "Afternoon (01:00 PM - 04:00 PM)",
+  "@timeSlotAfternoon": {
+    "description": "Afternoon time slot"
+  },
+  "timeSlotEvening": "Evening (05:00 PM - 08:00 PM)",
+  "@timeSlotEvening": {
+    "description": "Evening time slot"
+  },
+  "timeSlotNight": "Night (08:30 PM - 11:30 PM)",
+  "@timeSlotNight": {
+    "description": "Night time slot"
+  },
+
+  "featuredOffers": "Special Offers",
+  "@featuredOffers": {
+    "description": "Featured offers title"
+  },
+  "discount20Cleaning": "20% off\non Cleaning Services",
+  "@discount20Cleaning": {
+    "description": "Discount 20% cleaning offer"
+  },
+  "discount15Cruises": "15% off\non Sea Cruises",
+  "@discount15Cruises": {
+    "description": "Discount 15% cruises offer"
+  },
+  "discount10Grocery": "10% off\non Grocery Delivery",
+  "@discount10Grocery": {
+    "description": "Discount 10% grocery offer"
+  },
+  "discount10CarRental": "10% off\non Car Rental",
+  "@discount10CarRental": {
+    "description": "Discount 10% car rental offer"
+  },
+
+  "serviceSoonTitle": "Service Coming Soon",
+  "@serviceSoonTitle": {
+    "description": "State soon title"
+  },
+  "serviceSoonDesc": "We are currently preparing this feature to offer the best experience for your stay",
+  "@serviceSoonDesc": {
+    "description": "State soon description"
+  },
+  "backToHome": "Back to Home",
+  "@backToHome": {
+    "description": "Back to home button"
+  }
+}

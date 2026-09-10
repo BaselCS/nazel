@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
-
 import '../atoms/nazel_back_button.dart';
 
 class NazelAppBar extends StatelessWidget {
@@ -44,17 +43,19 @@ class NazelAppBar extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          // Back button on left with forward arrow for Arabic RTL
-          Positioned(
-            left: 0,
+          // Pop-up back button: on LEFT in Arabic (RTL end), on RIGHT in English (LTR end)
+          Positioned.directional(
+            textDirection: Directionality.of(context),
+            end: 0,
             child: NazelBackButton(
               onPressed: onBack,
             ),
           ),
-          // Actions on the right side
+          // Actions on opposite edge (start edge)
           if (actions != null)
-            Positioned(
-              right: 0,
+            Positioned.directional(
+              textDirection: Directionality.of(context),
+              start: 0,
               child: Row(mainAxisSize: MainAxisSize.min, children: actions!),
             ),
         ],

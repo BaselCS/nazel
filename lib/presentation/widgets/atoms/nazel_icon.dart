@@ -25,6 +25,34 @@ enum NazelIconType {
   plus,
   minus,
   star,
+  back,
+  forward,
+}
+
+class NazelDirectionalIcons {
+  static IconData back(BuildContext context) {
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
+    return isRtl
+        ? Icons.arrow_forward_ios_rounded
+        : Icons.arrow_forward_ios_rounded;
+  }
+
+  static IconData forward(BuildContext context) {
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
+    return isRtl
+        ? Icons.arrow_back_ios_new_rounded
+        : Icons.arrow_back_ios_new_rounded;
+  }
+
+  static IconData chevronForward(BuildContext context) {
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
+    return isRtl ? Icons.chevron_left_rounded : Icons.chevron_left_rounded;
+  }
+
+  static IconData chevronBack(BuildContext context) {
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
+    return isRtl ? Icons.chevron_right_rounded : Icons.chevron_right_rounded;
+  }
 }
 
 class NazelIcon extends StatelessWidget {
@@ -46,6 +74,10 @@ class NazelIcon extends StatelessWidget {
 
     IconData getMaterialIcon() {
       switch (type) {
+        case NazelIconType.back:
+          return NazelDirectionalIcons.back(context);
+        case NazelIconType.forward:
+          return NazelDirectionalIcons.forward(context);
         case NazelIconType.clean:
           return Icons.cleaning_services_rounded;
         case NazelIconType.delivery:

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../l10n/app_localizations.dart';
 import '../atoms/nazel_button.dart';
 import '../atoms/nazel_icon.dart';
 
@@ -22,6 +23,8 @@ class NazelWifiCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Container(
       width: width ?? 280.0.w,
       padding: EdgeInsets.all(NazelDimens.space20),
@@ -52,7 +55,7 @@ class NazelWifiCard extends StatelessWidget {
               ),
               SizedBox(width: NazelDimens.space12),
               Text(
-                'الواي فاي',
+                l10n?.wifi ?? 'الواي فاي',
                 style: NazelTypography.arabic(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w800,
@@ -71,7 +74,9 @@ class NazelWifiCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: NazelColors.purpleSoft,
                 borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
-                border: Border.all(color: NazelColors.purpleBorder.withValues(alpha: 0.4)),
+                border: Border.all(
+                  color: NazelColors.purpleBorder.withValues(alpha: 0.4),
+                ),
               ),
               alignment: Alignment.center,
               child: Icon(
@@ -83,15 +88,20 @@ class NazelWifiCard extends StatelessWidget {
           ),
           SizedBox(height: NazelDimens.space16),
           // Network Info Rows
-          _buildInfoRow('اسم الشبكة', networkName),
+          _buildInfoRow(context, l10n?.networkName ?? 'اسم الشبكة', networkName),
           SizedBox(height: NazelDimens.space8),
-          _buildInfoRow('كلمة المرور', password, showForwardIcon: true),
+          _buildInfoRow(
+            context,
+            l10n?.networkPassword ?? 'كلمة المرور',
+            password,
+            showForwardIcon: true,
+          ),
           SizedBox(height: NazelDimens.space16),
           // Button for sending the request
           SizedBox(
             width: double.infinity,
             child: NazelButton(
-              text: 'إرسال الطلب',
+              text: l10n?.sendRequest ?? 'إرسال الطلب',
               onPressed: () {},
             ),
           ),
@@ -100,7 +110,12 @@ class NazelWifiCard extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(String label, String value, {bool showForwardIcon = false}) {
+  Widget _buildInfoRow(
+    BuildContext context,
+    String label,
+    String value, {
+    bool showForwardIcon = false,
+  }) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: NazelDimens.space12,
@@ -128,7 +143,7 @@ class NazelWifiCard extends StatelessWidget {
               if (showForwardIcon) ...[
                 SizedBox(width: NazelDimens.space6),
                 Icon(
-                  Icons.arrow_forward_ios_rounded,
+                  NazelDirectionalIcons.forward(context),
                   size: 14.0.r,
                   color: NazelColors.primary,
                 ),
