@@ -55,16 +55,20 @@ class StateSoonView extends StatelessWidget {
             Text(
               effectiveMessage,
               style: NazelTypography.arabic(
-                fontSize: 28.0,
-                fontWeight: FontWeight.w900,
-                color: NazelColors.primary,
+                fontSize: 26.0,
+                fontWeight: FontWeight.w700,
+                color: NazelColors.primaryDark,
               ),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: NazelDimens.space12),
             Text(
               effectiveDesc,
-              style: NazelTypography.serviceSubtitle,
+              style: NazelTypography.arabic(
+                fontSize: 15.0,
+                fontWeight: FontWeight.w600,
+                color: NazelColors.textSecondary,
+              ),
               textAlign: TextAlign.center,
             ),
             if (onBack != null) ...[

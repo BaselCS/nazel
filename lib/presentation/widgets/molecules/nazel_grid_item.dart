@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
@@ -78,13 +79,14 @@ class NazelGridProductCard extends StatelessWidget {
                 ),
                 SizedBox(height: NazelDimens.space12),
                 // Title
-                Text(
+                AutoSizeText(
                   title,
                   style: NazelTypography.arabic(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w800,
                   ),
                   maxLines: 1,
+                  minFontSize: 11,
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: NazelDimens.space6),

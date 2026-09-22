@@ -62,20 +62,20 @@ class NazelChooseCard extends StatelessWidget {
       subtitle: '$distance • $time',
       onTap: onTap,
       leading: Container(
-        width: 56.0.r,
-        height: 56.0.r,
+        width: 52.0.r,
+        height: 52.0.r,
         decoration: BoxDecoration(
           color: NazelColors.purpleSoft,
-          borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
+          borderRadius: BorderRadius.circular(6.0.r),
         ),
         alignment: Alignment.center,
-        child: NazelIcon(type: iconType, size: 28.0.r),
+        child: NazelIcon(type: iconType, size: 26.0.r),
       ),
       trailing: Builder(
         builder: (context) {
           return Icon(
             NazelDirectionalIcons.chevronForward(context),
-            size: 28.0.r,
+            size: 24.0.r,
             color: NazelColors.textSecondary,
           );
         },
@@ -94,17 +94,17 @@ class NazelChooseCard extends StatelessWidget {
     return NazelChooseCard(
       title: title,
       subtitle: '$category • $deliveryTime',
-      height: 120.0.h,
+      height: 110.0.h,
       onTap: onTap,
       leading: Container(
-        width: 80.0.r,
-        height: 80.0.r,
+        width: 72.0.r,
+        height: 72.0.r,
         decoration: BoxDecoration(
           color: NazelColors.purpleSoft,
-          borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
+          borderRadius: BorderRadius.circular(6.0.r),
         ),
         alignment: Alignment.center,
-        child: NazelIcon(type: NazelIconType.shoppingCart, size: 36.0.r),
+        child: NazelIcon(type: NazelIconType.shoppingCart, size: 32.0.r),
       ),
       trailing: NazelRatingBadge(rating: rating),
     );
@@ -112,42 +112,46 @@ class NazelChooseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final r = BorderRadius.circular(8.0.r);
+
     return Container(
       height: height ?? NazelDimens.chooseCardHeight,
-      margin: EdgeInsets.symmetric(vertical: NazelDimens.space6),
+      margin: EdgeInsets.symmetric(vertical: 6.0.h),
       decoration: BoxDecoration(
-        color: NazelColors.surfaceWhite,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+        color: isSelected
+            ? NazelColors.purpleSoft.withValues(alpha: 0.35)
+            : NazelColors.surfaceWhite,
+        borderRadius: r,
         border: Border.all(
           color: isSelected
-              ? NazelColors.gold
-              : NazelColors.borderLight.withValues(alpha: 0.8),
+              ? NazelColors.primary
+              : NazelColors.purpleBorder.withValues(alpha: 0.35),
           width: isSelected ? 1.5 : 1.0,
         ),
         boxShadow: [
           BoxShadow(
             color: NazelColors.primary.withValues(alpha: 0.04),
-            offset: Offset(0, 4.h),
-            blurRadius: 12.0.r,
+            offset: const Offset(0, 2),
+            blurRadius: 6.0.r,
           ),
         ],
       ),
       child: Material(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+        borderRadius: r,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+          borderRadius: r,
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: NazelDimens.space20,
-              vertical: NazelDimens.space12,
+              horizontal: 18.0.w,
+              vertical: 12.0.h,
             ),
             child: Row(
               children: [
                 if (leading != null) ...[
                   leading!,
-                  SizedBox(width: NazelDimens.space16),
+                  SizedBox(width: 14.0.w),
                 ],
                 Expanded(
                   child: Column(
@@ -158,19 +162,19 @@ class NazelChooseCard extends StatelessWidget {
                         title,
                         style: NazelTypography.arabic(
                           fontSize: 18.0,
-                          fontWeight: FontWeight.w800,
-                          color: NazelColors.primary,
+                          fontWeight: FontWeight.w700,
+                          color: NazelColors.primaryDark,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       if (subtitle != null) ...[
-                        SizedBox(height: NazelDimens.space4),
+                        SizedBox(height: 4.0.h),
                         Text(
                           subtitle!,
                           style: NazelTypography.arabic(
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 14.5,
+                            fontWeight: FontWeight.w600,
                             color: NazelColors.textSecondary,
                           ),
                           maxLines: 1,
@@ -181,7 +185,7 @@ class NazelChooseCard extends StatelessWidget {
                   ),
                 ),
                 if (trailing != null) ...[
-                  SizedBox(width: NazelDimens.space12),
+                  SizedBox(width: 12.0.w),
                   trailing!,
                 ],
               ],

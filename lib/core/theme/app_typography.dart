@@ -19,6 +19,9 @@ class NazelTypography {
       color: color,
       height: height,
       letterSpacing: letterSpacing,
+      textStyle: const TextStyle(
+        fontFamilyFallback: ['Tajawal', 'Cairo', 'sans-serif'],
+      ),
     );
   }
 
@@ -35,6 +38,9 @@ class NazelTypography {
       color: color,
       height: height,
       letterSpacing: letterSpacing,
+      textStyle: const TextStyle(
+        fontFamilyFallback: ['Tajawal', 'Cairo', 'sans-serif'],
+      ),
     );
   }
 
@@ -51,6 +57,9 @@ class NazelTypography {
       color: color,
       height: height,
       letterSpacing: letterSpacing,
+      textStyle: const TextStyle(
+        fontFamilyFallback: ['Aref Ruqaa', 'Tajawal', 'Cairo', 'serif'],
+      ),
     );
   }
 

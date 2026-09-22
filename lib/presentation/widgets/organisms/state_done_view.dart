@@ -56,9 +56,9 @@ class StateDoneView extends StatelessWidget {
             Text(
               effectiveTitle,
               style: NazelTypography.arabic(
-                fontSize: 28.0,
-                fontWeight: FontWeight.w900,
-                color: NazelColors.textPrimary,
+                fontSize: 26.0,
+                fontWeight: FontWeight.w700,
+                color: NazelColors.primaryDark,
               ),
               textAlign: TextAlign.center,
             ),

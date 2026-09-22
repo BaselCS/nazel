@@ -6,11 +6,11 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/app_localizations.dart';
-import '../atoms/nazel_back_button.dart';
 import '../atoms/nazel_button.dart';
 import '../atoms/nazel_icon.dart';
 import '../atoms/nazel_increment_field.dart';
 import '../atoms/nazel_rating_badge.dart';
+import '../molecules/nazel_app_bar.dart';
 import '../molecules/nazel_choose_card.dart';
 import '../molecules/nazel_time_tile.dart';
 import 'state_done_view.dart';
@@ -69,9 +69,9 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
           Text(
             l10n.selectSuitableTime,
             style: NazelTypography.arabic(
-              fontSize: 22.0,
-              fontWeight: FontWeight.w900,
-              color: NazelColors.primary,
+              fontSize: 20.0,
+              fontWeight: FontWeight.w700,
+              color: NazelColors.primaryDark,
             ),
           ),
           SizedBox(height: NazelDimens.space12),
@@ -86,23 +86,38 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
           Text(
             l10n.additionalNotesOptional,
             style: NazelTypography.arabic(
-              fontSize: 22.0,
-              fontWeight: FontWeight.w900,
-              color: NazelColors.primary,
+              fontSize: 20.0,
+              fontWeight: FontWeight.w700,
+              color: NazelColors.primaryDark,
             ),
           ),
           SizedBox(height: NazelDimens.space8),
           TextField(
             controller: _notesController,
-            maxLines: 6,
+            maxLines: 5,
             decoration: InputDecoration(
               hintText: l10n.notesPlaceholder,
               hintStyle: NazelTypography.bodySmall,
               filled: true,
-              fillColor: NazelColors.background,
+              fillColor: NazelColors.surfaceWhite,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(NazelDimens.radiusMd),
-                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(6.0.r),
+                borderSide: BorderSide(
+                  color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(6.0.r),
+                borderSide: BorderSide(
+                  color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(6.0.r),
+                borderSide: const BorderSide(
+                  color: NazelColors.primary,
+                  width: 1.5,
+                ),
               ),
             ),
           ),
@@ -138,9 +153,9 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
           Text(
             l10n.cleaningSelectService,
             style: NazelTypography.arabic(
-              fontSize: 22.0,
-              fontWeight: FontWeight.w900,
-              color: NazelColors.primary,
+              fontSize: 20.0,
+              fontWeight: FontWeight.w700,
+              color: NazelColors.primaryDark,
             ),
           ),
           SizedBox(height: NazelDimens.space12),
@@ -154,29 +169,21 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
               },
             );
           }),
-          SizedBox(height: NazelDimens.space20),
-          // Previous Orders Section Header
+          SizedBox(height: NazelDimens.space24),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              NazelIcon(
+                type: NazelIconType.clock,
+                size: 20.0.r,
+                color: NazelColors.primaryDark,
+              ),
+              SizedBox(width: NazelDimens.space8),
               Text(
                 l10n.previousOrders,
                 style: NazelTypography.arabic(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.w900,
-                  color: NazelColors.primary,
-                ),
-              ),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {},
-                child: Text(
-                  l10n.viewAll,
-                  style: NazelTypography.arabic(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w800,
-                    color: NazelColors.primary,
-                  ),
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w700,
+                  color: NazelColors.primaryDark,
                 ),
               ),
             ],
@@ -187,11 +194,18 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
             height: NazelDimens.chooseCardHeight,
             decoration: BoxDecoration(
               color: NazelColors.surfaceWhite,
-              borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+              borderRadius: BorderRadius.circular(8.0.r),
               border: Border.all(
-                color: NazelColors.borderLight.withValues(alpha: 0.8),
+                color: NazelColors.purpleBorder.withValues(alpha: 0.35),
                 width: 1.0,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: NazelColors.primary.withValues(alpha: 0.04),
+                  offset: const Offset(0, 2),
+                  blurRadius: 6.0.r,
+                ),
+              ],
             ),
             padding: EdgeInsets.symmetric(
               horizontal: NazelDimens.space20,
@@ -214,8 +228,8 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
                         l10n.cleaningQuick,
                         style: NazelTypography.arabic(
                           fontSize: 18.0,
-                          fontWeight: FontWeight.w800,
-                          color: NazelColors.primary,
+                          fontWeight: FontWeight.w700,
+                          color: NazelColors.primaryDark,
                         ),
                       ),
                       SizedBox(height: NazelDimens.space4),
@@ -266,47 +280,1540 @@ class _CleaningServiceModalState extends State<CleaningServiceModal> {
   }
 }
 
-/// 2. Extend Booking Modal
+/// 1b. Contracted Services Hub Modal ("اطلب خدمة")
+class ServicesHubModal extends StatefulWidget {
+  const ServicesHubModal({super.key});
+
+  @override
+  State<ServicesHubModal> createState() => _ServicesHubModalState();
+}
+
+class _ServicesHubModalState extends State<ServicesHubModal> {
+  String? _activeCategory; // null: catalog, 'laundry', 'grocery', 'cleaning', 'delivery', 'extra_services'
+  bool _isDone = false;
+  String _currentServiceName = '';
+  String _currentProviderName = '';
+  String _currentOrderDetails = '';
+  final String _orderId = '#NZ-8412';
+
+  // Laundry state
+  int _selectedLaundryPkg = 0;
+  final TextEditingController _laundryNotes = TextEditingController();
+
+  // Grocery state
+  int _selectedGroceryBasket = 0;
+  final TextEditingController _groceryNotes = TextEditingController();
+
+  // Cleaning state
+  int _selectedCleaningType = 0;
+  int _selectedCleaningTime = 0;
+  final TextEditingController _cleaningNotes = TextEditingController();
+
+  // Delivery state
+  int _selectedDeliveryOption = 0;
+  final TextEditingController _deliveryNotes = TextEditingController();
+
+  // Extra services state
+  int _selectedExtraService = 0;
+  final TextEditingController _extraServiceNotes = TextEditingController();
+
+  @override
+  void dispose() {
+    _laundryNotes.dispose();
+    _groceryNotes.dispose();
+    _cleaningNotes.dispose();
+    _deliveryNotes.dispose();
+    _extraServiceNotes.dispose();
+    super.dispose();
+  }
+
+  void _triggerWhatsApp(String providerName, String serviceName) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'جاري فتح واتساب مع $providerName ($serviceName)...',
+          style: NazelTypography.arabic(
+            fontSize: 14.0,
+            fontWeight: FontWeight.w600,
+            color: NazelColors.surfaceWhite,
+          ),
+        ),
+        backgroundColor: NazelColors.primaryDark,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  void _triggerCall(String providerName) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'جاري الاتصال بـ $providerName لتأكيد تفاصيل الطلب...',
+          style: NazelTypography.arabic(
+            fontSize: 14.0,
+            fontWeight: FontWeight.w600,
+            color: NazelColors.surfaceWhite,
+          ),
+        ),
+        backgroundColor: NazelColors.primaryDark,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  void _submitOrder({
+    required String serviceName,
+    required String providerName,
+    required String details,
+  }) {
+    setState(() {
+      _currentServiceName = serviceName;
+      _currentProviderName = providerName;
+      _currentOrderDetails = details;
+      _isDone = true;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isDone) {
+      return _buildOrderStatusScreen();
+    }
+
+    if (_activeCategory == null) {
+      return _buildServicesCatalog();
+    }
+
+    switch (_activeCategory) {
+      case 'laundry':
+        return _buildLaundryFlow();
+      case 'grocery':
+        return _buildGroceryFlow();
+      case 'cleaning':
+        return _buildCleaningFlow();
+      case 'delivery':
+        return _buildDeliveryFlow();
+      case 'extra_services':
+        return _buildExtraServicesFlow();
+      default:
+        return _buildServicesCatalog();
+    }
+  }
+
+  // --- Main Catalog Menu ---
+  Widget _buildServicesCatalog() {
+    final services = [
+      {
+        'id': 'laundry',
+        'title': 'مغسلة ملابس متنقلة',
+        'desc': 'تجي لعند الباب، تاخذ الملابس، وترجّعها للوحدة — مناسبة للإقامات الطويلة والمعتمرين والعوائل',
+        'icon': Icons.local_laundry_service_rounded,
+        'badge': 'استلام من الباب',
+      },
+      {
+        'id': 'grocery',
+        'title': 'بقالة ٢٤ ساعة',
+        'desc': 'تعاقد مع عدة بقالات في الحي، يوصل الطلب واتساب والتوصيل للباب بأي وقت من الليل',
+        'icon': Icons.storefront_rounded,
+        'badge': 'توصيل ليلي ٢٤/٧',
+      },
+      {
+        'id': 'cleaning',
+        'title': 'تنظيف الوحدة',
+        'desc': 'تنظيف أثناء الإقامة، وتغيير مفارش، وتنظيف عميق عند الطلب',
+        'icon': Icons.cleaning_services_rounded,
+        'badge': 'خدمة فورية',
+      },
+      {
+        'id': 'delivery',
+        'title': 'توصيل عام',
+        'desc': 'عبر ربط مع شركات التوصيل مثل نينجا بنظام API، أو عبر مندوب المزوّد مباشرة',
+        'icon': Icons.delivery_dining_rounded,
+        'badge': 'نينجا والمندوب',
+      },
+      {
+        'id': 'extra_services',
+        'title': 'خدمات إضافية',
+        'desc': 'تُفتح واحدة واحدة حسب طلب الضيوف في كل منطقة — صيانة سريعة، ماء وغاز، نقل، وغيرها',
+        'icon': Icons.handyman_rounded,
+        'badge': 'حسب منطقتك',
+      },
+    ];
+
+    return ListView(
+      physics: const BouncingScrollPhysics(),
+      padding: EdgeInsets.zero,
+      children: [
+        ...services.map((item) {
+          final badge = item['badge'] as String?;
+          return Container(
+            margin: EdgeInsets.only(bottom: NazelDimens.space12),
+            child: NazelChooseCard(
+              height: 108.0.h,
+              title: item['title'] as String,
+              subtitle: item['desc'] as String,
+              onTap: () {
+                setState(() {
+                  _activeCategory = item['id'] as String;
+                });
+              },
+              leading: Container(
+                width: 52.0.r,
+                height: 52.0.r,
+                decoration: BoxDecoration(
+                  color: NazelColors.purpleSoft,
+                  borderRadius: BorderRadius.circular(6.0.r),
+                  border: Border.all(
+                    color: NazelColors.purpleBorder.withValues(alpha: 0.25),
+                    width: 1.0,
+                  ),
+                ),
+                alignment: Alignment.center,
+                child: Icon(
+                  item['icon'] as IconData,
+                  size: 26.0.r,
+                  color: NazelColors.primary,
+                ),
+              ),
+              trailing: badge != null
+                  ? Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.0.w,
+                        vertical: 4.0.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: NazelColors.purpleSoft,
+                        borderRadius: BorderRadius.circular(4.0.r),
+                        border: Border.all(
+                          color: NazelColors.purpleBorder.withValues(alpha: 0.3),
+                          width: 1.0,
+                        ),
+                      ),
+                      child: Text(
+                        badge,
+                        style: NazelTypography.arabic(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w700,
+                          color: NazelColors.primaryDark,
+                        ),
+                      ),
+                    )
+                  : null,
+            ),
+          );
+        }),
+      ],
+    );
+  }
+
+  Widget _buildSubHeader(String title) {
+    return Container(
+      margin: EdgeInsets.only(bottom: NazelDimens.space16),
+      child: Row(
+        children: [
+          Material(
+            color: NazelColors.purpleSoft,
+            borderRadius: BorderRadius.circular(6.0.r),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(6.0.r),
+              onTap: () => setState(() => _activeCategory = null),
+              child: Padding(
+                padding: EdgeInsets.all(NazelDimens.space8),
+                child: Icon(
+                  NazelDirectionalIcons.back(context),
+                  size: 20.0.r,
+                  color: NazelColors.primaryDark,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: NazelDimens.space12),
+          Text(
+            title,
+            style: NazelTypography.arabic(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w700,
+              color: NazelColors.primaryDark,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // --- 1. مغسلة ملابس متنقلة ---
+  Widget _buildLaundryFlow() {
+    final packages = [
+      {
+        'title': 'غسيل وكوي كامل (١٠ قطع)',
+        'subtitle': 'غسيل وكوي ملابس يومية وتسليم للباب — مثالي للإقامات الطويلة والعوائل',
+        'price': '٦٠ ريال',
+      },
+      {
+        'title': 'كوي بخار مستعجل (٥ قطع)',
+        'subtitle': 'كوي احترافي وسريع وتسليم خلال ٩٠ دقيقة لباب الشقة',
+        'price': '٣٠ ريال',
+      },
+      {
+        'title': 'غسيل ملابس إحرام وأثواب خاصة',
+        'subtitle': 'غسيل وتعقيم وعناية فائقة للأقمشة البيضاء ومناسك العمرة',
+        'price': '٤٠ ريال',
+      },
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSubHeader('مغسلة ملابس متنقلة'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Container(
+                padding: EdgeInsets.all(NazelDimens.space14),
+                decoration: BoxDecoration(
+                  color: NazelColors.purpleSoft,
+                  borderRadius: BorderRadius.circular(8.0.r),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.info_outline_rounded, color: NazelColors.primaryDark, size: 20.0.r),
+                    SizedBox(width: 10.0.w),
+                    Expanded(
+                      child: Text(
+                        'تجي لعند الباب، تاخذ الملابس، وترجّعها للوحدة. خدمة ما لها بديل في جوّال الضيف، ومناسبة للإقامات الطويلة والمعتمرين والعوائل.',
+                        style: NazelTypography.arabic(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w600,
+                          color: NazelColors.primaryDark,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: NazelDimens.space14),
+              Text(
+                'اختر باقة الغسيل والكوي المطلوبة',
+                style: NazelTypography.arabic(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w700,
+                  color: NazelColors.primaryDark,
+                ),
+              ),
+              SizedBox(height: NazelDimens.space10),
+              ...List.generate(packages.length, (i) {
+                final isSelected = _selectedLaundryPkg == i;
+                final p = packages[i];
+                return Container(
+                  margin: EdgeInsets.only(bottom: NazelDimens.space8),
+                  child: NazelChooseCard(
+                    title: p['title']!,
+                    subtitle: p['subtitle']!,
+                    onTap: () => setState(() => _selectedLaundryPkg = i),
+                    trailing: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 6.0.h),
+                      decoration: BoxDecoration(
+                        color: isSelected ? NazelColors.primary : NazelColors.purpleSoft,
+                        borderRadius: BorderRadius.circular(4.0.r),
+                      ),
+                      child: Text(
+                        p['price']!,
+                        style: NazelTypography.arabic(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w700,
+                          color: isSelected ? Colors.white : NazelColors.primaryDark,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+              SizedBox(height: NazelDimens.space10),
+              TextField(
+                controller: _laundryNotes,
+                decoration: InputDecoration(
+                  hintText: 'ملاحظات إضافية للمغسلة (مثل عدد القطع أو موعد محدد)...',
+                  hintStyle: NazelTypography.arabic(
+                    fontSize: 13.0,
+                    fontWeight: FontWeight.w500,
+                    color: NazelColors.textSecondary,
+                  ),
+                  filled: true,
+                  fillColor: NazelColors.surfaceWhite,
+                  contentPadding: EdgeInsets.all(NazelDimens.space12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    borderSide: BorderSide(color: NazelColors.purpleBorder.withValues(alpha: 0.4)),
+                  ),
+                ),
+              ),
+              SizedBox(height: NazelDimens.space16),
+              Row(
+                children: [
+                  Expanded(
+                    child: NazelButton(
+                      text: 'إرسال طلب استلام الملابس',
+                      variant: NazelButtonVariant.primary,
+                      height: 48.h,
+                      onPressed: () {
+                        _submitOrder(
+                          serviceName: 'مغسلة ملابس متنقلة',
+                          providerName: 'مندوب المغسلة المتنقلة',
+                          details: '${packages[_selectedLaundryPkg]['title']} — استلام من باب الوحدة رقم 402',
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 12.0.w),
+                  Material(
+                    color: const Color(0xFF25D366),
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    child: InkWell(
+                      onTap: () => _triggerWhatsApp('مغسلة ملابس متنقلة', packages[_selectedLaundryPkg]['title']!),
+                      borderRadius: BorderRadius.circular(6.0.r),
+                      child: Container(
+                        height: 48.h,
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Icon(Icons.chat_bubble_rounded, size: 16.0.r, color: Colors.white),
+                            SizedBox(width: 6.0.w),
+                            Text(
+                              'واتساب المغسلة',
+                              style: NazelTypography.arabic(
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --- 2. بقالة ٢٤ ساعة ---
+  Widget _buildGroceryFlow() {
+    final baskets = [
+      {
+        'title': 'كرتون مياه شرب معقمة (٤٠ عبوة مبردة)',
+        'subtitle': 'مياه نقية تصل لباب شقتك مباشرة بأي وقت من الليل',
+        'price': '١٨ ريال',
+      },
+      {
+        'title': 'سلة سناكات ومشروبات خفيفة ليلية',
+        'subtitle': 'شيبسات، شوكولاتة، عصائر ومشروبات غازية مبردة',
+        'price': '٣٥ ريال',
+      },
+      {
+        'title': 'مستلزمات شاي وقهوة وسكر وحليب',
+        'subtitle': 'شاي فاخر، أظرف قهوة، حليب مبخر وسكر طازج',
+        'price': '٢٥ ريال',
+      },
+      {
+        'title': 'طلب مقاضي واحتياجات حرة للباب',
+        'subtitle': 'حدد احتياجاتك الخاصة وسيقوم البقال بإحضارها لك فوراً',
+        'price': 'حسب الفاتورة',
+      },
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSubHeader('بقالة ٢٤ ساعة'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Container(
+                padding: EdgeInsets.all(NazelDimens.space14),
+                decoration: BoxDecoration(
+                  color: NazelColors.purpleSoft,
+                  borderRadius: BorderRadius.circular(8.0.r),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.access_time_filled_rounded, color: NazelColors.primaryDark, size: 20.0.r),
+                    SizedBox(width: 10.0.w),
+                    Expanded(
+                      child: Text(
+                        'تعاقد مع عدة بقالات في كل حي. الطلب يوصل البقالة على الواتساب مباشرة، والتوصيل للباب بأي وقت من الليل.',
+                        style: NazelTypography.arabic(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w600,
+                          color: NazelColors.primaryDark,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: NazelDimens.space14),
+              Text(
+                'اختر السلة السريعة أو حدد طلبك',
+                style: NazelTypography.arabic(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w700,
+                  color: NazelColors.primaryDark,
+                ),
+              ),
+              SizedBox(height: NazelDimens.space10),
+              ...List.generate(baskets.length, (i) {
+                final isSelected = _selectedGroceryBasket == i;
+                final b = baskets[i];
+                return Container(
+                  margin: EdgeInsets.only(bottom: NazelDimens.space8),
+                  child: NazelChooseCard(
+                    title: b['title']!,
+                    subtitle: b['subtitle']!,
+                    onTap: () => setState(() => _selectedGroceryBasket = i),
+                    trailing: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 6.0.h),
+                      decoration: BoxDecoration(
+                        color: isSelected ? NazelColors.primary : NazelColors.purpleSoft,
+                        borderRadius: BorderRadius.circular(4.0.r),
+                      ),
+                      child: Text(
+                        b['price']!,
+                        style: NazelTypography.arabic(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w700,
+                          color: isSelected ? Colors.white : NazelColors.primaryDark,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+              SizedBox(height: NazelDimens.space10),
+              TextField(
+                controller: _groceryNotes,
+                decoration: InputDecoration(
+                  hintText: 'اكتب قائمة الأغراض المطلوبة إذا كان طلبك حراً...',
+                  hintStyle: NazelTypography.arabic(
+                    fontSize: 13.0,
+                    fontWeight: FontWeight.w500,
+                    color: NazelColors.textSecondary,
+                  ),
+                  filled: true,
+                  fillColor: NazelColors.surfaceWhite,
+                  contentPadding: EdgeInsets.all(NazelDimens.space12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    borderSide: BorderSide(color: NazelColors.purpleBorder.withValues(alpha: 0.4)),
+                  ),
+                ),
+              ),
+              SizedBox(height: NazelDimens.space16),
+              Row(
+                children: [
+                  Expanded(
+                    child: NazelButton(
+                      text: 'إرسال طلب البقالة للباب',
+                      variant: NazelButtonVariant.primary,
+                      height: 48.h,
+                      onPressed: () {
+                        _submitOrder(
+                          serviceName: 'بقالة ٢٤ ساعة',
+                          providerName: 'بقالة الحي ٢٤ ساعة الشريكة',
+                          details: '${baskets[_selectedGroceryBasket]['title']} — توصيل فوري لباب الوحدة رقم 402',
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 12.0.w),
+                  Material(
+                    color: const Color(0xFF25D366),
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    child: InkWell(
+                      onTap: () => _triggerWhatsApp('بقالة ٢٤ ساعة', baskets[_selectedGroceryBasket]['title']!),
+                      borderRadius: BorderRadius.circular(6.0.r),
+                      child: Container(
+                        height: 48.h,
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Icon(Icons.chat_bubble_rounded, size: 16.0.r, color: Colors.white),
+                            SizedBox(width: 6.0.w),
+                            Text(
+                              'واتساب البقالة',
+                              style: NazelTypography.arabic(
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --- 3. تنظيف الوحدة ---
+  Widget _buildCleaningFlow() {
+    final types = [
+      {
+        'title': 'تنظيف وترتيب أثناء الإقامة',
+        'desc': 'ترتيب الأسرة، مسح الأسطح، وإفراغ السلات أثناء وجودك بالوحدة',
+      },
+      {
+        'title': 'تغيير مفارش وشراشف ومناشف',
+        'desc': 'استبدال كامل أطقم المفارش والمناشف بأطقم فندقية نظيفة ومعقمة',
+      },
+      {
+        'title': 'تنظيف عميق عند الطلب',
+        'desc': 'تنظيف شامل ومعقم للأرضيات والمطبخ ودورات المياه بالكامل',
+      },
+    ];
+    final times = ['فوري — خلال ساعة', 'اليوم — ٢:٠٠ ظهراً', 'اليوم — ٥:٠٠ مساءً'];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSubHeader('تنظيف الوحدة'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Container(
+                padding: EdgeInsets.all(NazelDimens.space14),
+                decoration: BoxDecoration(
+                  color: NazelColors.purpleSoft,
+                  borderRadius: BorderRadius.circular(8.0.r),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.cleaning_services_rounded, color: NazelColors.primaryDark, size: 20.0.r),
+                    SizedBox(width: 10.0.w),
+                    Expanded(
+                      child: Text(
+                        'تنظيف أثناء الإقامة، وتغيير مفارش، وتنظيف عميق عند الطلب.',
+                        style: NazelTypography.arabic(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w600,
+                          color: NazelColors.primaryDark,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: NazelDimens.space14),
+              Text(
+                'اختر نوع التنظيف المطلوب',
+                style: NazelTypography.arabic(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w700,
+                  color: NazelColors.primaryDark,
+                ),
+              ),
+              SizedBox(height: NazelDimens.space10),
+              ...List.generate(types.length, (i) {
+                final isSelected = _selectedCleaningType == i;
+                return Container(
+                  margin: EdgeInsets.only(bottom: NazelDimens.space8),
+                  child: NazelChooseCard(
+                    title: types[i]['title']!,
+                    subtitle: types[i]['desc']!,
+                    onTap: () => setState(() => _selectedCleaningType = i),
+                    trailing: isSelected
+                        ? Icon(Icons.check_circle_rounded, color: NazelColors.primary, size: 24.0.r)
+                        : null,
+                  ),
+                );
+              }),
+              SizedBox(height: NazelDimens.space12),
+              Text(
+                'الوقت المفضل للخدمة',
+                style: NazelTypography.arabic(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w700,
+                  color: NazelColors.primaryDark,
+                ),
+              ),
+              SizedBox(height: NazelDimens.space8),
+              Row(
+                children: List.generate(times.length, (i) {
+                  final isSelected = _selectedCleaningTime == i;
+                  return Expanded(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 4.0.w),
+                      child: Material(
+                        color: isSelected ? NazelColors.purpleSoft : NazelColors.surfaceWhite,
+                        borderRadius: BorderRadius.circular(6.0.r),
+                        child: InkWell(
+                          onTap: () => setState(() => _selectedCleaningTime = i),
+                          borderRadius: BorderRadius.circular(6.0.r),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6.0.r),
+                              border: Border.all(
+                                color: isSelected ? NazelColors.primary : NazelColors.purpleBorder.withValues(alpha: 0.3),
+                                width: isSelected ? 1.4 : 1.0,
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              times[i],
+                              style: NazelTypography.arabic(
+                                fontSize: 12.0,
+                                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                                color: isSelected ? NazelColors.primaryDark : NazelColors.textSecondary,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+              SizedBox(height: NazelDimens.space12),
+              TextField(
+                controller: _cleaningNotes,
+                decoration: InputDecoration(
+                  hintText: 'ملاحظات خاصة لفريق النظافة...',
+                  hintStyle: NazelTypography.arabic(
+                    fontSize: 13.0,
+                    fontWeight: FontWeight.w500,
+                    color: NazelColors.textSecondary,
+                  ),
+                  filled: true,
+                  fillColor: NazelColors.surfaceWhite,
+                  contentPadding: EdgeInsets.all(NazelDimens.space12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    borderSide: BorderSide(color: NazelColors.purpleBorder.withValues(alpha: 0.4)),
+                  ),
+                ),
+              ),
+              SizedBox(height: NazelDimens.space16),
+              Row(
+                children: [
+                  Expanded(
+                    child: NazelButton(
+                      text: 'إرسال طلب التنظيف',
+                      variant: NazelButtonVariant.primary,
+                      height: 48.h,
+                      onPressed: () {
+                        _submitOrder(
+                          serviceName: 'تنظيف الوحدة',
+                          providerName: 'مشرف نظافة الوحدة',
+                          details: '${types[_selectedCleaningType]['title']} في موعد (${times[_selectedCleaningTime]}) للوحدة رقم 402',
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 12.0.w),
+                  Material(
+                    color: const Color(0xFF25D366),
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    child: InkWell(
+                      onTap: () => _triggerWhatsApp('مشرف النظافة', types[_selectedCleaningType]['title']!),
+                      borderRadius: BorderRadius.circular(6.0.r),
+                      child: Container(
+                        height: 48.h,
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Icon(Icons.chat_bubble_rounded, size: 16.0.r, color: Colors.white),
+                            SizedBox(width: 6.0.w),
+                            Text(
+                              'واتساب المشرف',
+                              style: NazelTypography.arabic(
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --- 4. توصيل عام ---
+  Widget _buildDeliveryFlow() {
+    final deliveryPartners = [
+      {
+        'title': 'توصيل عبر نينجا (ربط مباشر API)',
+        'subtitle': 'توصيل فوري فائق السرعة للسوبرماركت والصيدلية والمأكولات خلال ٢٠ دقيقة',
+        'badge': 'ربط API مباشر',
+      },
+      {
+        'title': 'مندوب المزوّد المباشر لباب الوحدة',
+        'subtitle': 'شراء مستلزمات خاصة، نقل طلبات، أو استلام واسترجاع الشحنات',
+        'badge': 'مندوب مخصص',
+      },
+      {
+        'title': 'استلام طرود وشحنات من الاستقبال',
+        'subtitle': 'توصيل طردك أو شحنتك المسلمة في الاستقبال إلى باب شقتك مباشرة',
+        'badge': 'خدمة الاستقبال',
+      },
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSubHeader('توصيل عام ومشتريات'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Container(
+                padding: EdgeInsets.all(NazelDimens.space14),
+                decoration: BoxDecoration(
+                  color: NazelColors.purpleSoft,
+                  borderRadius: BorderRadius.circular(8.0.r),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.electric_bolt_rounded, color: NazelColors.primaryDark, size: 20.0.r),
+                    SizedBox(width: 10.0.w),
+                    Expanded(
+                      child: Text(
+                        'عبر ربط مع شركات التوصيل مثل نينجا بنظام API، أو عبر مندوب المزوّد مباشرة.',
+                        style: NazelTypography.arabic(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w600,
+                          color: NazelColors.primaryDark,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: NazelDimens.space14),
+              Text(
+                'اختر طريقة التوصيل المطلوبة',
+                style: NazelTypography.arabic(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w700,
+                  color: NazelColors.primaryDark,
+                ),
+              ),
+              SizedBox(height: NazelDimens.space10),
+              ...List.generate(deliveryPartners.length, (i) {
+                final isSelected = _selectedDeliveryOption == i;
+                final partner = deliveryPartners[i];
+                return Container(
+                  margin: EdgeInsets.only(bottom: NazelDimens.space8),
+                  child: NazelChooseCard(
+                    title: partner['title']!,
+                    subtitle: partner['subtitle']!,
+                    onTap: () => setState(() => _selectedDeliveryOption = i),
+                    trailing: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 4.0.h),
+                      decoration: BoxDecoration(
+                        color: isSelected ? NazelColors.primary : NazelColors.purpleSoft,
+                        borderRadius: BorderRadius.circular(4.0.r),
+                      ),
+                      child: Text(
+                        partner['badge']!,
+                        style: NazelTypography.arabic(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w700,
+                          color: isSelected ? Colors.white : NazelColors.primaryDark,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+              SizedBox(height: NazelDimens.space10),
+              TextField(
+                controller: _deliveryNotes,
+                decoration: InputDecoration(
+                  hintText: 'تفاصيل ما تريد توصيله أو عنوان المتجر...',
+                  hintStyle: NazelTypography.arabic(
+                    fontSize: 13.0,
+                    fontWeight: FontWeight.w500,
+                    color: NazelColors.textSecondary,
+                  ),
+                  filled: true,
+                  fillColor: NazelColors.surfaceWhite,
+                  contentPadding: EdgeInsets.all(NazelDimens.space12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    borderSide: BorderSide(color: NazelColors.purpleBorder.withValues(alpha: 0.4)),
+                  ),
+                ),
+              ),
+              SizedBox(height: NazelDimens.space16),
+              Row(
+                children: [
+                  Expanded(
+                    child: NazelButton(
+                      text: 'إرسال طلب التوصيل',
+                      variant: NazelButtonVariant.primary,
+                      height: 48.h,
+                      onPressed: () {
+                        _submitOrder(
+                          serviceName: 'توصيل عام',
+                          providerName: 'فريق التوصيل المباشر ونينجا',
+                          details: '${deliveryPartners[_selectedDeliveryOption]['title']} — للوحدة رقم 402',
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 12.0.w),
+                  Material(
+                    color: const Color(0xFF25D366),
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    child: InkWell(
+                      onTap: () => _triggerWhatsApp('مندوب التوصيل', deliveryPartners[_selectedDeliveryOption]['title']!),
+                      borderRadius: BorderRadius.circular(6.0.r),
+                      child: Container(
+                        height: 48.h,
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Icon(Icons.chat_bubble_rounded, size: 16.0.r, color: Colors.white),
+                            SizedBox(width: 6.0.w),
+                            Text(
+                              'واتساب المندوب',
+                              style: NazelTypography.arabic(
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --- 5. خدمات إضافية ---
+  Widget _buildExtraServicesFlow() {
+    final extraServices = [
+      {
+        'title': 'صيانة سريعة وطوارئ مرافق',
+        'subtitle': 'إصلاحات سباكة، كهرباء، صيانة تكييف أو أقفال عاجلة',
+        'badge': 'صيانة فورية',
+      },
+      {
+        'title': 'توفير ماء وغاز للوحدة',
+        'subtitle': 'توصيل أسطوانة غاز جديدة أو جالون مياه نقي كبير للوحدة',
+        'badge': 'مستلزمات أساسية',
+      },
+      {
+        'title': 'نقل وتوصيل مشاوير خاصة',
+        'subtitle': 'سيارة خاصة للنقل إلى المطار، محطة القطار، الحرم أو المعالم',
+        'badge': 'مشاوير ونقل',
+      },
+      {
+        'title': 'طلب خدمة مخصصة أخرى',
+        'subtitle': 'أي طلب أو حاجة إضافية ترغب بها في هذه المنطقة',
+        'badge': 'طلب مفتوح',
+      },
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSubHeader('خدمات إضافية'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Container(
+                padding: EdgeInsets.all(NazelDimens.space14),
+                decoration: BoxDecoration(
+                  color: NazelColors.purpleSoft,
+                  borderRadius: BorderRadius.circular(8.0.r),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.handyman_rounded, color: NazelColors.primaryDark, size: 20.0.r),
+                    SizedBox(width: 10.0.w),
+                    Expanded(
+                      child: Text(
+                        'تُفتح واحدة واحدة حسب طلب الضيوف في كل منطقة — صيانة سريعة، ماء وغاز، نقل، وغيرها.',
+                        style: NazelTypography.arabic(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w600,
+                          color: NazelColors.primaryDark,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: NazelDimens.space14),
+              Text(
+                'اختر الخدمة الإضافية المطلوبة',
+                style: NazelTypography.arabic(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w700,
+                  color: NazelColors.primaryDark,
+                ),
+              ),
+              SizedBox(height: NazelDimens.space10),
+              ...List.generate(extraServices.length, (i) {
+                final isSelected = _selectedExtraService == i;
+                final s = extraServices[i];
+                return Container(
+                  margin: EdgeInsets.only(bottom: NazelDimens.space8),
+                  child: NazelChooseCard(
+                    title: s['title']!,
+                    subtitle: s['subtitle']!,
+                    onTap: () => setState(() => _selectedExtraService = i),
+                    trailing: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 4.0.h),
+                      decoration: BoxDecoration(
+                        color: isSelected ? NazelColors.primary : NazelColors.purpleSoft,
+                        borderRadius: BorderRadius.circular(4.0.r),
+                      ),
+                      child: Text(
+                        s['badge']!,
+                        style: NazelTypography.arabic(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w700,
+                          color: isSelected ? Colors.white : NazelColors.primaryDark,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+              SizedBox(height: NazelDimens.space10),
+              TextField(
+                controller: _extraServiceNotes,
+                decoration: InputDecoration(
+                  hintText: 'اكتب تفاصيل الخدمة أو المشكلة بالتحديد...',
+                  hintStyle: NazelTypography.arabic(
+                    fontSize: 13.0,
+                    fontWeight: FontWeight.w500,
+                    color: NazelColors.textSecondary,
+                  ),
+                  filled: true,
+                  fillColor: NazelColors.surfaceWhite,
+                  contentPadding: EdgeInsets.all(NazelDimens.space12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    borderSide: BorderSide(color: NazelColors.purpleBorder.withValues(alpha: 0.4)),
+                  ),
+                ),
+              ),
+              SizedBox(height: NazelDimens.space16),
+              Row(
+                children: [
+                  Expanded(
+                    child: NazelButton(
+                      text: 'إرسال طلب الخدمة',
+                      variant: NazelButtonVariant.primary,
+                      height: 48.h,
+                      onPressed: () {
+                        _submitOrder(
+                          serviceName: 'خدمات إضافية',
+                          providerName: 'فريق الدعم الميداني',
+                          details: '${extraServices[_selectedExtraService]['title']} — للوحدة رقم 402',
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 12.0.w),
+                  Material(
+                    color: const Color(0xFF25D366),
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    child: InkWell(
+                      onTap: () => _triggerWhatsApp('الدعم الميداني', extraServices[_selectedExtraService]['title']!),
+                      borderRadius: BorderRadius.circular(6.0.r),
+                      child: Container(
+                        height: 48.h,
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Icon(Icons.chat_bubble_rounded, size: 16.0.r, color: Colors.white),
+                            SizedBox(width: 6.0.w),
+                            Text(
+                              'واتساب الدعم',
+                              style: NazelTypography.arabic(
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --- شاشة متابعة حالة الطلب الحية للضيف على الشاشة ---
+  Widget _buildOrderStatusScreen() {
+    final steps = [
+      {
+        'title': 'الطلب مُرسل ومُسجّل',
+        'desc': 'الضيف ضغط وأرسل — تم استلام الطلب وتوجيهه للنظام للوحدة رقم 402',
+        'status': 'done',
+      },
+      {
+        'title': 'تم إشعار المزوّد فوراً',
+        'desc': 'الطلب وصل المزوّد فوراً عبر نظام الإشعارات والواتساب',
+        'status': 'done',
+      },
+      {
+        'title': 'المزوّد في الطريق أو يتواصل معك',
+        'desc': 'يجي العامل للوحدة مباشرة، أو يتواصل معك على الواتساب، أو يدق عليك لتأكيد التفاصيل',
+        'status': 'active',
+      },
+      {
+        'title': 'وصول العامل وإتمام الخدمة',
+        'desc': 'تسليم الملابس / الطلبات عند باب الوحدة أو إتمام أعمال التنظيف والصيانة',
+        'status': 'pending',
+      },
+    ];
+
+    return ListView(
+      physics: const BouncingScrollPhysics(),
+      padding: EdgeInsets.zero,
+      children: [
+        // Order Summary Card
+        Container(
+          padding: EdgeInsets.all(NazelDimens.space16),
+          decoration: BoxDecoration(
+            color: NazelColors.purpleSoft,
+            borderRadius: BorderRadius.circular(8.0.r),
+            border: Border.all(
+              color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+              width: 1.0,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 4.0.h),
+                    decoration: BoxDecoration(
+                      color: NazelColors.primary,
+                      borderRadius: BorderRadius.circular(4.0.r),
+                    ),
+                    child: Text(
+                      'الطلب قيد التنفيذ الآن',
+                      style: NazelTypography.arabic(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    'رقم الطلب: $_orderId',
+                    style: NazelTypography.arabic(
+                      fontSize: 13.0,
+                      fontWeight: FontWeight.w700,
+                      color: NazelColors.primaryDark,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: NazelDimens.space10),
+              Text(
+                _currentServiceName,
+                style: NazelTypography.arabic(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w800,
+                  color: NazelColors.primaryDark,
+                ),
+              ),
+              SizedBox(height: 4.0.h),
+              Text(
+                _currentOrderDetails,
+                style: NazelTypography.arabic(
+                  fontSize: 13.5,
+                  fontWeight: FontWeight.w600,
+                  color: NazelColors.textSecondary,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        SizedBox(height: NazelDimens.space16),
+
+        Text(
+          'حالة الطلب المباشرة على الشاشة',
+          style: NazelTypography.arabic(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w700,
+            color: NazelColors.primaryDark,
+          ),
+        ),
+
+        SizedBox(height: NazelDimens.space12),
+
+        // Timeline steps
+        ...List.generate(steps.length, (i) {
+          final s = steps[i];
+          final isDone = s['status'] == 'done';
+          final isActive = s['status'] == 'active';
+          final isLast = i == steps.length - 1;
+
+          return IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: 28.0.r,
+                      height: 28.0.r,
+                      decoration: BoxDecoration(
+                        color: isDone
+                            ? NazelColors.primary
+                            : isActive
+                                ? NazelColors.primary.withValues(alpha: 0.15)
+                                : NazelColors.purpleSoft,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: isDone || isActive
+                              ? NazelColors.primary
+                              : NazelColors.purpleBorder.withValues(alpha: 0.4),
+                          width: 2.0,
+                        ),
+                      ),
+                      alignment: Alignment.center,
+                      child: isDone
+                          ? Icon(Icons.check_rounded, color: Colors.white, size: 16.0.r)
+                          : isActive
+                              ? Container(
+                                  width: 10.0.r,
+                                  height: 10.0.r,
+                                  decoration: const BoxDecoration(
+                                    color: NazelColors.primary,
+                                    shape: BoxShape.circle,
+                                  ),
+                                )
+                              : Text(
+                                  '${i + 1}',
+                                  style: NazelTypography.arabic(
+                                    fontSize: 11.0,
+                                    fontWeight: FontWeight.w700,
+                                    color: NazelColors.textSecondary,
+                                  ),
+                                ),
+                    ),
+                    if (!isLast)
+                      Expanded(
+                        child: Container(
+                          width: 2.0,
+                          margin: EdgeInsets.symmetric(vertical: 4.0.h),
+                          color: isDone
+                              ? NazelColors.primary
+                              : NazelColors.purpleBorder.withValues(alpha: 0.35),
+                        ),
+                      ),
+                  ],
+                ),
+                SizedBox(width: NazelDimens.space12),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: NazelDimens.space14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          s['title']!,
+                          style: NazelTypography.arabic(
+                            fontSize: 14.5,
+                            fontWeight: isActive || isDone ? FontWeight.w700 : FontWeight.w600,
+                            color: isActive
+                                ? NazelColors.primaryDark
+                                : isDone
+                                    ? NazelColors.textPrimary
+                                    : NazelColors.textSecondary,
+                          ),
+                        ),
+                        SizedBox(height: 2.0.h),
+                        Text(
+                          s['desc']!,
+                          style: NazelTypography.arabic(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w500,
+                            color: isActive ? NazelColors.primaryDark : NazelColors.textSecondary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }),
+
+        SizedBox(height: NazelDimens.space16),
+
+        // Quick action buttons for the guest
+        Row(
+          children: [
+            Expanded(
+              child: Material(
+                color: const Color(0xFF25D366),
+                borderRadius: BorderRadius.circular(6.0.r),
+                child: InkWell(
+                  onTap: () => _triggerWhatsApp(_currentProviderName, _currentServiceName),
+                  borderRadius: BorderRadius.circular(6.0.r),
+                  child: Container(
+                    height: 46.h,
+                    padding: EdgeInsets.symmetric(horizontal: 14.0.w),
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.chat_bubble_rounded, size: 16.0.r, color: Colors.white),
+                        SizedBox(width: 6.0.w),
+                        Text(
+                          'تواصل واتساب مع المزوّد',
+                          style: NazelTypography.arabic(
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 10.0.w),
+            Expanded(
+              child: Material(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(6.0.r),
+                child: InkWell(
+                  onTap: () => _triggerCall(_currentProviderName),
+                  borderRadius: BorderRadius.circular(6.0.r),
+                  child: Container(
+                    height: 46.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0.r),
+                      border: Border.all(
+                        color: NazelColors.primary,
+                        width: 1.2,
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.phone_in_talk_rounded, size: 16.0.r, color: NazelColors.primary),
+                        SizedBox(width: 6.0.w),
+                        Text(
+                          'اتصال لتأكيد التفاصيل',
+                          style: NazelTypography.arabic(
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.w700,
+                            color: NazelColors.primary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        SizedBox(height: NazelDimens.space12),
+
+        NazelButton(
+          text: 'الرجوع لقائمة الخدمات',
+          variant: NazelButtonVariant.outline,
+          height: 44.h,
+          onPressed: () {
+            setState(() {
+              _isDone = false;
+              _activeCategory = null;
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
+
+/// 2. Extend Booking Modal (تمديد ليلة أو تأخير خروج)
 class ExtendBookingModal extends StatefulWidget {
-  const ExtendBookingModal({super.key});
+  final int initialTab;
+  const ExtendBookingModal({super.key, this.initialTab = 0});
 
   @override
   State<ExtendBookingModal> createState() => _ExtendBookingModalState();
 }
 
 class _ExtendBookingModalState extends State<ExtendBookingModal> {
+  late int _selectedTab; // 0: تمديد ليلة, 1: تأخير خروج
   int _extraDays = 1;
+  int _selectedLateIndex = 1; // Default: 4 hours (100 SAR)
   bool _isDone = false;
   final double _pricePerDay = 350.0;
+
+  final List<Map<String, dynamic>> _lateOptions = [
+    {
+      'title': 'تأخير ساعتين (المغادرة حتى ٦:٣٠ م)',
+      'subtitle': 'وقت كافٍ للراحة وترتيب الأغراض براحة وهدوء',
+      'price': 50,
+      'hours': 'ساعتان',
+    },
+    {
+      'title': 'تأخير ٤ ساعات (المغادرة حتى ٨:٣٠ م)',
+      'subtitle': 'الخيار الأكثر طلباً — استمتع بنصف يوم إضافي في الشقة',
+      'price': 100,
+      'hours': '٤ ساعات',
+    },
+    {
+      'title': 'خروج مسائي كامل (المغادرة حتى ١٠:٠٠ م)',
+      'subtitle': 'إقامة ممتدة طوال المساء دون الحاجة لحجز ليلة كاملة',
+      'price': 150,
+      'hours': 'مسائي',
+    },
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedTab = widget.initialTab.clamp(0, 1);
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
     if (_isDone) {
-      return StateDoneView(
-        title: l10n.extendRequestSent,
-        description: l10n.extendRequestDoneDesc(_extraDays),
-        onDone: () => Navigator.of(context).pop(),
-      );
+      if (_selectedTab == 0) {
+        return StateDoneView(
+          title: 'تم إرسال طلب تمديد الإقامة',
+          description:
+              'تم إرسال طلب تمديد الإقامة لمدة $_extraDays ${_extraDays == 1 ? "ليلة" : "ليالٍ"} بنجاح. سيتم إشعارك فور تأكيد المضيف.',
+          onDone: () => Navigator.of(context).pop(),
+        );
+      } else {
+        return StateDoneView(
+          title: 'تم إرسال طلب تأخير الخروج',
+          description:
+              'تم إرسال طلب ${_lateOptions[_selectedLateIndex]['title']} بنجاح. نتمنى لك إقامة ممتعة وسعيدة!',
+          onDone: () => Navigator.of(context).pop(),
+        );
+      }
     }
 
-    final total = (_extraDays * _pricePerDay).toInt();
+    final total = _selectedTab == 0
+        ? (_extraDays * _pricePerDay).toInt()
+        : _lateOptions[_selectedLateIndex]['price'] as int;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return ListView(
+      physics: const BouncingScrollPhysics(),
+      padding: EdgeInsets.zero,
       children: [
+        // Tab Selector: تمديد ليلة vs تأخير خروج
+        Container(
+          padding: EdgeInsets.all(4.0.r),
+          decoration: BoxDecoration(
+            color: NazelColors.purpleSoft,
+            borderRadius: BorderRadius.circular(8.0.r),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: _buildTabButton(
+                  title: 'تمديد ليلة كاملة · ٣٥٠ ريال',
+                  icon: Icons.hotel_rounded,
+                  isSelected: _selectedTab == 0,
+                  onTap: () => setState(() => _selectedTab = 0),
+                ),
+              ),
+              SizedBox(width: 6.0.w),
+              Expanded(
+                child: _buildTabButton(
+                  title: 'تأخير الخروج · تبدأ من ٥٠ ريال',
+                  icon: Icons.access_time_filled_rounded,
+                  isSelected: _selectedTab == 1,
+                  onTap: () => setState(() => _selectedTab = 1),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        SizedBox(height: NazelDimens.space16),
+
         // 1. Current Booking Information Card
         Container(
           padding: EdgeInsets.symmetric(
-            horizontal: NazelDimens.space24,
-            vertical: NazelDimens.space20,
+            horizontal: NazelDimens.space20,
+            vertical: NazelDimens.space16,
           ),
           decoration: BoxDecoration(
             color: NazelColors.surfaceWhite,
-            borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
-            border: Border.all(color: NazelColors.borderLight, width: 1.0),
+            borderRadius: BorderRadius.circular(8.0.r),
+            border: Border.all(
+              color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+              width: 1.0,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: NazelColors.primary.withValues(alpha: 0.04),
+                offset: const Offset(0, 2),
+                blurRadius: 6.0.r,
+              ),
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -314,12 +1821,12 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
               Text(
                 l10n.bookingInfo,
                 style: NazelTypography.arabic(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w800,
-                  color: NazelColors.primary,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w700,
+                  color: NazelColors.primaryDark,
                 ),
               ),
-              SizedBox(height: NazelDimens.space18),
+              SizedBox(height: NazelDimens.space12),
               Row(
                 children: [
                   Expanded(
@@ -349,141 +1856,101 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
           ),
         ),
 
-        // 2. Extend Booking Selection Card
-        Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: NazelDimens.space24,
-            vertical: NazelDimens.space20,
-          ),
-          decoration: BoxDecoration(
-            color: NazelColors.surfaceWhite,
-            borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
-            border: Border.all(color: NazelColors.borderLight, width: 1.0),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.serviceExtendStay,
-                style: NazelTypography.arabic(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w800,
-                  color: NazelColors.primary,
-                ),
-              ),
-              SizedBox(height: NazelDimens.space16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // Daily Price
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l10n.dailyRate,
-                        style: NazelTypography.arabic(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w500,
-                          color: NazelColors.textSecondary,
-                        ),
-                      ),
-                      SizedBox(height: NazelDimens.space6),
-                      Text(
-                        '350 ${l10n.currencySar}',
-                        style: NazelTypography.arabic(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w900,
-                          color: NazelColors.primary,
-                        ),
-                      ),
-                    ],
-                  ),
-                  // Extension Days Counter
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        l10n.extensionDays,
-                        style: NazelTypography.arabic(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w500,
-                          color: NazelColors.textSecondary,
-                        ),
-                      ),
-                      SizedBox(height: NazelDimens.space6),
-                      NazelIncrementField(
-                        value: _extraDays,
-                        onChanged: (val) => setState(() => _extraDays = val),
-                        backgroundColor: NazelColors.surfaceWhite,
-                        borderColor: NazelColors.borderLight,
-                        width: 175.w,
-                        height: 48.h,
-                        borderRadius: BorderRadius.circular(
-                          NazelDimens.radiusSm,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+        SizedBox(height: NazelDimens.space16),
+
+        // 2. Body based on selected tab
+        if (_selectedTab == 0) _buildExtendNightsCard(l10n) else _buildLateCheckoutCard(),
+
+        SizedBox(height: NazelDimens.space16),
 
         // 3. Summary & Submit Card
         Container(
           padding: EdgeInsets.symmetric(
-            horizontal: NazelDimens.space24,
-            vertical: NazelDimens.space24,
+            horizontal: NazelDimens.space20,
+            vertical: NazelDimens.space20,
           ),
           decoration: BoxDecoration(
             color: NazelColors.surfaceWhite,
-            borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
-            border: Border.all(color: NazelColors.borderLight, width: 1.0),
+            borderRadius: BorderRadius.circular(8.0.r),
+            border: Border.all(
+              color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+              width: 1.0,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: NazelColors.primary.withValues(alpha: 0.04),
+                offset: const Offset(0, 2),
+                blurRadius: 6.0.r,
+              ),
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l10n.total,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.total,
+                        style: NazelTypography.arabic(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w600,
+                          color: NazelColors.textSecondary,
+                        ),
+                      ),
+                      SizedBox(height: NazelDimens.space4),
+                      Text(
+                        '$total ${l10n.currencySar}',
+                        style: NazelTypography.arabic(
+                          fontSize: 26.0,
+                          fontWeight: FontWeight.w700,
+                          color: NazelColors.primaryDark,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 14.0.w,
+                      vertical: 6.0.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: NazelColors.purpleSoft,
+                      borderRadius: BorderRadius.circular(6.0.r),
+                    ),
+                    child: Text(
+                      _selectedTab == 0
+                          ? 'مدة: $_extraDays ليلة'
+                          : '${_lateOptions[_selectedLateIndex]['hours']} إضافية',
                       style: NazelTypography.arabic(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                        color: NazelColors.textSecondary,
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w700,
+                        color: NazelColors.primaryDark,
                       ),
                     ),
-                    SizedBox(height: NazelDimens.space4),
-                    Text(
-                      '$total ${l10n.currencySar}',
-                      style: NazelTypography.arabic(
-                        fontSize: 28.0,
-                        fontWeight: FontWeight.w900,
-                        color: NazelColors.primary,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SizedBox(height: NazelDimens.space20),
+              SizedBox(height: NazelDimens.space16),
               NazelButton(
-                text: l10n.extend,
-                variant: NazelButtonVariant.gold,
+                text: _selectedTab == 0
+                    ? 'إرسال طلب تمديد الإقامة'
+                    : 'إرسال طلب تأخير الخروج',
+                variant: NazelButtonVariant.primary,
                 width: double.infinity,
-                height: 56.h,
+                height: 50.h,
                 onPressed: () => setState(() => _isDone = true),
               ),
-              SizedBox(height: NazelDimens.space12),
+              SizedBox(height: NazelDimens.space8),
               Text(
-                l10n.extendApprovalNotice,
+                'يتم إرسال الطلب مباشرة لصاحب الوحدة وتأكيده دون أي رسوم إضافية مخفية',
                 textAlign: TextAlign.center,
                 style: NazelTypography.arabic(
-                  fontSize: 13.0,
+                  fontSize: 12.5,
                   fontWeight: FontWeight.w500,
                   color: NazelColors.textSecondary,
                 ),
@@ -492,6 +1959,276 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTabButton({
+    required String title,
+    required IconData icon,
+    required bool isSelected,
+    required VoidCallback onTap,
+  }) {
+    return Material(
+      color: isSelected ? NazelColors.surfaceWhite : Colors.transparent,
+      borderRadius: BorderRadius.circular(6.0.r),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(6.0.r),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10.0.h),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6.0.r),
+            boxShadow: isSelected
+                ? [
+                    BoxShadow(
+                      color: NazelColors.primary.withValues(alpha: 0.08),
+                      blurRadius: 4.0.r,
+                      offset: const Offset(0, 1),
+                    ),
+                  ]
+                : null,
+          ),
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 18.0.r,
+                color: isSelected ? NazelColors.primary : NazelColors.textSecondary,
+              ),
+              SizedBox(width: 8.0.w),
+              Text(
+                title,
+                style: NazelTypography.arabic(
+                  fontSize: 14.0,
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                  color: isSelected ? NazelColors.primaryDark : NazelColors.textSecondary,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Extend nights selection card
+  Widget _buildExtendNightsCard(AppLocalizations l10n) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: NazelDimens.space20,
+        vertical: NazelDimens.space18,
+      ),
+      decoration: BoxDecoration(
+        color: NazelColors.surfaceWhite,
+        borderRadius: BorderRadius.circular(8.0.r),
+        border: Border.all(
+          color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+          width: 1.0,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: NazelColors.primary.withValues(alpha: 0.04),
+            offset: const Offset(0, 2),
+            blurRadius: 6.0.r,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.serviceExtendStay,
+            style: NazelTypography.arabic(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w700,
+              color: NazelColors.primaryDark,
+            ),
+          ),
+          SizedBox(height: NazelDimens.space14),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.dailyRate,
+                    style: NazelTypography.arabic(
+                      fontSize: 13.0,
+                      fontWeight: FontWeight.w500,
+                      color: NazelColors.textSecondary,
+                    ),
+                  ),
+                  SizedBox(height: NazelDimens.space4),
+                  Text(
+                    '350 ${l10n.currencySar}',
+                    style: NazelTypography.arabic(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w700,
+                      color: NazelColors.primaryDark,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    l10n.extensionDays,
+                    style: NazelTypography.arabic(
+                      fontSize: 13.0,
+                      fontWeight: FontWeight.w500,
+                      color: NazelColors.textSecondary,
+                    ),
+                  ),
+                  SizedBox(height: NazelDimens.space4),
+                  NazelIncrementField(
+                    value: _extraDays,
+                    onChanged: (val) => setState(() => _extraDays = val),
+                    backgroundColor: NazelColors.surfaceWhite,
+                    borderColor: NazelColors.purpleBorder.withValues(
+                      alpha: 0.35,
+                    ),
+                    width: 160.w,
+                    height: 44.h,
+                    borderRadius: BorderRadius.circular(6.0.r),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Late checkout options card
+  Widget _buildLateCheckoutCard() {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: NazelDimens.space20,
+        vertical: NazelDimens.space18,
+      ),
+      decoration: BoxDecoration(
+        color: NazelColors.surfaceWhite,
+        borderRadius: BorderRadius.circular(8.0.r),
+        border: Border.all(
+          color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+          width: 1.0,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: NazelColors.primary.withValues(alpha: 0.04),
+            offset: const Offset(0, 2),
+            blurRadius: 6.0.r,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'اختر مدة تأخير وقت الخروج المريحة لك',
+            style: NazelTypography.arabic(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w700,
+              color: NazelColors.primaryDark,
+            ),
+          ),
+          SizedBox(height: NazelDimens.space12),
+          ...List.generate(_lateOptions.length, (index) {
+            final opt = _lateOptions[index];
+            final isSelected = _selectedLateIndex == index;
+            return Container(
+              margin: EdgeInsets.only(bottom: index == _lateOptions.length - 1 ? 0 : 8.0.h),
+              child: Material(
+                color: isSelected ? NazelColors.purpleSoft : NazelColors.surfaceWhite,
+                borderRadius: BorderRadius.circular(6.0.r),
+                child: InkWell(
+                  onTap: () => setState(() => _selectedLateIndex = index),
+                  borderRadius: BorderRadius.circular(6.0.r),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 14.0.w,
+                      vertical: 12.0.h,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0.r),
+                      border: Border.all(
+                        color: isSelected
+                            ? NazelColors.primary
+                            : NazelColors.purpleBorder.withValues(alpha: 0.3),
+                        width: isSelected ? 1.4 : 1.0,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          isSelected
+                              ? Icons.radio_button_checked_rounded
+                              : Icons.radio_button_off_rounded,
+                          color: isSelected ? NazelColors.primary : NazelColors.textSecondary,
+                          size: 20.0.r,
+                        ),
+                        SizedBox(width: 12.0.w),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                opt['title'] as String,
+                                style: NazelTypography.arabic(
+                                  fontSize: 14.5,
+                                  fontWeight: FontWeight.w700,
+                                  color: NazelColors.primaryDark,
+                                ),
+                              ),
+                              SizedBox(height: 2.0.h),
+                              Text(
+                                opt['subtitle'] as String,
+                                style: NazelTypography.arabic(
+                                  fontSize: 12.5,
+                                  fontWeight: FontWeight.w500,
+                                  color: NazelColors.textSecondary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.0.w,
+                            vertical: 4.0.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? NazelColors.primary
+                                : NazelColors.purpleSoft,
+                            borderRadius: BorderRadius.circular(4.0.r),
+                          ),
+                          child: Text(
+                            '${opt['price']} ريال',
+                            style: NazelTypography.arabic(
+                              fontSize: 13.5,
+                              fontWeight: FontWeight.w700,
+                              color: isSelected
+                                  ? NazelColors.surfaceWhite
+                                  : NazelColors.primaryDark,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }),
+        ],
+      ),
     );
   }
 
@@ -511,19 +2248,20 @@ class _ExtendBookingModalState extends State<ExtendBookingModal> {
             color: NazelColors.textSecondary,
           ),
         ),
-        SizedBox(height: NazelDimens.space6),
+        SizedBox(height: NazelDimens.space4),
         Text(
           value,
           style: NazelTypography.arabic(
             fontSize: 15.0,
-            fontWeight: FontWeight.w800,
-            color: NazelColors.textPrimary,
+            fontWeight: FontWeight.w700,
+            color: NazelColors.primaryDark,
           ),
         ),
       ],
     );
   }
 }
+
 
 /// 3. Nearest Places Modal — Matches Figma "Nearest Main Menu Ar"
 class NearestPlacesModal extends StatefulWidget {
@@ -533,7 +2271,7 @@ class NearestPlacesModal extends StatefulWidget {
   static Future<void> show(BuildContext context) {
     return showDialog<void>(
       context: context,
-      barrierColor: NazelColors.overlayDim,
+      barrierColor: NazelColors.sidebarBg.withValues(alpha: 0.45),
       barrierDismissible: true,
       builder: (ctx) => const NearestPlacesModal(),
     );
@@ -603,52 +2341,33 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
     return Center(
       child: Material(
         color: Colors.transparent,
-        child: Container(
-          width: NazelDimens.modalWidth,
-          height: NazelDimens.modalHeight,
-          margin: EdgeInsets.all(NazelDimens.space24),
-          decoration: BoxDecoration(
-            color: NazelColors.surfaceWhite,
-            borderRadius: BorderRadius.circular(NazelDimens.radiusCard),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
-                offset: Offset(0, 16.h),
-                blurRadius: 40.0.r,
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Container(
+            width: NazelDimens.modalWidth,
+            height: NazelDimens.modalHeight,
+            margin: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 20.0.h),
+            decoration: BoxDecoration(
+              color: NazelColors.surfaceWhite,
+              borderRadius: BorderRadius.circular(16.0.r),
+              border: Border.all(
+                color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+                width: 1.0,
               ),
-            ],
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // ── App Bar ──────────────────────────────────────────────────
-              Container(
-                width: double.infinity,
-                height: 72.0.h,
-                color: NazelColors.primary,
-                padding: EdgeInsets.symmetric(horizontal: NazelDimens.space20),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Center(
-                      child: Text(
-                        l10n.nearestPlacesTitle,
-                        style: NazelTypography.arabic(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w900,
-                          color: NazelColors.surfaceWhite,
-                        ),
-                      ),
-                    ),
-                    Positioned.directional(
-                      textDirection: Directionality.of(context),
-                      end: 0,
-                      child: const NazelBackButton(),
-                    ),
-                  ],
+              boxShadow: [
+                BoxShadow(
+                  color: NazelColors.primary.withValues(alpha: 0.12),
+                  offset: const Offset(0, 8),
+                  blurRadius: 28.0.r,
                 ),
-              ),
+              ],
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // ── App Bar ──────────────────────────────────────────────────
+                NazelAppBar(title: l10n.nearestPlacesTitle),
 
               // ── Embedded Google Map ───────────────────────────────────────
               SizedBox(
@@ -721,8 +2440,9 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   Widget _buildMapPin(bool isSelected) {
     return AnimatedContainer(
@@ -764,73 +2484,66 @@ class _NearestPlacesModalState extends State<NearestPlacesModal> {
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
         color: isSelected
-            ? NazelColors.purpleSoft.withValues(alpha: 0.5)
+            ? NazelColors.purpleSoft.withValues(alpha: 0.35)
             : NazelColors.surfaceWhite,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+        borderRadius: BorderRadius.circular(8.0.r),
         border: Border.all(
           color: isSelected
               ? NazelColors.primary
-              : NazelColors.borderLight.withValues(alpha: 0.8),
+              : NazelColors.purpleBorder.withValues(alpha: 0.35),
           width: isSelected ? 1.5 : 1.0,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.02),
-            offset: Offset(0, 2.h),
+            color: NazelColors.primary.withValues(alpha: 0.04),
+            offset: const Offset(0, 2),
             blurRadius: 6.0.r,
           ),
         ],
       ),
       child: Material(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+        borderRadius: BorderRadius.circular(8.0.r),
         child: InkWell(
-          borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+          borderRadius: BorderRadius.circular(8.0.r),
           onTap: () {
             setState(() => _selectedPlaceIndex = index);
             _mapController.move(place['latLng'] as LatLng, 16.0);
           },
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 14.0.h),
+            padding: EdgeInsets.symmetric(horizontal: 18.0.w, vertical: 12.0.h),
             child: Row(
               children: [
                 // 1. Icon Badge
                 Container(
-                  width: 52.0.r,
-                  height: 52.0.r,
+                  width: 48.0.r,
+                  height: 48.0.r,
                   decoration: BoxDecoration(
-                    color: NazelColors.surfaceWhite,
+                    color: NazelColors.purpleSoft,
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: NazelColors.borderLight.withValues(alpha: 0.8),
-                      width: 1.2,
+                      color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+                      width: 1.0,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.04),
-                        offset: Offset(0, 2.h),
-                        blurRadius: 6.0.r,
-                      ),
-                    ],
                   ),
                   child: Center(
                     child: Icon(
                       place['icon'] as IconData,
-                      color: NazelColors.textPrimary,
-                      size: 26.0.r,
+                      color: NazelColors.primary,
+                      size: 24.0.r,
                     ),
                   ),
                 ),
-                SizedBox(width: 16.0.w),
+                SizedBox(width: 14.0.w),
 
                 // 2. Center - Title in bold purple
                 Expanded(
                   child: Text(
                     place['title'] as String,
                     style: NazelTypography.arabic(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w800,
-                      color: NazelColors.primary,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w700,
+                      color: NazelColors.primaryDark,
                     ),
                   ),
                 ),
@@ -876,7 +2589,7 @@ class DeliveryServiceModal extends StatefulWidget {
   static Future<void> show(BuildContext context) {
     return showDialog<void>(
       context: context,
-      barrierColor: NazelColors.overlayDim,
+      barrierColor: NazelColors.sidebarBg.withValues(alpha: 0.45),
       barrierDismissible: true,
       builder: (ctx) => const DeliveryServiceModal(),
     );
@@ -968,19 +2681,33 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
       return Center(
         child: Material(
           color: Colors.transparent,
-          child: Container(
-            width: NazelDimens.modalWidth,
-            height: NazelDimens.modalHeight,
-            margin: EdgeInsets.all(NazelDimens.space24),
-            decoration: BoxDecoration(
-              color: NazelColors.surfaceWhite,
-              borderRadius: BorderRadius.circular(NazelDimens.radiusCard),
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: StateDoneView(
-              title: l10n.deliveryOrderReceived,
-              description: l10n.deliveryOrderDoneDesc,
-              onDone: () => Navigator.of(context).pop(),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Container(
+              width: NazelDimens.modalWidth,
+              height: NazelDimens.modalHeight,
+              margin: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 20.0.h),
+              decoration: BoxDecoration(
+                color: NazelColors.surfaceWhite,
+                borderRadius: BorderRadius.circular(16.0.r),
+                border: Border.all(
+                  color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+                  width: 1.0,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: NazelColors.primary.withValues(alpha: 0.12),
+                    offset: const Offset(0, 8),
+                    blurRadius: 28.0.r,
+                  ),
+                ],
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: StateDoneView(
+                title: l10n.deliveryOrderReceived,
+                description: l10n.deliveryOrderDoneDesc,
+                onDone: () => Navigator.of(context).pop(),
+              ),
             ),
           ),
         ),
@@ -989,52 +2716,33 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
     return Center(
       child: Material(
         color: Colors.transparent,
-        child: Container(
-          width: NazelDimens.modalWidth,
-          height: NazelDimens.modalHeight,
-          margin: EdgeInsets.all(NazelDimens.space24),
-          decoration: BoxDecoration(
-            color: NazelColors.surfaceWhite,
-            borderRadius: BorderRadius.circular(NazelDimens.radiusCard),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
-                offset: Offset(0, 16.h),
-                blurRadius: 40.0.r,
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Container(
+            width: NazelDimens.modalWidth,
+            height: NazelDimens.modalHeight,
+            margin: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 20.0.h),
+            decoration: BoxDecoration(
+              color: NazelColors.surfaceWhite,
+              borderRadius: BorderRadius.circular(16.0.r),
+              border: Border.all(
+                color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+                width: 1.0,
               ),
-            ],
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // ── App Bar ──────────────────────────────────────────────────
-              Container(
-                width: double.infinity,
-                height: 72.0.h,
-                color: NazelColors.primary,
-                padding: EdgeInsets.symmetric(horizontal: NazelDimens.space24),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Center(
-                      child: Text(
-                        l10n.deliveryTitle,
-                        style: NazelTypography.arabic(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w900,
-                          color: NazelColors.surfaceWhite,
-                        ),
-                      ),
-                    ),
-                    Positioned.directional(
-                      textDirection: Directionality.of(context),
-                      end: 0,
-                      child: const NazelBackButton(),
-                    ),
-                  ],
+              boxShadow: [
+                BoxShadow(
+                  color: NazelColors.primary.withValues(alpha: 0.12),
+                  offset: const Offset(0, 8),
+                  blurRadius: 28.0.r,
                 ),
-              ),
+              ],
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // ── App Bar ──────────────────────────────────────────────────
+                NazelAppBar(title: l10n.deliveryTitle),
 
               // ── Scrollable Content ────────────────────────────────────
               Expanded(
@@ -1063,9 +2771,9 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                           Text(
                             l10n.nearbyRestaurants,
                             style: NazelTypography.arabic(
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.w900,
-                              color: NazelColors.primary,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w700,
+                              color: NazelColors.primaryDark,
                             ),
                           ),
                           GestureDetector(
@@ -1075,7 +2783,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                               l10n.viewAll,
                               style: NazelTypography.arabic(
                                 fontSize: 14.0,
-                                fontWeight: FontWeight.w800,
+                                fontWeight: FontWeight.w700,
                                 color: NazelColors.primary,
                               ),
                             ),
@@ -1110,17 +2818,18 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   Widget _buildSearchBar(AppLocalizations l10n) {
     return Container(
-      height: 52.0.h,
+      height: 48.0.h,
       decoration: BoxDecoration(
-        color: NazelColors.background,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusFull),
+        color: NazelColors.surfaceWhite,
+        borderRadius: BorderRadius.circular(6.0.r),
         border: Border.all(
-          color: NazelColors.borderLight.withValues(alpha: 0.5),
+          color: NazelColors.purpleBorder.withValues(alpha: 0.35),
           width: 1.0,
         ),
       ),
@@ -1129,7 +2838,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
           SizedBox(width: NazelDimens.space16),
           NazelIcon(
             type: NazelIconType.search,
-            size: 22.0.r,
+            size: 20.0.r,
             color: NazelColors.textSecondary,
           ),
           SizedBox(width: NazelDimens.space12),
@@ -1137,13 +2846,13 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
             child: TextField(
               controller: _searchController,
               style: NazelTypography.arabic(
-                fontSize: 16.0,
+                fontSize: 15.0,
                 color: NazelColors.textPrimary,
               ),
               decoration: InputDecoration(
                 hintText: l10n.searchHint,
                 hintStyle: NazelTypography.arabic(
-                  fontSize: 16.0,
+                  fontSize: 15.0,
                   color: NazelColors.textSecondary,
                 ),
                 border: InputBorder.none,
@@ -1171,28 +2880,37 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 padding: EdgeInsets.symmetric(
-                  horizontal: 22.0.w,
-                  vertical: 10.0.h,
+                  horizontal: 18.0.w,
+                  vertical: 8.0.h,
                 ),
                 decoration: BoxDecoration(
                   color: selected
                       ? NazelColors.primary
                       : NazelColors.surfaceWhite,
-                  borderRadius: BorderRadius.circular(NazelDimens.radiusFull),
+                  borderRadius: BorderRadius.circular(6.0.r),
                   border: Border.all(
                     color: selected
                         ? NazelColors.primary
-                        : NazelColors.borderLight.withValues(alpha: 0.8),
+                        : NazelColors.purpleBorder.withValues(alpha: 0.35),
                     width: 1.0,
                   ),
+                  boxShadow: selected
+                      ? [
+                          BoxShadow(
+                            color: NazelColors.primary.withValues(alpha: 0.25),
+                            blurRadius: 6.0.r,
+                            offset: const Offset(0, 2),
+                          ),
+                        ]
+                      : null,
                 ),
                 child: Text(
                   categories[index],
                   style: NazelTypography.arabic(
-                    fontSize: 16.0,
+                    fontSize: 14.5,
                     fontWeight: FontWeight.w700,
                     color: selected
-                        ? NazelColors.surfaceWhite
+                        ? Colors.white
                         : NazelColors.textSecondary,
                   ),
                 ),
@@ -1211,28 +2929,28 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
     return Container(
       decoration: BoxDecoration(
         color: NazelColors.surfaceWhite,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+        borderRadius: BorderRadius.circular(8.0.r),
         border: Border.all(
-          color: NazelColors.borderLight.withValues(alpha: 0.6),
+          color: NazelColors.purpleBorder.withValues(alpha: 0.35),
           width: 1.0,
         ),
         boxShadow: [
           BoxShadow(
             color: NazelColors.primary.withValues(alpha: 0.04),
-            offset: Offset(0, 4.h),
-            blurRadius: 10.0.r,
+            offset: const Offset(0, 2),
+            blurRadius: 6.0.r,
           ),
         ],
       ),
       child: Material(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+        borderRadius: BorderRadius.circular(8.0.r),
         child: InkWell(
           onTap: () => setState(() {
             _cartCount++;
             _cartTotal += 25.0;
           }),
-          borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+          borderRadius: BorderRadius.circular(8.0.r),
           child: Padding(
             padding: EdgeInsets.all(NazelDimens.space14),
             child: Column(
@@ -1326,7 +3044,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
         horizontal: NazelDimens.space24,
         vertical: NazelDimens.space14,
       ),
-      decoration: BoxDecoration(color: NazelColors.primaryDark),
+      decoration: const BoxDecoration(color: NazelColors.primaryDark),
       child: Row(
         children: [
           // Cart icon + count badge
@@ -1349,17 +3067,15 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                       vertical: 2.0.h,
                     ),
                     decoration: BoxDecoration(
-                      color: NazelColors.gold,
-                      borderRadius: BorderRadius.circular(
-                        NazelDimens.radiusFull,
-                      ),
+                      color: NazelColors.primaryLight,
+                      borderRadius: BorderRadius.circular(10.0.r),
                     ),
                     child: Text(
                       '$_cartCount',
                       style: NazelTypography.arabic(
                         fontSize: 11.0,
-                        fontWeight: FontWeight.w900,
-                        color: NazelColors.primaryDark,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -1377,14 +3093,14 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
                 style: NazelTypography.arabic(
                   fontSize: 12.0,
                   fontWeight: FontWeight.w600,
-                  color: NazelColors.gold,
+                  color: NazelColors.purpleTint,
                 ),
               ),
               Text(
                 '${_cartTotal.toStringAsFixed(2)} ${l10n.currencyRiyal}',
                 style: NazelTypography.arabic(
                   fontSize: 18.0,
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w700,
                   color: NazelColors.surfaceWhite,
                 ),
               ),
@@ -1394,7 +3110,7 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
           // Send / Order Button
           NazelButton(
             text: l10n.sendRequest,
-            variant: NazelButtonVariant.gold,
+            variant: NazelButtonVariant.primary,
             height: 44.0.h,
             onPressed: () {
               setState(() => _isDone = true);
@@ -1406,85 +3122,384 @@ class _DeliveryServiceModalState extends State<DeliveryServiceModal> {
   }
 }
 
-/// 5. Emergency Modal
-class EmergencyModal extends StatelessWidget {
+/// 5. Emergency & Direct Support Modal ("تحتاج شيئًا؟")
+class EmergencyModal extends StatefulWidget {
   const EmergencyModal({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+  State<EmergencyModal> createState() => _EmergencyModalState();
+}
 
-    final contacts = [
+class _EmergencyModalState extends State<EmergencyModal> {
+  void _triggerAction(String actionName, String detail) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'جاري فتح $actionName ($detail)',
+          style: NazelTypography.arabic(
+            fontSize: 14.0,
+            fontWeight: FontWeight.w600,
+            color: NazelColors.surfaceWhite,
+          ),
+        ),
+        backgroundColor: NazelColors.primaryDark,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final emergencyContacts = [
       {
-        'title': l10n.emergencyPolice,
+        'title': 'الشرطة',
         'number': '999',
         'icon': NazelIconType.emergency,
       },
       {
-        'title': l10n.emergencyAmbulance,
+        'title': 'الإسعاف',
         'number': '997',
         'icon': NazelIconType.ambulance,
       },
       {
-        'title': l10n.emergencyMaintenance,
-        'number': '+966 50 000 0000',
-        'icon': NazelIconType.wrench,
+        'title': 'الدفاع المدني',
+        'number': '998',
+        'icon': NazelIconType.emergency,
       },
     ];
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
+      physics: const BouncingScrollPhysics(),
+      padding: EdgeInsets.zero,
       children: [
-        Text(
-          l10n.directEmergencyNumbers,
-          style: NazelTypography.sectionTitle,
+        // 1. First option: Official Emergency Numbers (الطوارئ أول خيار)
+        Container(
+          padding: EdgeInsets.all(NazelDimens.space16),
+          decoration: BoxDecoration(
+            color: NazelColors.danger.withValues(alpha: 0.06),
+            borderRadius: BorderRadius.circular(8.0.r),
+            border: Border.all(
+              color: NazelColors.danger.withValues(alpha: 0.25),
+              width: 1.0,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.warning_amber_rounded,
+                    color: NazelColors.danger,
+                    size: 22.0.r,
+                  ),
+                  SizedBox(width: NazelDimens.space8),
+                  Text(
+                    'أرقام الطوارئ الرسمية (اتصال فوري مجاني)',
+                    style: NazelTypography.arabic(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w700,
+                      color: NazelColors.danger,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: NazelDimens.space12),
+              Row(
+                children: emergencyContacts.map((c) {
+                  return Expanded(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 4.0.w),
+                      child: Material(
+                        color: NazelColors.surfaceWhite,
+                        borderRadius: BorderRadius.circular(6.0.r),
+                        child: InkWell(
+                          onTap: () => _triggerAction(c['title'] as String, c['number'] as String),
+                          borderRadius: BorderRadius.circular(6.0.r),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10.0.w,
+                              vertical: 10.0.h,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6.0.r),
+                              border: Border.all(
+                                color: NazelColors.danger.withValues(alpha: 0.3),
+                                width: 1.0,
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  c['title'] as String,
+                                  style: NazelTypography.arabic(
+                                    fontSize: 13.0,
+                                    fontWeight: FontWeight.w600,
+                                    color: NazelColors.textPrimary,
+                                  ),
+                                ),
+                                SizedBox(height: NazelDimens.space4),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.phone_rounded,
+                                      size: 14.0.r,
+                                      color: NazelColors.danger,
+                                    ),
+                                    SizedBox(width: 4.0.w),
+                                    Text(
+                                      c['number'] as String,
+                                      style: NazelTypography.display(
+                                        fontSize: 17.0,
+                                        fontWeight: FontWeight.w700,
+                                        color: NazelColors.danger,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         ),
+
         SizedBox(height: NazelDimens.space16),
-        ...contacts.map((c) {
-          return NazelChooseCard(
-            title: c['title'] as String,
-            subtitle: c['number'] as String,
-            onTap: () {},
-            leading: Container(
-              width: 52.0.r,
-              height: 52.0.r,
-              decoration: BoxDecoration(
-                color: NazelColors.danger.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
+
+        // 2. Main Value: Direct WhatsApp with Unit Owner (واتساب صاحب الوحدة)
+        Container(
+          padding: EdgeInsets.all(NazelDimens.space20),
+          decoration: BoxDecoration(
+            color: NazelColors.surfaceWhite,
+            borderRadius: BorderRadius.circular(8.0.r),
+            border: Border.all(
+              color: const Color(0xFF25D366).withValues(alpha: 0.4),
+              width: 1.5,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF25D366).withValues(alpha: 0.08),
+                offset: const Offset(0, 3),
+                blurRadius: 10.0.r,
               ),
-              alignment: Alignment.center,
-              child: NazelIcon(
-                type: c['icon'] as NazelIconType,
-                size: 26.0.r,
-                color: NazelColors.danger,
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 52.0.r,
+                    height: 52.0.r,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF25D366).withValues(alpha: 0.12),
+                      borderRadius: BorderRadius.circular(8.0.r),
+                    ),
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.chat_bubble_rounded,
+                      color: const Color(0xFF25D366),
+                      size: 28.0.r,
+                    ),
+                  ),
+                  SizedBox(width: NazelDimens.space14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'واتساب صاحب الوحدة (المضيف)',
+                              style: NazelTypography.arabic(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w700,
+                                color: NazelColors.primaryDark,
+                              ),
+                            ),
+                            SizedBox(width: 8.0.w),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 8.0.w,
+                                vertical: 2.0.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF25D366).withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(4.0.r),
+                              ),
+                              child: Text(
+                                'مباشر وسريع',
+                                style: NazelTypography.arabic(
+                                  fontSize: 11.5,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xFF1E7E34),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: NazelDimens.space4),
+                        Text(
+                          'تواصل فوري مع المضيف لأي استفسار، طلب خاص، أو مساعدة بالوحدة',
+                          style: NazelTypography.arabic(
+                            fontSize: 13.5,
+                            fontWeight: FontWeight.w500,
+                            color: NazelColors.textSecondary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: NazelDimens.space16),
+              Row(
+                children: [
+                  Expanded(
+                    child: NazelButton(
+                      text: 'محادثة فورية عبر واتساب',
+                      variant: NazelButtonVariant.primary,
+                      height: 48.h,
+                      onPressed: () => _triggerAction(
+                        'واتساب المضيف',
+                        'مرحباً، أنا نزيل الوحدة رقم 402، أحتاج مساعدة بخصوص...',
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 12.0.w),
+                  Material(
+                    color: NazelColors.purpleSoft,
+                    borderRadius: BorderRadius.circular(6.0.r),
+                    child: InkWell(
+                      onTap: () => _triggerAction('اتصال بالمضيف', '0501234567'),
+                      borderRadius: BorderRadius.circular(6.0.r),
+                      child: Container(
+                        height: 48.h,
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.phone_forwarded_rounded,
+                              size: 18.0.r,
+                              color: NazelColors.primaryDark,
+                            ),
+                            SizedBox(width: 6.0.w),
+                            Text(
+                              'اتصال',
+                              style: NazelTypography.arabic(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w700,
+                                color: NazelColors.primaryDark,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+
+        SizedBox(height: NazelDimens.space14),
+
+        // 3. Customer Care & Technical Support (فريق خدمة النزلاء والدعم)
+        NazelChooseCard(
+          title: 'خدمة نزلاء نازل والدعم الفني ٢٤/٧',
+          subtitle: 'فريق الدعم والمساندة جاهز لخدمتك وحل أي مشكلة تقنية أو استفسار',
+          onTap: () => _triggerAction('دعم النزلاء', 'واتساب الدعم الفني المباشر'),
+          leading: Container(
+            width: 52.0.r,
+            height: 52.0.r,
+            decoration: BoxDecoration(
+              color: NazelColors.purpleSoft,
+              borderRadius: BorderRadius.circular(6.0.r),
+            ),
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.support_agent_rounded,
+              size: 26.0.r,
+              color: NazelColors.primary,
+            ),
+          ),
+          trailing: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 16.0.w,
+              vertical: 8.0.h,
+            ),
+            decoration: BoxDecoration(
+              color: NazelColors.primary,
+              borderRadius: BorderRadius.circular(6.0.r),
+            ),
+            child: Text(
+              'واتساب الدعم',
+              style: NazelTypography.arabic(
+                fontSize: 13.5,
+                fontWeight: FontWeight.w700,
+                color: NazelColors.surfaceWhite,
               ),
             ),
-            trailing: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: NazelDimens.space16,
-                vertical: NazelDimens.space8,
-              ),
-              decoration: BoxDecoration(
-                color: NazelColors.danger,
-                borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
-              ),
-              child: Text(
-                l10n.call,
-                style: NazelTypography.arabic(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w800,
-                  color: NazelColors.surfaceWhite,
-                ),
+          ),
+        ),
+
+        SizedBox(height: NazelDimens.space12),
+
+        // 4. In-building Maintenance (صيانة طوارئ المبنى)
+        NazelChooseCard(
+          title: 'صيانة طوارئ بالوحدة (سباكة / كهرباء)',
+          subtitle: 'فني طوارئ متواجد بالقرب للتعامل مع أي عطل مفاجئ',
+          onTap: () => _triggerAction('طوارئ الصيانة', '+966 50 000 0000'),
+          leading: Container(
+            width: 52.0.r,
+            height: 52.0.r,
+            decoration: BoxDecoration(
+              color: NazelColors.purpleSoft,
+              borderRadius: BorderRadius.circular(6.0.r),
+            ),
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.handyman_rounded,
+              size: 26.0.r,
+              color: NazelColors.primary,
+            ),
+          ),
+          trailing: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 16.0.w,
+              vertical: 8.0.h,
+            ),
+            decoration: BoxDecoration(
+              color: NazelColors.purpleBorder.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(6.0.r),
+            ),
+            child: Text(
+              'طلب فني',
+              style: NazelTypography.arabic(
+                fontSize: 13.5,
+                fontWeight: FontWeight.w700,
+                color: NazelColors.primaryDark,
               ),
             ),
-          );
-        }),
+          ),
+        ),
       ],
     );
   }
 }
 
-/// 6. Apartment Info Modal
+/// 6. Apartment Info Modal ("دليل الوحدة")
 class ApartmentInfoModal extends StatefulWidget {
   const ApartmentInfoModal({super.key});
 
@@ -1493,55 +3508,75 @@ class ApartmentInfoModal extends StatefulWidget {
 }
 
 class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
-  String? _selectedCategory; // null: main menu, 'devices', 'checkout', 'contacts', 'about'
+  String? _selectedCategory; // null: main menu, 'door', 'ac', 'washer', 'parking', 'trash', 'checkout'
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
     if (_selectedCategory == null) {
-      return _buildMainMenu(l10n);
+      return _buildMainMenu();
     }
 
     switch (_selectedCategory) {
-      case 'devices':
-        return _buildDevicesDetail(l10n);
+      case 'door':
+        return _buildDoorDetail();
+      case 'ac':
+        return _buildAcDetail();
+      case 'washer':
+        return _buildWasherDetail();
+      case 'parking':
+        return _buildParkingDetail();
+      case 'trash':
+        return _buildTrashDetail();
       case 'checkout':
-        return _buildCheckoutDetail(l10n);
-      case 'contacts':
-        return _buildContactsDetail(l10n);
-      case 'about':
-        return _buildAboutDetail(l10n);
+        return _buildCheckoutDetail();
       default:
-        return _buildMainMenu(l10n);
+        return _buildMainMenu();
     }
   }
 
-  Widget _buildMainMenu(AppLocalizations l10n) {
+  Widget _buildMainMenu() {
     final menuItems = [
       {
-        'id': 'devices',
-        'title': l10n.deviceInstructions,
-        'desc': l10n.deviceInstructionsDesc,
-        'icon': Icons.iron_outlined,
+        'id': 'door',
+        'title': 'كيف تفتح الباب من برّا (القفل الذكي)',
+        'desc': 'طريقة إيقاظ الشاشة، إدخال الرمز السري، وقفل الباب عند الخروج',
+        'icon': Icons.lock_open_rounded,
+        'badge': 'الأكثر طلباً',
+      },
+      {
+        'id': 'ac',
+        'title': 'المكيّف وضبط درجة التبريد',
+        'desc': 'زر التشغيل، التأكد من وضع التبريد (Cool)، ودرجة الحرارة المثالية',
+        'icon': Icons.ac_unit_rounded,
+        'badge': null,
+      },
+      {
+        'id': 'washer',
+        'title': 'الغسالة والنشّافة',
+        'desc': 'مكان مسحوق الغسيل، برنامج الغسيل السريع، والتنشيف',
+        'icon': Icons.local_laundry_service_rounded,
+        'badge': null,
+      },
+      {
+        'id': 'parking',
+        'title': 'موقف السيارة المخصص',
+        'desc': 'رقم الموقف المخصص لشقتك، بوابة القبو، وطريقة الدخول',
+        'icon': Icons.local_parking_rounded,
+        'badge': 'موقف #12',
+      },
+      {
+        'id': 'trash',
+        'title': 'الزبالة وتصريف النفايات',
+        'desc': 'غرفة تصريف النفايات بالدور، والحاوية المركزية للكراتين',
+        'icon': Icons.delete_outline_rounded,
+        'badge': null,
       },
       {
         'id': 'checkout',
-        'title': l10n.checkoutPolicy,
-        'desc': l10n.checkoutPolicyDesc,
+        'title': 'تعليمات المغادرة وقواعد الوحدة',
+        'desc': 'وقت الخروج (٤:٣٠ م)، تسليم المفاتيح، والواي فاي',
         'icon': Icons.hotel_rounded,
-      },
-      {
-        'id': 'contacts',
-        'title': l10n.importantContacts,
-        'desc': l10n.importantContactsDesc,
-        'icon': Icons.phone_rounded,
-      },
-      {
-        'id': 'about',
-        'title': l10n.aboutApartment,
-        'desc': l10n.aboutApartmentDesc,
-        'icon': Icons.home_outlined,
+        'badge': null,
       },
     ];
 
@@ -1550,36 +3585,60 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
       padding: EdgeInsets.zero,
       children: [
         ...menuItems.map((item) {
-          return NazelChooseCard(
-            height: 104.0.h,
-            title: item['title'] as String,
-            subtitle: item['desc'] as String,
-            onTap: () {
-              setState(() {
-                _selectedCategory = item['id'] as String;
-              });
-            },
-            leading: Container(
-              width: 56.0.r,
-              height: 56.0.r,
-              decoration: BoxDecoration(
-                color: NazelColors.surfaceWhite,
-                shape: BoxShape.circle,
-                border: Border.all(color: NazelColors.borderLight, width: 1.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.04),
-                    offset: Offset(0, 2.h),
-                    blurRadius: 6.0.r,
+          final badge = item['badge'] as String?;
+          return Container(
+            margin: EdgeInsets.only(bottom: NazelDimens.space12),
+            child: NazelChooseCard(
+              height: 106.0.h,
+              title: item['title'] as String,
+              subtitle: item['desc'] as String,
+              onTap: () {
+                setState(() {
+                  _selectedCategory = item['id'] as String;
+                });
+              },
+              leading: Container(
+                width: 52.0.r,
+                height: 52.0.r,
+                decoration: BoxDecoration(
+                  color: NazelColors.purpleSoft,
+                  borderRadius: BorderRadius.circular(6.0.r),
+                  border: Border.all(
+                    color: NazelColors.purpleBorder.withValues(alpha: 0.25),
+                    width: 1.0,
                   ),
-                ],
+                ),
+                alignment: Alignment.center,
+                child: Icon(
+                  item['icon'] as IconData,
+                  size: 26.0.r,
+                  color: NazelColors.primary,
+                ),
               ),
-              alignment: Alignment.center,
-              child: Icon(
-                item['icon'] as IconData,
-                size: 26.0.r,
-                color: NazelColors.primary,
-              ),
+              trailing: badge != null
+                  ? Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.0.w,
+                        vertical: 4.0.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: NazelColors.purpleSoft,
+                        borderRadius: BorderRadius.circular(4.0.r),
+                        border: Border.all(
+                          color: NazelColors.purpleBorder.withValues(alpha: 0.3),
+                          width: 1.0,
+                        ),
+                      ),
+                      child: Text(
+                        badge,
+                        style: NazelTypography.arabic(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w700,
+                          color: NazelColors.primaryDark,
+                        ),
+                      ),
+                    )
+                  : null,
             ),
           );
         }),
@@ -1594,16 +3653,16 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
         children: [
           Material(
             color: NazelColors.purpleSoft,
-            borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
+            borderRadius: BorderRadius.circular(6.0.r),
             child: InkWell(
-              borderRadius: BorderRadius.circular(NazelDimens.radiusSm),
+              borderRadius: BorderRadius.circular(6.0.r),
               onTap: () => setState(() => _selectedCategory = null),
               child: Padding(
                 padding: EdgeInsets.all(NazelDimens.space8),
                 child: Icon(
                   NazelDirectionalIcons.back(context),
                   size: 20.0.r,
-                  color: NazelColors.primary,
+                  color: NazelColors.primaryDark,
                 ),
               ),
             ),
@@ -1613,8 +3672,8 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
             title,
             style: NazelTypography.arabic(
               fontSize: 20.0,
-              fontWeight: FontWeight.w800,
-              color: NazelColors.primary,
+              fontWeight: FontWeight.w700,
+              color: NazelColors.primaryDark,
             ),
           ),
         ],
@@ -1622,232 +3681,48 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
     );
   }
 
-  // 1. Devices Instruction Detail
-  Widget _buildDevicesDetail(AppLocalizations l10n) {
-    final devices = [
-      {
-        'name': l10n.applianceAC,
-        'icon': Icons.ac_unit_rounded,
-        'instructions': l10n.applianceACDesc,
-      },
-      {
-        'name': l10n.applianceTV,
-        'icon': Icons.tv_rounded,
-        'instructions': l10n.applianceTVDesc,
-      },
-      {
-        'name': l10n.applianceWasher,
-        'icon': Icons.local_laundry_service_rounded,
-        'instructions': l10n.applianceWasherDesc,
-      },
-      {
-        'name': l10n.applianceCoffee,
-        'icon': Icons.coffee_maker_rounded,
-        'instructions': l10n.applianceCoffeeDesc,
-      },
-      {
-        'name': l10n.applianceMicrowave,
-        'icon': Icons.microwave_rounded,
-        'instructions': l10n.applianceMicrowaveDesc,
-      },
-    ];
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildDetailHeader(l10n.deviceInstructionsDesc),
-        Expanded(
-          child: ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            itemCount: devices.length,
-            separatorBuilder: (context, index) =>
-                SizedBox(height: NazelDimens.space12),
-            itemBuilder: (context, index) {
-              final d = devices[index];
-              return Container(
-                padding: EdgeInsets.all(NazelDimens.space16),
-                decoration: BoxDecoration(
-                  color: NazelColors.surfaceWhite,
-                  borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
-                  border: Border.all(color: NazelColors.borderLight),
-                  boxShadow: [
-                    BoxShadow(
-                      color: NazelColors.primary.withValues(alpha: 0.03),
-                      offset: Offset(0, 3.h),
-                      blurRadius: 8.0.r,
-                    ),
-                  ],
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 48.0.r,
-                      height: 48.0.r,
-                      decoration: BoxDecoration(
-                        color: NazelColors.purpleSoft,
-                        borderRadius: BorderRadius.circular(
-                          NazelDimens.radiusSm,
-                        ),
-                      ),
-                      alignment: Alignment.center,
-                      child: Icon(
-                        d['icon'] as IconData,
-                        size: 24.0.r,
-                        color: NazelColors.primary,
-                      ),
-                    ),
-                    SizedBox(width: NazelDimens.space16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            d['name'] as String,
-                            style: NazelTypography.arabic(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w800,
-                              color: NazelColors.primary,
-                            ),
-                          ),
-                          SizedBox(height: NazelDimens.space6),
-                          Text(
-                            d['instructions'] as String,
-                            style: NazelTypography.arabic(
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w500,
-                              color: NazelColors.textSecondary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
-
-  // 2. Checkout Policy Detail
-  Widget _buildCheckoutDetail(AppLocalizations l10n) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildDetailHeader(l10n.checkoutPolicy),
-        Expanded(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            children: [
-              // Highlight card
-              Container(
-                padding: EdgeInsets.all(NazelDimens.space20),
-                decoration: BoxDecoration(
-                  color: NazelColors.purpleSoft,
-                  borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
-                  border: Border.all(
-                    color: NazelColors.primary.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 56.0.r,
-                      height: 56.0.r,
-                      decoration: BoxDecoration(
-                        color: NazelColors.primary,
-                        borderRadius: BorderRadius.circular(
-                          NazelDimens.radiusSm,
-                        ),
-                      ),
-                      alignment: Alignment.center,
-                      child: Icon(
-                        Icons.access_time_filled_rounded,
-                        size: 28.0.r,
-                        color: NazelColors.surfaceWhite,
-                      ),
-                    ),
-                    SizedBox(width: NazelDimens.space16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            l10n.checkoutTimeHighlight,
-                            style: NazelTypography.arabic(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w800,
-                              color: NazelColors.primary,
-                            ),
-                          ),
-                          SizedBox(height: NazelDimens.space4),
-                          Text(
-                            l10n.checkoutTimeNote,
-                            style: NazelTypography.arabic(
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w500,
-                              color: NazelColors.textSecondary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: NazelDimens.space16),
-
-              // Checklist points
-              _buildPolicyCard(
-                icon: Icons.key_rounded,
-                title: l10n.policySmartKey,
-                desc: l10n.policySmartKeyDesc,
-              ),
-              SizedBox(height: NazelDimens.space10),
-              _buildPolicyCard(
-                icon: Icons.luggage_rounded,
-                title: l10n.policyLuggage,
-                desc: l10n.policyLuggageDesc,
-              ),
-              SizedBox(height: NazelDimens.space10),
-              _buildPolicyCard(
-                icon: Icons.power_settings_new_rounded,
-                title: l10n.policyPower,
-                desc: l10n.policyPowerDesc,
-              ),
-              SizedBox(height: NazelDimens.space10),
-              _buildPolicyCard(
-                icon: Icons.update_rounded,
-                title: l10n.policyExtendStay,
-                desc: l10n.policyExtendStayDesc,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPolicyCard({
-    required IconData icon,
+  Widget _buildStepCard({
+    required int stepNumber,
     required String title,
-    required String desc,
+    required String description,
+    IconData? icon,
   }) {
     return Container(
+      margin: EdgeInsets.only(bottom: NazelDimens.space12),
       padding: EdgeInsets.all(NazelDimens.space16),
       decoration: BoxDecoration(
         color: NazelColors.surfaceWhite,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
-        border: Border.all(color: NazelColors.borderLight),
+        borderRadius: BorderRadius.circular(8.0.r),
+        border: Border.all(
+          color: NazelColors.purpleBorder.withValues(alpha: 0.3),
+          width: 1.0,
+        ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: 22.0.r, color: NazelColors.primary),
-          SizedBox(width: NazelDimens.space12),
+          Container(
+            width: 38.0.r,
+            height: 38.0.r,
+            decoration: BoxDecoration(
+              color: NazelColors.purpleSoft,
+              borderRadius: BorderRadius.circular(6.0.r),
+              border: Border.all(
+                color: NazelColors.purpleBorder.withValues(alpha: 0.3),
+                width: 1.0,
+              ),
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              '$stepNumber',
+              style: NazelTypography.display(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w700,
+                color: NazelColors.primary,
+              ),
+            ),
+          ),
+          SizedBox(width: NazelDimens.space14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1855,16 +3730,16 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
                 Text(
                   title,
                   style: NazelTypography.arabic(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w800,
-                    color: NazelColors.primary,
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w700,
+                    color: NazelColors.primaryDark,
                   ),
                 ),
                 SizedBox(height: NazelDimens.space4),
                 Text(
-                  desc,
+                  description,
                   style: NazelTypography.arabic(
-                    fontSize: 13.0,
+                    fontSize: 13.5,
                     fontWeight: FontWeight.w500,
                     color: NazelColors.textSecondary,
                   ),
@@ -1872,210 +3747,352 @@ class _ApartmentInfoModalState extends State<ApartmentInfoModal> {
               ],
             ),
           ),
+          if (icon != null) ...[
+            SizedBox(width: NazelDimens.space10),
+            Icon(icon, size: 22.0.r, color: NazelColors.purpleBorder),
+          ],
         ],
       ),
     );
   }
 
-  // 3. Important Contacts Detail
-  Widget _buildContactsDetail(AppLocalizations l10n) {
-    final contacts = [
-      {
-        'title': l10n.contactReception,
-        'ext': l10n.extensionExt('100'),
-        'phone': '0551234567',
-        'icon': Icons.desk_rounded,
-      },
-      {
-        'title': l10n.contactRoomService,
-        'ext': l10n.extensionExt('102'),
-        'phone': '0551234568',
-        'icon': Icons.room_service_rounded,
-      },
-      {
-        'title': l10n.contactMaintenance,
-        'ext': l10n.extensionExt('104'),
-        'phone': '0551234569',
-        'icon': Icons.build_rounded,
-      },
-      {
-        'title': l10n.contactSecurity,
-        'ext': l10n.extensionExt('109'),
-        'phone': '0551234570',
-        'icon': Icons.security_rounded,
-      },
-    ];
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildDetailHeader(l10n.importantContactsDesc),
-        Expanded(
-          child: ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            itemCount: contacts.length,
-            separatorBuilder: (context, index) =>
-                SizedBox(height: NazelDimens.space12),
-            itemBuilder: (context, index) {
-              final c = contacts[index];
-              return Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: NazelDimens.space16,
-                  vertical: NazelDimens.space12,
-                ),
-                decoration: BoxDecoration(
-                  color: NazelColors.surfaceWhite,
-                  borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
-                  border: Border.all(color: NazelColors.borderLight),
-                ),
+  Widget _buildHelpFooter() {
+    return Container(
+      margin: EdgeInsets.only(top: NazelDimens.space8, bottom: NazelDimens.space16),
+      padding: EdgeInsets.all(NazelDimens.space14),
+      decoration: BoxDecoration(
+        color: NazelColors.purpleSoft,
+        borderRadius: BorderRadius.circular(8.0.r),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.help_outline_rounded,
+            color: NazelColors.primaryDark,
+            size: 22.0.r,
+          ),
+          SizedBox(width: NazelDimens.space10),
+          Expanded(
+            child: Text(
+              'هل واجهت مشكلة أو تحتاج توضيحاً إضافياً؟',
+              style: NazelTypography.arabic(
+                fontSize: 13.5,
+                fontWeight: FontWeight.w600,
+                color: NazelColors.primaryDark,
+              ),
+            ),
+          ),
+          Material(
+            color: const Color(0xFF25D366),
+            borderRadius: BorderRadius.circular(6.0.r),
+            child: InkWell(
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'جاري فتح واتساب المضيف للمساعدة...',
+                      style: NazelTypography.arabic(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w600,
+                        color: NazelColors.surfaceWhite,
+                      ),
+                    ),
+                    backgroundColor: NazelColors.primaryDark,
+                    duration: const Duration(seconds: 3),
+                  ),
+                );
+              },
+              borderRadius: BorderRadius.circular(6.0.r),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 8.0.h),
                 child: Row(
                   children: [
-                    Container(
-                      width: 48.0.r,
-                      height: 48.0.r,
-                      decoration: BoxDecoration(
-                        color: NazelColors.purpleSoft,
-                        borderRadius: BorderRadius.circular(
-                          NazelDimens.radiusSm,
-                        ),
-                      ),
-                      alignment: Alignment.center,
-                      child: Icon(
-                        c['icon'] as IconData,
-                        size: 24.0.r,
-                        color: NazelColors.primary,
-                      ),
+                    Icon(
+                      Icons.chat_bubble_rounded,
+                      size: 16.0.r,
+                      color: NazelColors.surfaceWhite,
                     ),
-                    SizedBox(width: NazelDimens.space16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            c['title'] as String,
-                            style: NazelTypography.arabic(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w800,
-                              color: NazelColors.primary,
-                            ),
-                          ),
-                          SizedBox(height: NazelDimens.space4),
-                          Text(
-                            '${c['ext']}  •  ${c['phone']}',
-                            style: NazelTypography.arabic(
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w500,
-                              color: NazelColors.textSecondary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: NazelDimens.space16,
-                        vertical: NazelDimens.space8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: NazelColors.primary,
-                        borderRadius: BorderRadius.circular(
-                          NazelDimens.radiusSm,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.phone_in_talk_rounded,
-                            size: 16.0.r,
-                            color: NazelColors.surfaceWhite,
-                          ),
-                          SizedBox(width: NazelDimens.space6),
-                          Text(
-                            l10n.call,
-                            style: NazelTypography.arabic(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w800,
-                              color: NazelColors.surfaceWhite,
-                            ),
-                          ),
-                        ],
+                    SizedBox(width: 6.0.w),
+                    Text(
+                      'واتساب المضيف',
+                      style: NazelTypography.arabic(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w700,
+                        color: NazelColors.surfaceWhite,
                       ),
                     ),
                   ],
                 ),
-              );
-            },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 1. Door & Smart Lock Detail
+  Widget _buildDoorDetail() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildDetailHeader('كيف تفتح الباب من برّا (القفل الذكي)'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              _buildStepCard(
+                stepNumber: 1,
+                title: 'إيقاظ شاشة القفل',
+                description:
+                    'المس شاشة القفل الزجاجية بباطن يدك أو بأطراف أصابعك حتى تضيء أزرار الأرقام بالكامل.',
+                icon: Icons.touch_app_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 2,
+                title: 'إدخال الرمز السري الخاص بك',
+                description:
+                    'أدخل الرمز المكون من ٤ أرقام المرسل لك في رسالة الدخول (رمز دخول الشقة: 4022).',
+                icon: Icons.pin_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 3,
+                title: 'تأكيد الفتح ونزول المقبض',
+                description:
+                    'اضغط على زر النجمة (*) أو المربع (#). ستسمع صوت نغمة فتح القفل، ثم ادفع المقبض لأسفل وادخل.',
+                icon: Icons.check_circle_outline_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 4,
+                title: 'قفل الباب عند الخروج من الشقة',
+                description:
+                    'عند مغادرة الشقة، اسحب الباب حتى يُغلق تماماً، ثم المس شاشة القفل لإغلاق اللسان تلقائياً.',
+                icon: Icons.lock_outline_rounded,
+              ),
+              _buildHelpFooter(),
+            ],
           ),
         ),
       ],
     );
   }
 
-  // 4. About Apartment Detail
-  Widget _buildAboutDetail(AppLocalizations l10n) {
-    final specs = [
-      {'label': l10n.aboutUnitNumber, 'val': l10n.aboutUnitNumberVal},
-      {'label': l10n.aboutStayType, 'val': l10n.aboutStayTypeVal},
-      {'label': l10n.aboutArea, 'val': l10n.aboutAreaVal},
-      {'label': l10n.aboutCapacity, 'val': l10n.aboutCapacityVal},
-      {
-        'label': l10n.aboutFacilities,
-        'val': l10n.aboutFacilitiesVal,
-      },
-      {'label': l10n.aboutInternet, 'val': l10n.aboutInternetVal},
-      {'label': l10n.aboutSmoking, 'val': l10n.aboutSmokingVal},
-      {'label': l10n.aboutQuietHours, 'val': l10n.aboutQuietHoursVal},
-    ];
-
+  // 2. AC Operation Detail
+  Widget _buildAcDetail() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildDetailHeader(l10n.aboutApartmentDesc),
+        _buildDetailHeader('المكيّف وضبط درجة التبريد'),
         Expanded(
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
-              Container(
-                padding: EdgeInsets.all(NazelDimens.space16),
-                decoration: BoxDecoration(
-                  color: NazelColors.surfaceWhite,
-                  borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
-                  border: Border.all(color: NazelColors.borderLight),
-                ),
-                child: Column(
-                  children: specs.map((s) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: NazelDimens.space8,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            s['label']!,
-                            style: NazelTypography.arabic(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w700,
-                              color: NazelColors.primary,
-                            ),
-                          ),
-                          Flexible(
-                            child: Text(
-                              s['val']!,
-                              textAlign: TextAlign.end,
-                              style: NazelTypography.arabic(
-                                fontSize: 13.0,
-                                fontWeight: FontWeight.w500,
-                                color: NazelColors.textSecondary,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                ),
+              _buildStepCard(
+                stepNumber: 1,
+                title: 'التشغيل والإيقاف',
+                description:
+                    'اضغط على الزر الأحمر/البرتقالي (ON/OFF) في ريموت التكييف المثبت بجانب الباب أو على الطاولة.',
+                icon: Icons.power_settings_new_rounded,
               ),
+              _buildStepCard(
+                stepNumber: 2,
+                title: 'التأكد من وضع التبريد (Cool)',
+                description:
+                    'اضغط زر (Mode) حتى تظهر أيقونة ندفة الثلج (❄️ Cool) على شاشة الريموت. لا تتركه على وضع المروحة فقط (Fan).',
+                icon: Icons.ac_unit_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 3,
+                title: 'درجة الحرارة المثالية الموصى بها',
+                description:
+                    'نوصي بضبط الحرارة بين ٢١°م إلى ٢٣°م لضمان تبريد سريع ومريح دون إجهاد الوحدة.',
+                icon: Icons.thermostat_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 4,
+                title: 'توجيه الهواء وسرعة المروحة',
+                description:
+                    'استخدم زر (Swing) لتوزيع الهواء تلقائياً، وزر (Fan Speed) لضبط سرعة دفع الهواء حسب رغبتك.',
+                icon: Icons.air_rounded,
+              ),
+              _buildHelpFooter(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // 3. Washer & Dryer Detail
+  Widget _buildWasherDetail() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildDetailHeader('الغسالة والنشّافة'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              _buildStepCard(
+                stepNumber: 1,
+                title: 'مسحوق الغسيل',
+                description:
+                    'تجد مسحوق وصابون الغسيل متوفراً في الخزانة أسفل الحوض. ضع مقدار غطاء واحد في الدرج الأيسر للغسالة.',
+                icon: Icons.bubble_chart_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 2,
+                title: 'اختيار برنامج الغسيل السريع',
+                description:
+                    'أدر القرص الدائري إلى برنامج (Quick 15/30 min). هذا البرنامج الأنسب للملابس اليومية الخفيفة ويوفر الوقت.',
+                icon: Icons.timer_outlined,
+              ),
+              _buildStepCard(
+                stepNumber: 3,
+                title: 'بدء الغسيل والتنشيف',
+                description:
+                    'اضغط زر (Start / Pause). تبدأ دورة الغسيل تلقائياً وتشمل العصر والتجفيف السريع (Spin 800-1000 rpm).',
+                icon: Icons.play_arrow_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 4,
+                title: 'فتح الباب بعد انتهاء الدورة',
+                description:
+                    'عند انتهاء الغسيل وسماع الصافرة، انتظر لمدة دقيقتين حتى يفتح قفل الأمان للباب الزجاجي تلقائياً.',
+                icon: Icons.lock_clock_rounded,
+              ),
+              _buildHelpFooter(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // 4. Parking Detail
+  Widget _buildParkingDetail() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildDetailHeader('موقف السيارة المخصص للشقة'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              _buildStepCard(
+                stepNumber: 1,
+                title: 'رقم الموقف المخصص لشقتك',
+                description:
+                    'موقفك المخصص هو موقف رقم (12) في طابق القبو الأول (B1)، وموضح برقم بارز على الأرضية والجدار.',
+                icon: Icons.local_parking_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 2,
+                title: 'بوابة الدخول للقبو',
+                description:
+                    'مدخل مواقف السيارات يقع في الجهة الجنوبية للمبنى. تفتح البوابة تلقائياً عبر كاميرا اللوحات أو بريموت البوابة.',
+                icon: Icons.garage_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 3,
+                title: 'الوصول للمصعد الداخلي',
+                description:
+                    'بعد إيقاف سيارتك، استخدم الباب المؤدي لردهة المصاعد في القبو؛ المصعد ينقلك مباشرة لدور وحدتك دون درج.',
+                icon: Icons.elevator_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 4,
+                title: 'تنبيه هام بخصوص الجيران',
+                description:
+                    'يرجى الالتزام بالوقوف في الموقف رقم (12) حصراً لتجنب إيقاف سيارات السكان الآخرين أو مضايقة الجيران.',
+                icon: Icons.warning_amber_rounded,
+              ),
+              _buildHelpFooter(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // 5. Trash Detail
+  Widget _buildTrashDetail() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildDetailHeader('الزبالة وتصريف النفايات'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              _buildStepCard(
+                stepNumber: 1,
+                title: 'غرفة النفايات بالدور (Trash Chute)',
+                description:
+                    'توجد غرفة مخصصة لتصريف النفايات في نفس دورك، بجوار المصاعد في نهاية الممر على اليمين.',
+                icon: Icons.delete_outline_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 2,
+                title: 'أكياس القمامة الإضافية',
+                description:
+                    'تجد رول أكياس نفايات إضافية جديدة في الدولاب أسفل حوض المطبخ. يرجى إحكام ربط الكيس قبل رميه في الفتحة.',
+                icon: Icons.shopping_bag_outlined,
+              ),
+              _buildStepCard(
+                stepNumber: 3,
+                title: 'الكراتين والمخلفات الكبيرة',
+                description:
+                    'للكراتين الكبيرة أو الأغراض التي لا تسع فتحة التصريف، يرجى وضعها في الحاوية المركزية الموجودة بالقبو بجانب مخرج السيارات.',
+                icon: Icons.inventory_2_outlined,
+              ),
+              _buildHelpFooter(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // 6. Checkout Detail
+  Widget _buildCheckoutDetail() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildDetailHeader('تعليمات المغادرة وقواعد الوحدة'),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              _buildStepCard(
+                stepNumber: 1,
+                title: 'موعد الخروج الرسمي',
+                description:
+                    'موعد المغادرة المحدد هو الأربعاء عند الساعة ٤:٣٠ م. في حال رغبتك بالبقاء، يمكنك تمديد ليلة أو تأخير خروجك من الشاشة الرئيسية.',
+                icon: Icons.access_time_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 2,
+                title: 'تسليم المفاتيح والبطاقات',
+                description:
+                    'يرجى ترك بطاقة الدخول وريموت البوابة على طاولة الصالة الرئيسية، والتأكد من إقفال الباب عند مغادرتك.',
+                icon: Icons.key_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 3,
+                title: 'إطفاء الأنوار والمكيفات',
+                description:
+                    'نرجو التكرم بإطفاء المكيفات والأجهزة الكهربائية عند خروجك للحفاظ على الطاقة وسلامة المكان.',
+                icon: Icons.lightbulb_outline_rounded,
+              ),
+              _buildStepCard(
+                stepNumber: 4,
+                title: 'شبكة الواي فاي',
+                description:
+                    'اسم الشبكة: Nazel-Luxury-402 · كلمة المرور: Nazel@2026. متوفرة بسرعة ألياف بصرية عالية لنزلاء الوحدة.',
+                icon: Icons.wifi_rounded,
+              ),
+              _buildHelpFooter(),
             ],
           ),
         ),

@@ -22,12 +22,14 @@ class NazelRadio<T> extends StatelessWidget {
       onTap: () => onChanged(value),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        width: 32.0.r,
-        height: 32.0.r,
+        width: 28.0.r,
+        height: 28.0.r,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: isSelected ? NazelColors.primary : NazelColors.borderLight,
+            color: isSelected
+                ? NazelColors.primary
+                : NazelColors.purpleBorder.withValues(alpha: 0.45),
             width: 1.5,
           ),
           color: isSelected ? NazelColors.primary : Colors.transparent,
@@ -36,7 +38,7 @@ class NazelRadio<T> extends StatelessWidget {
         child: isSelected
             ? Icon(
                 Icons.check,
-                size: 18.0.r,
+                size: 16.0.r,
                 color: NazelColors.surfaceWhite,
               )
             : null,

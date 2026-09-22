@@ -35,11 +35,12 @@ class NazelIncrementField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = backgroundColor ?? NazelColors.purpleSoft;
-    final border = borderColor ?? NazelColors.purpleBorder.withValues(alpha: 0.3);
-    final textCol = textColor ?? NazelColors.primary;
-    final iconCol = iconColor ?? NazelColors.textPrimary;
-    final r = borderRadius ?? BorderRadius.circular(NazelDimens.radiusSm);
+    final bg = backgroundColor ?? NazelColors.surfaceWhite;
+    final border =
+        borderColor ?? NazelColors.purpleBorder.withValues(alpha: 0.35);
+    final textCol = textColor ?? NazelColors.primaryDark;
+    final iconCol = iconColor ?? NazelColors.primaryDark;
+    final r = borderRadius ?? BorderRadius.circular(6.0.r);
 
     return Container(
       width: width ?? NazelDimens.incrementFieldWidth,

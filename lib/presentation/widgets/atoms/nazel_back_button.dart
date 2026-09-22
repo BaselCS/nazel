@@ -24,7 +24,7 @@ class NazelBackButton extends StatelessWidget {
     return IconButton(
       icon: Icon(
         icon ?? NazelDirectionalIcons.back(context),
-        color: color ?? NazelColors.surfaceWhite,
+        color: color ?? NazelColors.primaryDark,
         size: size ?? 22.0.r,
       ),
       onPressed: onPressed ?? () => Navigator.of(context).pop(),

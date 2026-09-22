@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 
 class NazelCategoryChip extends StatelessWidget {
@@ -22,24 +21,33 @@ class NazelCategoryChip extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: EdgeInsets.symmetric(horizontal: 22.0.w, vertical: 10.0.h),
+        padding: EdgeInsets.symmetric(horizontal: 18.0.w, vertical: 8.0.h),
         decoration: BoxDecoration(
-          color: NazelColors.surfaceWhite,
-          borderRadius: BorderRadius.circular(NazelDimens.radiusLg),
+          color: isSelected ? NazelColors.primary : NazelColors.surfaceWhite,
+          borderRadius: BorderRadius.circular(6.0.r),
           border: Border.all(
             color: isSelected
-                ? NazelColors.gold
-                : NazelColors.borderLight.withValues(alpha: 0.8),
-            width: isSelected ? 1.5 : 1.0,
+                ? NazelColors.primary
+                : NazelColors.purpleBorder.withValues(alpha: 0.35),
+            width: 1.0,
           ),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: NazelColors.primary.withValues(alpha: 0.25),
+                    blurRadius: 6.0.r,
+                    offset: const Offset(0, 2),
+                  ),
+                ]
+              : null,
         ),
         alignment: Alignment.center,
         child: Text(
           label,
           style: NazelTypography.arabic(
-            fontSize: 16.0,
+            fontSize: 15.0,
             fontWeight: FontWeight.w700,
-            color: isSelected ? NazelColors.primary : NazelColors.textSecondary,
+            color: isSelected ? Colors.white : NazelColors.textSecondary,
           ),
         ),
       ),

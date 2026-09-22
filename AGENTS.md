@@ -15,3 +15,7 @@
 - Reuse existing tokens (`NazelColors`, `NazelDimens`, `NazelTypography`) and components (`NazelButton`, `NazelChooseCard`, `NazelAppBar`, `ModalSheetWrapper`, etc.).
 - If a needed component does NOT exist in the design system, you MUST ask the user before creating or adding a new component.
 
+## 4. Typography & Responsive Scaling Rule
+- Keep `flutter_screenutil` (`.sp`) in `NazelTypography` for base design tokens.
+- Use `auto_size_text` inside dynamic grid items, action buttons, and sidebar slots.
+

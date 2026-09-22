@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../atoms/nazel_icon.dart';
 import '../atoms/nazel_radio.dart';
@@ -24,35 +23,46 @@ class NazelTimeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final r = BorderRadius.circular(8.0.r);
+
     return Container(
-      height: height ?? 73.0.h,
-      margin: EdgeInsets.symmetric(vertical: NazelDimens.space6),
+      height: height ?? 68.0.h,
+      margin: EdgeInsets.symmetric(vertical: 5.0.h),
       decoration: BoxDecoration(
-        color: NazelColors.surfaceWhite,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusMd),
+        color: isSelected
+            ? NazelColors.purpleSoft.withValues(alpha: 0.35)
+            : NazelColors.surfaceWhite,
+        borderRadius: r,
         border: Border.all(
           color: isSelected
-              ? NazelColors.gold
-              : NazelColors.borderLight.withValues(alpha: 0.8),
+              ? NazelColors.primary
+              : NazelColors.purpleBorder.withValues(alpha: 0.35),
           width: isSelected ? 1.5 : 1.0,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: NazelColors.primary.withValues(alpha: 0.03),
+            offset: const Offset(0, 2),
+            blurRadius: 4.0.r,
+          ),
+        ],
       ),
       child: Material(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(NazelDimens.radiusMd),
+        borderRadius: r,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(NazelDimens.radiusMd),
+          borderRadius: r,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: NazelDimens.space16),
+            padding: EdgeInsets.symmetric(horizontal: 16.0.w),
             child: Row(
               children: [
                 NazelIcon(
                   type: NazelIconType.clock,
-                  size: 24.0.r,
+                  size: 22.0.r,
                   color: NazelColors.primary,
                 ),
-                SizedBox(width: NazelDimens.space12),
+                SizedBox(width: 12.0.w),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -62,19 +72,21 @@ class NazelTimeTile extends StatelessWidget {
                         timeText,
                         style: NazelTypography.arabic(
                           fontSize: 17.0,
-                          fontWeight: FontWeight.w800,
-                          color: NazelColors.primary,
+                          fontWeight: FontWeight.w700,
+                          color: NazelColors.primaryDark,
                         ),
                       ),
-                      if (label != null)
+                      if (label != null) ...[
+                        SizedBox(height: 2.0.h),
                         Text(
                           label!,
                           style: NazelTypography.arabic(
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 13.5,
+                            fontWeight: FontWeight.w600,
                             color: NazelColors.textSecondary,
                           ),
                         ),
+                      ],
                     ],
                   ),
                 ),

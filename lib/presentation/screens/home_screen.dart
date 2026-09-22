@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_colors.dart';
@@ -15,67 +16,60 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: NazelColors.sand,
+      backgroundColor: NazelColors.purpleSoft,
       body: SafeArea(
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: SelectionArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.0.w,
-                vertical: 16.0.h,
+        child: SelectionArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 20.0.h),
+            child: Container(
+              padding: EdgeInsets.all(22.0.r),
+              decoration: BoxDecoration(
+                color: NazelColors.surfaceWhite,
+                borderRadius: BorderRadius.circular(16.0.r),
+                border: Border.all(
+                  color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+                  width: 1.0,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: NazelColors.primary.withValues(alpha: 0.08),
+                    blurRadius: 20.0.r,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
-              child: Column(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // 1. TOP MAIN SCREEN CONTAINER (Kiosk Screen - Fills main space)
+                  // 1. SIDEBAR (Left column in kiosk layout)
+                  SizedBox(
+                    width: 250.0.w,
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: _buildSidebar(),
+                    ),
+                  ),
+
+                  SizedBox(width: 20.0.w),
+
+                  // 2. MAIN CONTENT (Right column in kiosk layout)
                   Expanded(
-                    flex: 10,
-                    child: Container(
-                      padding: EdgeInsets.all(14.0.r),
-                      decoration: BoxDecoration(
-                        color: NazelColors.paper,
-                        borderRadius: BorderRadius.circular(6.0.r),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.04),
-                            blurRadius: 12,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Row(
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          // A. SIDEBAR (Right in RTL - .side)
-                          SizedBox(width: 260.0.w, child: _buildSidebar()),
+                          // Top Day Card (.daycard)
+                          _buildDayCard(context),
 
-                          SizedBox(width: 14.0.w),
+                          SizedBox(height: 28.0.h),
 
-                          // B. MAIN CONTENT (Left in RTL - .main)
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                // Top Day Card (.daycard)
-                                _buildDayCard(context),
-
-                                SizedBox(height: 12.0.h),
-
-                                // Bottom 4 Action Buttons Grid (.btns) - Fills remaining space
-                                Expanded(child: _buildFourButtonsGrid(context)),
-                              ],
-                            ),
-                          ),
+                          // Bottom 4 Action Buttons Grid (.btns) - Fills remaining space
+                          Expanded(child: _buildFourButtonsGrid(context)),
                         ],
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 14.0.h),
-
-                  // 2. BOTTOM 3 EXPLANATORY CARDS (Matching .grid3 in design)
-                  Expanded(flex: 4, child: _buildBottomInfoGrid()),
                 ],
               ),
             ),
@@ -85,16 +79,12 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // --- 1A. SIDEBAR (.side) ---
+  // --- 1. SIDEBAR (.side) ---
   Widget _buildSidebar() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 18.0.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(4.0.r),
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 12.0.h),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 1. Greeting
           Expanded(
@@ -103,29 +93,34 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                AutoSizeText(
                   'مرحبًا فيصل',
                   style: NazelTypography.display(
-                    fontSize: 28.0,
+                    fontSize: 64.0,
                     fontWeight: FontWeight.bold,
-                    color: NazelColors.ink,
+                    color: NazelColors.primaryDark,
                     height: 1.2,
                   ),
+                  maxLines: 1,
+                  minFontSize: 18,
                 ),
-                SizedBox(height: 4.0.h),
-                Text(
+                SizedBox(height: 20.0.h),
+                AutoSizeText(
                   'من صاحب الوحدة: أي شيء\nتحتاجه أنا موجود',
                   style: NazelTypography.arabic(
-                    fontSize: 13.5,
-                    color: NazelColors.muted,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: NazelColors.textSecondary,
                     height: 1.45,
                   ),
+                  maxLines: 2,
+                  minFontSize: 12,
                 ),
               ],
             ),
           ),
 
-          _buildDivider(),
+          _buildSidebarDivider(),
 
           // 2. Next Prayer
           Expanded(
@@ -134,35 +129,43 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                AutoSizeText(
                   'الصلاة القادمة',
                   style: NazelTypography.arabic(
-                    fontSize: 12.5,
-                    color: NazelColors.muted,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w600,
+                    color: NazelColors.textSecondary,
                   ),
+                  maxLines: 1,
+                  minFontSize: 11,
                 ),
                 SizedBox(height: 3.0.h),
-                Text(
+                AutoSizeText(
                   'العصر · ٣:٢٤',
                   style: NazelTypography.display(
-                    fontSize: 22.0,
+                    fontSize: 28.0,
                     fontWeight: FontWeight.bold,
-                    color: NazelColors.ink,
+                    color: NazelColors.primaryDark,
                   ),
+                  maxLines: 1,
+                  minFontSize: 16,
                 ),
                 SizedBox(height: 2.0.h),
-                Text(
+                AutoSizeText(
                   'القبلة ٢٥٤°',
                   style: NazelTypography.arabic(
-                    fontSize: 13.0,
-                    color: NazelColors.muted,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w600,
+                    color: NazelColors.textSecondary,
                   ),
+                  maxLines: 1,
+                  minFontSize: 11,
                 ),
               ],
             ),
           ),
 
-          _buildDivider(),
+          _buildSidebarDivider(),
 
           // 3. Wi-Fi
           Expanded(
@@ -171,26 +174,32 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                AutoSizeText(
                   'الواي فاي',
                   style: NazelTypography.arabic(
-                    fontSize: 12.5,
-                    color: NazelColors.muted,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w600,
+                    color: NazelColors.textSecondary,
                   ),
+                  maxLines: 1,
+                  minFontSize: 11,
                 ),
                 SizedBox(height: 4.0.h),
-                Text(
+                AutoSizeText(
                   'امسح الرمز واتصل',
                   style: NazelTypography.arabic(
-                    fontSize: 14.5,
-                    color: NazelColors.ink,
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.w700,
+                    color: NazelColors.textPrimary,
                   ),
+                  maxLines: 1,
+                  minFontSize: 12,
                 ),
               ],
             ),
           ),
 
-          _buildDivider(),
+          _buildSidebarDivider(),
 
           // 4. Checkout
           Expanded(
@@ -199,20 +208,26 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                AutoSizeText(
                   'الخروج',
                   style: NazelTypography.arabic(
-                    fontSize: 12.5,
-                    color: NazelColors.muted,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w600,
+                    color: NazelColors.textSecondary,
                   ),
+                  maxLines: 1,
+                  minFontSize: 11,
                 ),
                 SizedBox(height: 4.0.h),
-                Text(
+                AutoSizeText(
                   'الأربعاء · ٤:٣٠ م',
                   style: NazelTypography.arabic(
-                    fontSize: 14.5,
-                    color: NazelColors.ink,
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.w700,
+                    color: NazelColors.textPrimary,
                   ),
+                  maxLines: 1,
+                  minFontSize: 12,
                 ),
               ],
             ),
@@ -222,116 +237,175 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDivider() {
-    return Container(height: 1.0, color: NazelColors.line);
+  Widget _buildSidebarDivider() {
+    return Container(
+      height: 1.0,
+      color: NazelColors.purpleBorder.withValues(alpha: 0.25),
+    );
   }
 
-  // --- 1B. DAY CARD (.daycard) ---
+  // --- 2. DAY CARD (.daycard) ---
   Widget _buildDayCard(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 22.0.w, vertical: 16.0.h),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(4.0.r),
-        border: const Border(
-          right: BorderSide(color: NazelColors.khuzama, width: 4.0),
+        color: NazelColors.surfaceWhite,
+        borderRadius: BorderRadius.circular(8.0.r),
+        border: Border.all(
+          color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+          width: 1.0,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: NazelColors.primary.withValues(alpha: 0.05),
+            blurRadius: 8.0.r,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      clipBehavior: Clip.antiAlias,
+      child: Stack(
         children: [
-          Text(
-            'بطاقة اليوم — تتغيّر حسب الوقت',
-            style: NazelTypography.arabic(
-              fontSize: 13.0,
-              color: NazelColors.muted,
-            ),
+          // Purple accent strip on the right edge
+          Positioned(
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: 4.5,
+            child: Container(color: NazelColors.primary),
           ),
-          SizedBox(height: 4.0.h),
-          Text(
-            'باقي على خروجك ٤ ساعات',
-            style: NazelTypography.display(
-              fontSize: 28.0,
-              fontWeight: FontWeight.bold,
-              color: NazelColors.ink,
-              height: 1.3,
-            ),
-          ),
-          SizedBox(height: 2.0.h),
-          Text(
-            'تبي تقعد أكثر؟ الوحدة فاضية الليلة',
-            style: NazelTypography.arabic(
-              fontSize: 15.0,
-              color: NazelColors.muted,
-            ),
-          ),
-          SizedBox(height: 14.0.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              // Filled Button: مدّد ليلة · ٣٥٠ ريال
-              InkWell(
-                onTap: () => _openModal(
-                  context,
-                  'تمديد الإقامة',
-                  const ExtendBookingModal(),
+          Padding(
+            padding: EdgeInsets.fromLTRB(22.0.w, 16.0.h, 26.0.w, 16.0.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AutoSizeText(
+                  'بطاقة اليوم — تتغيّر حسب الوقت',
+                  style: NazelTypography.arabic(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w600,
+                    color: NazelColors.textSecondary,
+                  ),
+                  maxLines: 1,
+                  minFontSize: 11,
                 ),
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 22.0.w,
-                    vertical: 9.0.h,
+                SizedBox(height: 5.0.h),
+                AutoSizeText(
+                  'باقي على خروجك ٤ ساعات',
+                  style: NazelTypography.display(
+                    fontSize: 48.0,
+                    fontWeight: FontWeight.bold,
+                    color: NazelColors.primaryDark,
+                    height: 1.25,
                   ),
-                  decoration: BoxDecoration(
-                    color: NazelColors.khuzama,
-                    borderRadius: BorderRadius.circular(3.0.r),
+                  maxLines: 1,
+                  minFontSize: 18,
+                ),
+                SizedBox(height: 10.0.h),
+                AutoSizeText(
+                  'تبي تقعد أكثر؟ الوحدة فاضية الليلة',
+                  style: NazelTypography.arabic(
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w600,
+                    color: NazelColors.textSecondary,
                   ),
-                  child: Text(
-                    'مدّد ليلة · ٣٥٠ ريال',
-                    style: NazelTypography.arabic(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                  maxLines: 1,
+                  minFontSize: 12,
+                ),
+                SizedBox(height: 14.0.h),
+                Wrap(
+                  spacing: 24.0.w,
+                  runSpacing: 16.0.h,
+                  children: [
+                    // Filled Button: مدّد ليلة · ٣٥٠ ريال
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () => _openModal(
+                          context,
+                          'تمديد الإقامة',
+                          const ExtendBookingModal(initialTab: 0),
+                        ),
+                        borderRadius: BorderRadius.circular(6.0.r),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 22.0.w,
+                            vertical: 10.0.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: NazelColors.primary,
+                            borderRadius: BorderRadius.circular(6.0.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: NazelColors.primary.withValues(
+                                  alpha: 0.25,
+                                ),
+                                blurRadius: 8.0.r,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: AutoSizeText(
+                            'مدّد ليلة · ٣٥٠ ريال',
+                            style: NazelTypography.arabic(
+                              fontSize: 15.5,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                            maxLines: 1,
+                            minFontSize: 11,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-              SizedBox(width: 10.0.w),
 
-              // Outlined Button: أخّر خروجي · ١٠٠ ريال
-              InkWell(
-                onTap: () => _openModal(
-                  context,
-                  'تأخير الخروج',
-                  const ExtendBookingModal(),
-                ),
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 22.0.w,
-                    vertical: 9.0.h,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(3.0.r),
-                    border: Border.all(color: NazelColors.khuzama, width: 1.2),
-                  ),
-                  child: Text(
-                    'أخّر خروجي · ١٠٠ ريال',
-                    style: NazelTypography.arabic(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w600,
-                      color: NazelColors.khuzama,
+                    // Outlined Button: أخّر خروجي · ١٠٠ ريال
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () => _openModal(
+                          context,
+                          'تأخير الخروج',
+                          const ExtendBookingModal(initialTab: 1),
+                        ),
+                        borderRadius: BorderRadius.circular(6.0.r),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 22.0.w,
+                            vertical: 10.0.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(6.0.r),
+                            border: Border.all(
+                              color: NazelColors.primary,
+                              width: 1.4,
+                            ),
+                          ),
+                          child: AutoSizeText(
+                            'أخّر خروجي · ١٠٠ ريال',
+                            style: NazelTypography.arabic(
+                              fontSize: 15.5,
+                              fontWeight: FontWeight.w700,
+                              color: NazelColors.primary,
+                            ),
+                            maxLines: 1,
+                            minFontSize: 11,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  // --- 1C. 4 BUTTONS GRID (.btns) ---
+  // --- 3. 4 BUTTONS GRID (.btns) ---
   Widget _buildFourButtonsGrid(BuildContext context) {
     return Column(
       children: [
@@ -339,6 +413,7 @@ class HomeScreen extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // Right button in RTL: تحتاج شيئًا؟
               Expanded(
                 child: _buildActionBtn(
                   title: 'تحتاج شيئًا؟',
@@ -349,13 +424,14 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 12.0.w),
+              SizedBox(width: 36.0.w),
+              // Left button in RTL: أبي أقعد أكثر
               Expanded(
                 child: _buildActionBtn(
                   title: 'أبي أقعد أكثر',
                   onTap: () => _openModal(
                     context,
-                    'تمديد الإقامة',
+                    'تمديد الإقامة أو تأخير الخروج',
                     const ExtendBookingModal(),
                   ),
                 ),
@@ -363,22 +439,24 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 12.0.h),
+        SizedBox(height: 36.0.h),
         Expanded(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // Right button in RTL: اطلب خدمة
               Expanded(
                 child: _buildActionBtn(
                   title: 'اطلب خدمة',
                   onTap: () => _openModal(
                     context,
-                    'طلب خدمة',
-                    const CleaningServiceModal(),
+                    'طلب خدمة متعاقد عليها',
+                    const ServicesHubModal(),
                   ),
                 ),
               ),
-              SizedBox(width: 12.0.w),
+              SizedBox(width: 36.0.w),
+              // Left button in RTL: دليل الوحدة
               Expanded(
                 child: _buildActionBtn(
                   title: 'دليل الوحدة',
@@ -398,97 +476,41 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildActionBtn({required String title, required VoidCallback onTap}) {
     return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(3.0.r),
+      color: NazelColors.surfaceWhite,
+      borderRadius: BorderRadius.circular(6.0.r),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(3.0.r),
+        splashColor: NazelColors.purpleTint.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(6.0.r),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3.0.r),
-            border: Border.all(color: NazelColors.line, width: 1.0),
+            borderRadius: BorderRadius.circular(6.0.r),
+            border: Border.all(
+              color: NazelColors.purpleBorder.withValues(alpha: 0.45),
+              width: 1.0,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: NazelColors.primary.withValues(alpha: 0.04),
+                blurRadius: 6.0.r,
+                offset: const Offset(0, 2),
+              ),
+            ],
           ),
           alignment: Alignment.center,
-          child: Text(
+          padding: EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 16.0.h),
+          child: AutoSizeText(
             title,
             style: NazelTypography.arabic(
-              fontSize: 17.0,
-              fontWeight: FontWeight.w500,
-              color: NazelColors.ink,
+              fontSize: 32.0,
+              fontWeight: FontWeight.w700,
+              color: NazelColors.primaryDark,
             ),
+            maxLines: 1,
+            minFontSize: 16,
+            textAlign: TextAlign.center,
           ),
         ),
-      ),
-    );
-  }
-
-  // --- 2. BOTTOM 3 EXPLANATORY CARDS (.grid3) ---
-  Widget _buildBottomInfoGrid() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        // 1. Right card in RTL: معلومات دايمة
-        Expanded(
-          child: _buildBottomCard(
-            title: 'معلومات دايمة',
-            body:
-                'مواقيت الصلاة والقبلة، الواي فاي، وقت الخروج. مواقيت الصلاة وحدها ترجّع الضيف للشاشة خمس مرات يوميًا من غير ما نطلب منه شيئًا.',
-          ),
-        ),
-        SizedBox(width: 14.0.w),
-
-        // 2. Middle card: بطاقة اليوم
-        Expanded(
-          child: _buildBottomCard(
-            title: 'بطاقة اليوم',
-            body:
-                'شيء واحد كبير في الوسط يتغيّر حسب الوقت. هنا مكان العروض الحقيقي — العرض يجي للضيف، ما ينتظره في تبويب.',
-          ),
-        ),
-        SizedBox(width: 14.0.w),
-
-        // 3. Left card in RTL: أربعة أزرار ثابتة
-        Expanded(
-          child: _buildBottomCard(
-            title: 'أربعة أزرار ثابتة',
-            body:
-                'ما تتغيّر أبدًا، عشان الضيف يتعلّم مكانها في أول دقيقة ويرتاح. اللي يتغيّر هو البطاقة فقط.',
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildBottomCard({required String title, required String body}) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 18.0.w, vertical: 14.0.h),
-      decoration: BoxDecoration(
-        color: NazelColors.paper,
-        borderRadius: BorderRadius.circular(4.0.r),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: NazelTypography.display(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: NazelColors.ink,
-            ),
-          ),
-          SizedBox(height: 6.0.h),
-          Expanded(
-            child: Text(
-              body,
-              style: NazelTypography.arabic(
-                fontSize: 13.5,
-                color: NazelColors.ink,
-                height: 1.65,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

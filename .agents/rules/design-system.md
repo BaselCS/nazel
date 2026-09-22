@@ -15,3 +15,7 @@ trigger: always_on
 - If a component is NOT in the design system, do NOT add it silently.
 - You MUST ask the user before adding any new component.
 - State why existing components cannot fulfill the requirement, which atomic category it belongs to (atom/molecule/organism), and get user approval first.
+
+## 3. Typography & Responsive Scaling Rule
+- Keep `flutter_screenutil` (`.sp`) in `NazelTypography` for base design tokens.
+- Use `auto_size_text` inside dynamic grid items, action buttons, and sidebar slots.

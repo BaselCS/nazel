@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
-import '../atoms/nazel_back_button.dart';
 
 class NazelAppBar extends StatelessWidget {
   final String title;
@@ -23,11 +21,17 @@ class NazelAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 72.0.h,
+      height: 64.0.h,
       decoration: BoxDecoration(
-        color: backgroundColor ?? NazelColors.primary,
+        color: backgroundColor ?? NazelColors.surfaceWhite,
+        border: Border(
+          bottom: BorderSide(
+            color: NazelColors.purpleBorder.withValues(alpha: 0.25),
+            width: 1.0,
+          ),
+        ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: NazelDimens.space24),
+      padding: EdgeInsets.symmetric(horizontal: 20.0.w),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -37,18 +41,38 @@ class NazelAppBar extends StatelessWidget {
               title,
               style: NazelTypography.arabic(
                 fontSize: 22.0,
-                fontWeight: FontWeight.w900,
-                color: NazelColors.surfaceWhite,
+                fontWeight: FontWeight.w700,
+                color: NazelColors.primaryDark,
               ),
               textAlign: TextAlign.center,
             ),
           ),
-          // Pop-up back button: on LEFT in Arabic (RTL end), on RIGHT in English (LTR end)
+          // Pop-up back button: on end edge (left in Arabic RTL)
           Positioned.directional(
             textDirection: Directionality.of(context),
             end: 0,
-            child: NazelBackButton(
-              onPressed: onBack,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: onBack ?? () => Navigator.of(context).pop(),
+                borderRadius: BorderRadius.circular(8.0.r),
+                child: Container(
+                  padding: EdgeInsets.all(8.0.r),
+                  decoration: BoxDecoration(
+                    color: NazelColors.purpleSoft.withValues(alpha: 0.7),
+                    borderRadius: BorderRadius.circular(8.0.r),
+                    border: Border.all(
+                      color: NazelColors.purpleBorder.withValues(alpha: 0.25),
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Icon(
+                    Icons.close_rounded,
+                    color: NazelColors.primaryDark,
+                    size: 20.0.r,
+                  ),
+                ),
+              ),
             ),
           ),
           // Actions on opposite edge (start edge)

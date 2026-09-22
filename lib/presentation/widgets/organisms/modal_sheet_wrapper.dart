@@ -35,7 +35,7 @@ class ModalSheetWrapper extends StatelessWidget {
   }) {
     return showDialog<T>(
       context: context,
-      barrierColor: NazelColors.overlayDim,
+      barrierColor: NazelColors.sidebarBg.withValues(alpha: 0.45),
       barrierDismissible: true,
       builder: (ctx) => ModalSheetWrapper(
         title: title,
@@ -53,38 +53,45 @@ class ModalSheetWrapper extends StatelessWidget {
     return Center(
       child: Material(
         color: Colors.transparent,
-        child: Container(
-          width: width ?? NazelDimens.modalWidth,
-          height: height ?? NazelDimens.modalHeight,
-          margin: EdgeInsets.all(NazelDimens.space24),
-          decoration: BoxDecoration(
-            color: NazelColors.surfaceWhite,
-            borderRadius: BorderRadius.circular(NazelDimens.radiusCard),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
-                offset: Offset(0, 16.h),
-                blurRadius: 40.0.r,
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Container(
+            width: width ?? NazelDimens.modalWidth,
+            height: height ?? NazelDimens.modalHeight,
+            margin: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 20.0.h),
+            decoration: BoxDecoration(
+              color: NazelColors.surfaceWhite,
+              borderRadius: BorderRadius.circular(16.0.r),
+              border: Border.all(
+                color: NazelColors.purpleBorder.withValues(alpha: 0.35),
+                width: 1.0,
               ),
-            ],
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              NazelAppBar(
-                title: title,
-                onBack: onClose ?? () => Navigator.of(context).pop(),
-                actions: headerActions,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(NazelDimens.space24),
-                  child: content,
+              boxShadow: [
+                BoxShadow(
+                  color: NazelColors.primary.withValues(alpha: 0.12),
+                  offset: const Offset(0, 8),
+                  blurRadius: 28.0.r,
                 ),
-              ),
-              ?footer,
-            ],
+              ],
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                NazelAppBar(
+                  title: title,
+                  onBack: onClose ?? () => Navigator.of(context).pop(),
+                  actions: headerActions,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(22.0.r),
+                    child: content,
+                  ),
+                ),
+                ?footer,
+              ],
+            ),
           ),
         ),
       ),
