@@ -39,6 +39,7 @@ trigger: always_on
 4. **Tourism & Local Experiences (`سياحة وتجارب`)**:
    - Featured experiences (private yacht cruise, desert safari, city heritage tours).
    - Duration, ratings, pricing, and direct booking request.
+   - Dynamic QR Code for each attraction: Guest scans QR code with personal phone to open direct Google Maps navigation.
 
 5. **Extend Stay (`تمديد الحجز`)**:
    - Room number and current checkout summary.
@@ -61,7 +62,21 @@ trigger: always_on
    - Check-in time, check-out time, real-time remaining stay countdown.
    - In-room Wi-Fi details with auto-connect QR code + SSID and password.
 
-## 5. Future Roadmap & Iterations
-- **Phase 2**: Real-time staff dispatch dashboard (web / mobile) to accept and update order statuses in real time.
+## 5. Feature Scoping & Decisions (MVP vs Postponed)
+### Step A: Core Guest Screen Features
+- **[IN MVP]** Guest Welcome & Booking Info (Guest name, check-in/out times)
+- **[IN MVP]** Language Auto-switch (Arabic / English based on booking info)
+- **[IN MVP]** Wi-Fi QR Code & House Rules
+- **[IN MVP]** Local Guide / Places nearby (Basic curated spots + Google Maps QR)
+- **[IN MVP]** Direct Support / Help button
+
+### Step B: Core Owner Dashboard Features
+- **[IN MVP]** Property & Screen content editor
+- **[IN MVP]** Basic access permissions / auth
+- **[POSTPONED]** Advanced analytics / automated messaging (v2)
+
+## 6. Future Roadmap & Iterations
+- **Phase 2**: Real-time staff dispatch dashboard (web / mobile), advanced analytics, automated messaging, and Web Kiosk Simulator (under study - allows interacting with app on web without physical tablet connection).
 - **Phase 3**: Payment gateway (Mada, Apple Pay, Credit Card) for instant paid services.
 - **Phase 4**: PMS integrations (Opera, Cloudbeds, Mews) for automated check-in sync and billing folio integration.
+

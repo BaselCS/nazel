@@ -6,8 +6,9 @@ import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 import 'presentation/screens/home_screen.dart';
 
-final ValueNotifier<Locale> appLocaleNotifier =
-    ValueNotifier<Locale>(const Locale('ar'));
+final ValueNotifier<Locale> appLocaleNotifier = ValueNotifier<Locale>(
+  const Locale('ar'),
+);
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,4 +52,3 @@ class NazelApp extends StatelessWidget {
     );
   }
 }
-

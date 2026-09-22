@@ -38,6 +38,22 @@ class NazelTypography {
     );
   }
 
+  static TextStyle display({
+    double fontSize = 24.0,
+    FontWeight fontWeight = FontWeight.bold,
+    Color color = NazelColors.textPrimary,
+    double? height,
+    double? letterSpacing,
+  }) {
+    return GoogleFonts.arefRuqaa(
+      fontSize: fontSize.sp,
+      fontWeight: fontWeight,
+      color: color,
+      height: height,
+      letterSpacing: letterSpacing,
+    );
+  }
+
   // Pre-configured Styles (Responsive with .sp)
   static TextStyle get displayLarge => arabic(
         fontSize: 36.0,

@@ -42,6 +42,14 @@ class NazelColors {
   static const Color borderLight = Color(0xFFD9D9D9);
   static const Color overlayDim = Color(0x73000000);
 
+  // Kiosk & Editorial Theme Tokens
+  static const Color sand = Color(0xFFF6F2EC);
+  static const Color paper = Color(0xFFFAF7F2);
+  static const Color ink = Color(0xFF1E1C1A);
+  static const Color muted = Color(0xFF7A756E);
+  static const Color line = Color(0xFFE5DFD5);
+  static const Color khuzama = Color(0xFF532093);
+
   // Gradients
   static const LinearGradient primaryGradient = LinearGradient(
     begin: Alignment.topRight,
