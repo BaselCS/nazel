@@ -2,7 +2,7 @@
 trigger: always_on
 ---
 
-# Nazel (نازل) - Project Vision & System Architecture
+# Nazel (نزيل) - Project Vision & System Architecture
 
 ## 1. Executive Summary & Vision
 - **Product**: In-room smart hospitality SaaS platform for tablets (iPad / Android tablets).

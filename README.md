@@ -2,7 +2,7 @@
 
 <img src="assets/icons/app Icon Horzintal.png" width="320" alt="Nazel Logo"/>
 
-# Nazel — نازل
+# Nazel — نزيل
 
 [![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
@@ -19,16 +19,20 @@
 
 <table>
  <tr>
- <td align="center"><b>لوحة الإعلانات والعروض<br/>Promotions & Ads</b></td>
- <td align="center"><b>شبكة الواي فاي للغرفة<br/>In-Room Wi-Fi & QR</b></td>
- <td align="center"><b>خدمات الضيافة والتوصيل<br/>Food & Room Service</b></td>
- <td align="center"><b>الراحة الفندقية<br/>Hospitality & Cleanliness</b></td>
+ <td align="center"><b>الواجهة الرئيسية<br/>Main Kiosk Dashboard</b></td>
+ <td align="center"><b>الخريطة والمرافق المجاورة<br/>Interactive Map & Amenities</b></td>
  </tr>
  <tr>
- <td align="center"><a href="assets/images/ad.jpeg"><img src="assets/images/ad.jpeg" width="220" alt="Promotions Banner"/></a></td>
- <td align="center"><a href="assets/images/QR code.png"><img src="assets/images/QR code.png" width="160" alt="Wi-Fi QR Code"/></a></td>
- <td align="center"><a href="assets/images/restaurant_albaik.png"><img src="assets/images/restaurant_albaik.png" width="160" alt="Dining Delivery"/></a></td>
- <td align="center"><a href="assets/images/Sofa.png"><img src="assets/images/Sofa.png" width="180" alt="Comfort Experience"/></a></td>
+ <td align="center"><a href="assets/images/readme/interface.png"><img src="assets/images/readme/interface.png" width="450" alt="Main Dashboard"/></a></td>
+ <td align="center"><a href="assets/images/readme/map.png"><img src="assets/images/readme/map.png" width="450" alt="Interactive Map"/></a></td>
+ </tr>
+ <tr>
+ <td align="center"><b>السياحة والتجارب المحلية<br/>Tourism & Experiences</b></td>
+ <td align="center"><b>معلومات الغرفة والوحدة<br/>Room & Property Details</b></td>
+ </tr>
+ <tr>
+ <td align="center"><a href="assets/images/readme/Tourism.png"><img src="assets/images/readme/Tourism.png" width="450" alt="Tourism & Experiences"/></a></td>
+ <td align="center"><a href="assets/images/readme/about%20room.png"><img src="assets/images/readme/about%20room.png" width="450" alt="Room & Property Details"/></a></td>
  </tr>
 </table>
 
@@ -38,14 +42,14 @@
 
 ## Arabic / العربية 
 
-### منصة نازل — Nazel Hospitality Platform
-**نازل (Nazel)** هو تطبيق ونظام ضيافة تفاعلي للأجهزة اللوحية (Tablets / iPads) مخصص للغرف الفندقية، والشقق المفروشة، والمنتجعات، والشاليهات الفاخرة. يعمل النظام كـ **كونسيرج رقمي (Digital Concierge Kiosk)** بديل للقوائم والبروشورات الورقية التقليدية، ويوفر للنزيل تجربة متكاملة لطلب الخدمات، استكشاف الأماكن المجاورة، حجز التجارب السياحية، والتواصل المباشر مع إدارة المنشأة.
+### منصة نزيل — Nazel Hospitality Platform
+**نزيل (Nazel)** هو تطبيق ونظام ضيافة تفاعلي للأجهزة اللوحية (Tablets / iPads) مخصص للغرف الفندقية، والشقق المفروشة، والمنتجعات، والشاليهات الفاخرة. يعمل النظام كـ **كونسيرج رقمي (Digital Concierge Kiosk)** بديل للقوائم والبروشورات الورقية التقليدية، ويوفر للنزيل تجربة متكاملة لطلب الخدمات، استكشاف الأماكن المجاورة، حجز التجارب السياحية، والتواصل المباشر مع إدارة المنشأة.
 
 ### فلسفة التصميم وتجربة النزيل (Zero Friction)
 * **استخدام فوري بدون عوائق (Zero Friction):** لا يحتاج النزيل لتحميل تطبيق أو مسح رمز أو تسجيل دخول شخصي؛ فالجهاز اللوحي مخصص لكل وحدة/غرفة ومرتبط بمعرف الغرفة (`deviceId`).
 * **واجهة عريضة متكيفة (Tablet Landscape):** تصميم موجه بالكامل للأجهزة اللوحية مع مراعاة راحة العين وتوزيع العناصر بشكل متوازن.
 * **دعم ثنائي اللغة أصيل (RTL / LTR):** واجهة عربية كاملة بتصميم محلي فاخر مع دعم فوري للغة الإنجليزية.
-* **بيانات إقامة فورية:** عداد تنازلي لحظي يوضح الوقت المتبقي للمغادرة وتفاصيل تسجيل الوصول والخروج.
+* **بيانات إقامة فورية:** عداد تنزيلي لحظي يوضح الوقت المتبقي للمغادرة وتفاصيل تسجيل الوصول والخروج.
 * **ربط شبكة Wi-Fi فوري:** بطاقة اتصال مدمجة برمز QR تتيح للنزيل الاتصال بشبكة الغرفة بنقرة واحدة.
 
 ### قائمة الخدمات المدمجة (Service Catalog)
@@ -86,7 +90,7 @@
 ## English 
 
 ### Nazel Hospitality Platform
-**Nazel (نازل)** is a specialized in-room smart hospitality kiosk and digital concierge platform engineered for tablets (iPads / Android tablets). Designed for hotels, serviced apartments, resorts, and chalets, Nazel replaces printed menus and outdated guest binders with an elegant, interactive touchscreen dashboard.
+**Nazel (نزيل)** is a specialized in-room smart hospitality kiosk and digital concierge platform engineered for tablets (iPads / Android tablets). Designed for hotels, serviced apartments, resorts, and chalets, Nazel replaces printed menus and outdated guest binders with an elegant, interactive touchscreen dashboard.
 
 ### Core Experience & Design Philosophy (Zero Friction)
 * **Zero Friction Access:** No downloads, QR scans, or logins required. The tablet is provisioned per unit and identified securely by `deviceId`.
