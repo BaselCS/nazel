@@ -1,0 +1,32 @@
+SOURCE-AVAILABLE LICENSE
+
+Copyright (c) 2026 BaselCS. All rights reserved.
+
+Permission is hereby granted to any person obtaining a copy of this software
+and associated documentation files (the "Software"), to inspect, view, study,
+and run the code locally for personal, educational, and evaluation purposes only,
+subject to the following conditions:
+
+1. SOURCE-AVAILABLE ONLY:
+   This Software is Source-Available, NOT open source. Access to the source code
+   does not grant rights to commercially exploit, distribute, or relicence the software.
+
+2. COMMERCIAL RESTRICTIONS:
+   You may NOT use this Software or any part of it for commercial purposes, including
+   but not limited to deploying it in commercial hospitality venues (hotels, resorts,
+   serviced apartments), offering it as SaaS, charging fees for access, or bundling it
+   into commercial products or services, without prior written agreement from the author.
+
+3. REDISTRIBUTION RESTRICTIONS:
+   Redistribution of the source code, modified versions, or compiled binaries in any
+   public forum, repository, or distribution channel is strictly prohibited without
+   explicit written consent from the author.
+
+4. NO WARRANTY:
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
